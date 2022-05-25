@@ -7,12 +7,12 @@
         <title>{{ config('app.name') }}</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://use.typekit.net/fyp6lja.css" rel="stylesheet">
 
         <!-- Styles -->
-        
+        <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
     </head>
-    <body style="-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;">
+    <body>
 
     </body>
 </html>
