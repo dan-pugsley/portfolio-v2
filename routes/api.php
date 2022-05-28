@@ -49,7 +49,7 @@ Route::get('/projects', function (Request $request) {
     foreach ($projects as &$project)
     {
         $project->tags = array_column($project->tags()->get(['name'])->toArray(), 'name');
-        $project->resources = Resource::where('project_id', '=', $project->id)->get(['name', 'url', 'is_video']);
+        $project->resources = Resource::where('project_id', '=', $project->id)->get(['id', 'name', 'url', 'is_video']);
     }
 
     return $projects;

@@ -11,8 +11,15 @@
 
         <!-- Styles -->
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
+
+        <!-- Scripts -->
+        <script>
+            const bio = {{ Js::from(config('constants.bio')) }};
+            const tags = [{id: 0, name: 'All'}, {id: 1, name: 'C#'}, {id: 2, name: 'React.js'}]; // TODO: Pass/pull in on page load
+        </script>
+        <script src="{{ mix('/js/app.js') }}" defer></script>
     </head>
     <body>
-
+        <div id="js-container" class="container"></div>
     </body>
 </html>

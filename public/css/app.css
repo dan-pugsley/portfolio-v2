@@ -1,4 +1,8 @@
 body {
+    margin: 0;
+}
+
+.container {
     --c-dark: #032F40;
     --c-grey: #657C85;
     --c-light-grey: #F5F5F5;
@@ -10,8 +14,6 @@ body {
     --page-padding-x-scale: 5.07vw;
     --page-padding-x: min(max(var(--page-padding-x-scale), 21px), 32px);
     --page-padding-x-large: max(min(10.25vw, 155px), var(--page-padding-x));
-
-    margin: 0;
 
     display: -webkit-box;
 
@@ -345,9 +347,6 @@ a.nav__link {
             flex-direction: column;
 
     background: #FAFAFA;
-}
-:not(.nav--menu-open) > .nav__menu {
-    display: none;
 }
 
 /* Button container */
@@ -829,7 +828,7 @@ a.nav__link {
     max-width: 100%;
 }
 
-.exp-item__imgs {
+.exp-item__scroll {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -845,7 +844,7 @@ a.nav__link {
     overflow-y: scroll;
 }
 /* apply 'end-padding' with a pseudo element */
-.exp-item__imgs::after {
+.exp-item__scroll::after {
     -ms-flex-negative: 0;
         flex-shrink: 0;
 
@@ -854,7 +853,7 @@ a.nav__link {
 }
 
 /* Img container */
-.exp-item__imgs > div {
+.exp-item__scroll > div {
     -ms-flex-negative: 0;
         flex-shrink: 0;
 
@@ -866,11 +865,12 @@ a.nav__link {
     border-radius: 8px;
     overflow: hidden;
 }
-.exp-item__imgs > div:not(:first-child) {
+.exp-item__scroll > div:not(:first-child) {
     margin-left: 18px;
 }
 
-.exp-item__imgs img {
+/* img and YouTube iframe */
+.exp-item__scroll > div > * {
     position: absolute;
     top: 0; left: 0;
     height: 100%; width: 100%;
@@ -878,7 +878,7 @@ a.nav__link {
        object-fit: cover;
 }
 
-.exp-item__img-nav {
+.exp-item__scroll-nav {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -892,16 +892,16 @@ a.nav__link {
     margin-top: 20px;
 }
 
-.exp-item__img-nav > .circle-btn {
+.exp-item__scroll-nav > .circle-btn {
     --size: 32px;
 }
-.exp-item__img-nav > .circle-btn:disabled {
+.exp-item__scroll-nav > .circle-btn:disabled {
     background: white;
 }
-.exp-item__img-nav > .circle-btn svg {
+.exp-item__scroll-nav > .circle-btn svg {
     stroke: var(--c-dark-green);
 }
-.exp-item__img-nav > .circle-btn:disabled svg {
+.exp-item__scroll-nav > .circle-btn:disabled svg {
     stroke: var(--c-light-green);
 }
 
@@ -1120,7 +1120,7 @@ input:checked ~ .exp-item-radios__dot {
 /* ——— Desktop adjustments ——— */
 
 @media only screen and (min-width: 885px) {
-    body {
+    .container {
         --page-padding-x-scale: 2.12vw;
     }
 
@@ -1337,7 +1337,7 @@ input:checked ~ .exp-item-radios__dot {
         border-left: 1px solid var(--c-light-grey);
     }
 
-    .exp-item__img-nav {
+    .exp-item__scroll-nav {
         -webkit-box-pack: end;
             -ms-flex-pack: end;
                 justify-content: flex-end;
@@ -1347,7 +1347,7 @@ input:checked ~ .exp-item-radios__dot {
         margin-bottom: 21px;
     }
 
-    .exp-item__imgs {
+    .exp-item__scroll {
         height: 328px;
     }
 
