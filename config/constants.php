@@ -1,9 +1,16 @@
 <?php
 
 return [
+    'resumeUrl' => asset('pdf/resume.pdf'),
     'bio' => [
         'name' => env('APP_NAME'),
         'subtitle' => 'Full stack web developer',
-        'imgSrc' => asset('img/bio.jpg'),
+        'imgUrl' => asset('img/bio.jpg'),
+    ],
+    'social' => [
+        'twitterUrl' => '#',
+        'gitHubUrl' => '#',
+        'linkedInUrl' => '#',
+        'instagramUrl' => '#',
     ],
 ];

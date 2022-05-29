@@ -14,8 +14,14 @@
 
         <!-- Scripts -->
         <script>
-            const bio = {{ Js::from(config('constants.bio')) }};
-            const tags = [{id: 0, name: 'All'}, {id: 1, name: 'C#'}, {id: 2, name: 'React.js'}]; // TODO: Pass/pull in on page load
+            const constants = {{ Js::from(config('constants')) }};
+
+            // TODO: Pass/pull in on page load
+            const tags = [
+                {id: 0, name: 'All'},
+                {id: 1, name: 'C#'},
+                {id: 2, name: 'React.js'}
+            ];
         </script>
         <script src="{{ mix('/js/app.js') }}" defer></script>
     </head>

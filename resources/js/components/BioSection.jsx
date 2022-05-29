@@ -40,13 +40,14 @@ class Spinner extends React.Component {
 
 class BioSection extends React.Component {
     render() {
+        const bio = constants.bio;
         return (
             <section className="bio tk-lato">
                 <Content title={bio.name} subtitle={bio.subtitle}>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eleifend tortor tempus auctor. Donec varius, velit eu hendrerit volutpat, odio augue sollicitudin dolor, sed efficitur odio diam <a href="#">vitae ante</a>. Ut sit amet cursus neque hendrerit volutpat.</p>
                     <p>Donec varius, velit eu hendrerit volutpat, odio augue sollicitudin dolor, sed efficitur odio.</p>
                 </Content>
-                <Spinner imgSrc={bio.imgSrc} imgAlt={bio.name} />
+                <Spinner imgSrc={bio.imgUrl} imgAlt={bio.name} />
                 <div></div> {/* helps with flex layout */}
             </section>
         );

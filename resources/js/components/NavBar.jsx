@@ -1,7 +1,5 @@
-import React from 'react';
 import ResumeButton from './ResumeButton';
 import ContactButton from './ContactButton';
-import { className } from 'postcss-selector-parser';
 
 function Logo() {
     return (
@@ -41,7 +39,7 @@ function Links() {
 function MenuToggle(props) {
     return (
         <label className="nav__menu-btn">
-            <input className="invisible" type="checkbox" onChange={props.onChange} aria-haspopup="true" aria-controls="nav__menu"/>
+            <input className="invisible" type="checkbox" checked={props.isChecked} onChange={props.onChange} aria-haspopup="true" aria-controls="nav__menu"/>
             <svg viewBox="0 0 25 19" width="25" fill="#38A186">
                 <rect width="25" height="3" rx="1"/>
                 <rect y="8" width="25" height="3" rx="1"/>
@@ -69,33 +67,23 @@ function Menu() {
     );
 }
 
-class NavBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isMenuOpen: false
-        };
-        this.ref = React.createRef();
-    }
+function NavBar(props) {
+    const classNames = ['nav', 'tk-lato'];
 
-    render() {
-        const classNames = ['nav', 'tk-lato'];
+    if (props.isPageScrolled)
+        classNames.push('nav--scrolling');
 
-        if (this.props.isPageScrolled)
-            classNames.push('nav--scrolling');
+    if (props.isMenuOpen)
+        classNames.push('nav--menu-open');
 
-        if (this.state.isMenuOpen)
-            classNames.push('nav--menu-open');
-
-        return (
-            <nav className={classNames.join(' ')}>
-                <Logo />
-                <Links />
-                <MenuToggle onChange={e => this.setState({isMenuOpen: e.target.checked})}/>
-                {this.state.isMenuOpen && <Menu />}
-            </nav>
-        );
-    }
+    return (
+        <nav className={classNames.join(' ')}>
+            <Logo />
+            <Links />
+            <MenuToggle isChecked={props.isMenuOpen} onChange={props.onMenuToggle} />
+            {props.isMenuOpen && <Menu />}
+        </nav>
+    );
 }
 
 export default NavBar;
