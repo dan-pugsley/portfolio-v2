@@ -1,8 +1,4 @@
-body {
-    margin: 0;
-}
-
-.container {
+:root {
     --c-dark: #032F40;
     --c-grey: #657C85;
     --c-light-grey: #F5F5F5;
@@ -15,6 +11,19 @@ body {
     --page-padding-x: min(max(var(--page-padding-x-scale), 21px), 32px);
     --page-padding-x-large: max(min(10.25vw, 155px), var(--page-padding-x));
 
+    --nav-height: 79px;
+    --trans-time: 0.2s;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
     display: flex;
     flex-direction: column;
 
@@ -75,6 +84,7 @@ p:not(:first-of-type) {
 p > a {
     font-weight: 700;
     color: var(--c-dark-green);
+    transition: font-weight var(--trans-time);
 }
 
 hr {
@@ -131,6 +141,11 @@ hr {
     font-size: 18px;
     text-align: center;
     white-space: nowrap;
+
+    /* fixes verticle align in nav menu buttons */
+    line-height: 0;
+
+    transition: all var(--trans-time);
 }
 a.btn,
 button.btn > div {
@@ -158,6 +173,8 @@ button.btn > div {
 
 .btn > svg:first-child {
     margin-right: 12px;
+
+    transition: all var(--trans-time);
 }
 .btn--sec svg {
     stroke: var(--color);
@@ -189,12 +206,15 @@ button.circle-btn > div {
     cursor: not-allowed;
 }
 
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: var(--target-opacity); }
+}
+
 
 /* ——— Nav ——— */
 
 .nav {
-    --nav-height: 79px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -206,6 +226,8 @@ button.circle-btn > div {
 
     background: white;
     border-bottom: 1px solid var(--c-light-grey);
+
+    transition: box-shadow var(--trans-time);
 }
 .nav--scrolling {
     box-shadow: 0px 4px 20px rgba(190, 190, 190, 0.25);
@@ -242,6 +264,8 @@ button.circle-btn > div {
     line-height: 45px;
     text-align: center;
     color: var(--c-dark);
+
+    transition: color var(--trans-time);
 }
 a.nav__link {
     text-decoration: none;
@@ -273,11 +297,6 @@ a.nav__link {
     cursor: pointer;
 }
 
-.nav__menu-btn > input:checked ~ svg:first-of-type,
-.nav__menu-btn > input:not(:checked) ~ svg:last-of-type {
-    display: none;
-}
-
 .nav__menu {
     position: absolute;
     top: 100%;
@@ -289,6 +308,10 @@ a.nav__link {
     flex-direction: column;
 
     background: #FAFAFA;
+    opacity: 0;
+
+    --target-opacity: 1;
+    animation: fade-in var(--trans-time) forwards;
 }
 
 /* Button container */
@@ -325,10 +348,13 @@ a.nav__link {
 /* ——— Bio ——— */
 
 .bio {
+    --margin-top: 30px;
+
     display: flex;
     flex-direction: column;
 
-    margin-top: 30px;
+    margin-top: var(--margin-top);
+    scroll-margin-top: calc(var(--margin-top) + var(--nav-height));
     padding: 0 var(--page-padding-x);
 }
 
@@ -426,7 +452,10 @@ a.nav__link {
 /* ——— Experience ——— */
 
 .exp {
-    margin-top: 32.5px;
+    --margin-top: 32.5px;
+
+    margin-top: var(--margin-top);
+    scroll-margin-top: calc(var(--margin-top) + var(--nav-height));
 
     display: flex;
     flex-direction: column;
@@ -670,7 +699,7 @@ a.nav__link {
 .exp-item__scroll::after {
     flex-shrink: 0;
 
-    content: "";
+    content: '';
     width: var(--exp-item-padding-right);
 }
 
@@ -883,7 +912,10 @@ input:checked ~ .exp-item-radios__dot {
     height: 100%; width: 100%;
 
     background: var(--c-grey);
-    opacity: 0.6;
+    opacity: 0;
+
+    --target-opacity: 0.6;
+    animation: fade-in var(--trans-time) forwards;
 }
 
 

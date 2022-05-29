@@ -16,20 +16,9 @@ class Page extends React.Component {
             isNavMenuOpen: false,
             isScrolled: false,
         };
+        this.closeNavMenu = this.closeNavMenu.bind(this);
         this.handleResize = this.handleResize.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
-    }
-
-    handleResize() {
-        this.setState({
-            isNavMenuOpen: false,
-        });
-    }
-
-    handleScroll() {
-        this.setState({
-            isScrolled: window.scrollY > 0
-        });
     }
 
     componentDidMount() {
@@ -42,6 +31,22 @@ class Page extends React.Component {
         document.removeEventListener('scroll', this.handleScroll);
     }
 
+    closeNavMenu() {
+        this.setState({
+            isNavMenuOpen: false,
+        });
+    }
+
+    handleResize() {
+        this.closeNavMenu();
+    }
+
+    handleScroll(e) {
+        this.setState({
+            isScrolled: window.scrollY > 0
+        });
+    }
+
     render() {
         return (
             <>
@@ -49,6 +54,7 @@ class Page extends React.Component {
                 <NavBar
                     isMenuOpen={this.state.isNavMenuOpen}
                     onMenuToggle={e => this.setState({isNavMenuOpen: e.target.checked})}
+                    onMenuLinkClick={this.closeNavMenu}
                     isPageScrolled={this.state.isScrolled}
                 />
                 <BioSection />
@@ -56,7 +62,7 @@ class Page extends React.Component {
                 <ContactSection />
                 <SocialLinks />
                 <Footer />
-                {this.state.isNavMenuOpen && <div className="blocker"></div>}
+                {this.state.isNavMenuOpen && <div className="blocker" onClick={this.closeNavMenu}></div>}
             </>
         );
     }

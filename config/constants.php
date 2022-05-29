@@ -2,6 +2,7 @@
 
 return [
     'resumeUrl' => asset('pdf/resume.pdf'),
+    'emailAddress' => 'daniel.pugsley@gmail.com',
     'bio' => [
         'name' => env('APP_NAME'),
         'subtitle' => 'Full stack web developer',

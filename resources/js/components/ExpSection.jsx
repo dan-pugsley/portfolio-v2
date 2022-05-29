@@ -87,7 +87,7 @@ class ExpSection extends React.Component {
     
     render() {
         return (
-            <section className="exp tk-lato">
+            <section id="exp" className="exp tk-lato">
                 <Header
                     tags={this.props.tags}
                     selectedTagId={this.state.selectedTagId}

@@ -1,8 +1,4 @@
-body {
-    margin: 0;
-}
-
-.container {
+:root {
     --c-dark: #032F40;
     --c-grey: #657C85;
     --c-light-grey: #F5F5F5;
@@ -15,10 +11,21 @@ body {
     --page-padding-x: min(max(var(--page-padding-x-scale), 21px), 32px);
     --page-padding-x-large: max(min(10.25vw, 155px), var(--page-padding-x));
 
+    --nav-height: 79px;
+    --trans-time: 0.2s;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
     display: -webkit-box;
-
     display: -ms-flexbox;
-
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -82,6 +89,9 @@ p:not(:first-of-type) {
 p > a {
     font-weight: 700;
     color: var(--c-dark-green);
+    -webkit-transition: font-weight var(--trans-time);
+    -o-transition: font-weight var(--trans-time);
+    transition: font-weight var(--trans-time);
 }
 
 hr {
@@ -140,6 +150,15 @@ hr {
     font-size: 18px;
     text-align: center;
     white-space: nowrap;
+
+    /* fixes verticle align in nav menu buttons */
+    line-height: 0;
+
+    -webkit-transition: all var(--trans-time);
+
+    -o-transition: all var(--trans-time);
+
+    transition: all var(--trans-time);
 }
 a.btn,
 button.btn > div {
@@ -173,6 +192,12 @@ button.btn > div {
 
 .btn > svg:first-child {
     margin-right: 12px;
+
+    -webkit-transition: all var(--trans-time);
+
+    -o-transition: all var(--trans-time);
+
+    transition: all var(--trans-time);
 }
 .btn--sec svg {
     stroke: var(--color);
@@ -210,16 +235,22 @@ button.circle-btn > div {
     cursor: not-allowed;
 }
 
+@-webkit-keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: var(--target-opacity); }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: var(--target-opacity); }
+}
+
 
 /* ——— Nav ——— */
 
 .nav {
-    --nav-height: 79px;
-
     display: -webkit-box;
-
     display: -ms-flexbox;
-
     display: flex;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
@@ -235,6 +266,16 @@ button.circle-btn > div {
 
     background: white;
     border-bottom: 1px solid var(--c-light-grey);
+
+    -webkit-transition: -webkit-box-shadow var(--trans-time);
+
+    transition: -webkit-box-shadow var(--trans-time);
+
+    -o-transition: box-shadow var(--trans-time);
+
+    transition: box-shadow var(--trans-time);
+
+    transition: box-shadow var(--trans-time), -webkit-box-shadow var(--trans-time);
 }
 .nav--scrolling {
     -webkit-box-shadow: 0px 4px 20px rgba(190, 190, 190, 0.25);
@@ -282,6 +323,12 @@ button.circle-btn > div {
     line-height: 45px;
     text-align: center;
     color: var(--c-dark);
+
+    -webkit-transition: color var(--trans-time);
+
+    -o-transition: color var(--trans-time);
+
+    transition: color var(--trans-time);
 }
 a.nav__link {
     text-decoration: none;
@@ -323,11 +370,6 @@ a.nav__link {
     cursor: pointer;
 }
 
-.nav__menu-btn > input:checked ~ svg:first-of-type,
-.nav__menu-btn > input:not(:checked) ~ svg:last-of-type {
-    display: none;
-}
-
 .nav__menu {
     position: absolute;
     top: 100%;
@@ -347,6 +389,11 @@ a.nav__link {
             flex-direction: column;
 
     background: #FAFAFA;
+    opacity: 0;
+
+    --target-opacity: 1;
+    -webkit-animation: fade-in var(--trans-time) forwards;
+            animation: fade-in var(--trans-time) forwards;
 }
 
 /* Button container */
@@ -394,15 +441,20 @@ a.nav__link {
 /* ——— Bio ——— */
 
 .bio {
+    --margin-top: 30px;
+
     display: -webkit-box;
+
     display: -ms-flexbox;
+
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
 
-    margin-top: 30px;
+    margin-top: var(--margin-top);
+    scroll-margin-top: calc(var(--margin-top) + var(--nav-height));
     padding: 0 var(--page-padding-x);
 }
 
@@ -529,7 +581,10 @@ a.nav__link {
 /* ——— Experience ——— */
 
 .exp {
-    margin-top: 32.5px;
+    --margin-top: 32.5px;
+
+    margin-top: var(--margin-top);
+    scroll-margin-top: calc(var(--margin-top) + var(--nav-height));
 
     display: -webkit-box;
 
@@ -848,7 +903,7 @@ a.nav__link {
     -ms-flex-negative: 0;
         flex-shrink: 0;
 
-    content: "";
+    content: '';
     width: var(--exp-item-padding-right);
 }
 
@@ -1113,7 +1168,11 @@ input:checked ~ .exp-item-radios__dot {
     height: 100%; width: 100%;
 
     background: var(--c-grey);
-    opacity: 0.6;
+    opacity: 0;
+
+    --target-opacity: 0.6;
+    -webkit-animation: fade-in var(--trans-time) forwards;
+            animation: fade-in var(--trans-time) forwards;
 }
 
 

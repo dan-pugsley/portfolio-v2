@@ -2327,6 +2327,7 @@ var BioSection = /*#__PURE__*/function (_React$Component2) {
     value: function render() {
       var bio = constants.bio;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+        id: "bio",
         className: "bio tk-lato",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(Content, {
           title: bio.name,
@@ -2400,7 +2401,7 @@ __webpack_require__.r(__webpack_exports__);
 function ContactButton(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ButtonLink__WEBPACK_IMPORTED_MODULE_0__["default"], {
     role: props.role,
-    url: "#",
+    url: "mailto:".concat(constants.emailAddress),
     text: "Say hi",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
       viewBox: "0 0 21 20",
@@ -3115,6 +3116,7 @@ var ExpSection = /*#__PURE__*/function (_React$Component2) {
       var _this2 = this;
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
+        id: "exp",
         className: "exp tk-lato",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Header, {
           tags: this.props.tags,
@@ -3177,22 +3179,47 @@ function Footer() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ResumeButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ResumeButton */ "./resources/js/components/ResumeButton.jsx");
-/* harmony import */ var _ContactButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ContactButton */ "./resources/js/components/ContactButton.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ResumeButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ResumeButton */ "./resources/js/components/ResumeButton.jsx");
+/* harmony import */ var _ContactButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ContactButton */ "./resources/js/components/ContactButton.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
 
 
 
 
 
 function Logo() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
     className: "nav__logo",
-    href: "#",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
+    href: "#top",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("svg", {
       viewBox: "0 0 41 45",
       width: "41",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("use", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("use", {
         href: "#logo-path",
         fill: "#032F40"
       })
@@ -3201,107 +3228,226 @@ function Logo() {
 }
 
 function Link(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
     className: "nav__link",
     role: props.role,
     href: props.url,
+    onClick: props.onClick,
     children: props.text
   });
 }
 
 function BioLink(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Link, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Link, {
     role: props.role,
-    url: "#",
-    text: "Bio"
+    url: "#bio",
+    text: "Bio",
+    onClick: props.onClick
   });
 }
 
 function ExpLink(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Link, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Link, {
     role: props.role,
-    url: "#",
-    text: "Experience"
+    url: "#exp",
+    text: "Experience",
+    onClick: props.onClick
   });
 }
 
 function Links() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "nav__links",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(BioLink, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ExpLink, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ResumeButton__WEBPACK_IMPORTED_MODULE_0__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ContactButton__WEBPACK_IMPORTED_MODULE_1__["default"], {})]
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(BioLink, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ExpLink, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ResumeButton__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ContactButton__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
     })]
   });
 }
 
+var MenuToggleAnim = /*#__PURE__*/function (_React$Component) {
+  _inherits(MenuToggleAnim, _React$Component);
+
+  var _super = _createSuper(MenuToggleAnim);
+
+  function MenuToggleAnim(props) {
+    var _this;
+
+    _classCallCheck(this, MenuToggleAnim);
+
+    _this = _super.call(this, props);
+    _this.ref = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createRef();
+    return _this;
+  }
+
+  _createClass(MenuToggleAnim, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (!prevProps.start && this.props.start) this.ref.current.beginElement();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var Tag = this.props.attributeName === 'transform' ? 'animateTransform' : 'animate';
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Tag, {
+        ref: this.ref,
+        attributeName: this.props.attributeName,
+        attributeType: "XML",
+        type: this.props.type,
+        to: this.props.to,
+        dur: "200ms",
+        begin: "indefinite",
+        fill: "freeze",
+        calcMode: "spline",
+        keyTimes: "0;1",
+        keySplines: "0 0 .58 1"
+      });
+    }
+  }]);
+
+  return MenuToggleAnim;
+}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+
 function MenuToggle(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
     className: "nav__menu-btn",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
       className: "invisible",
       type: "checkbox",
       checked: props.isChecked,
       onChange: props.onChange,
       "aria-haspopup": "true",
       "aria-controls": "nav__menu"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("svg", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("svg", {
       viewBox: "0 0 25 19",
       width: "25",
       fill: "#38A186",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("rect", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+        attributeName: "fill",
+        to: "#657C85",
+        start: props.isChecked
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+        attributeName: "fill",
+        to: "#38A186",
+        start: !props.isChecked
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("rect", {
         width: "25",
         height: "3",
-        rx: "1"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("rect", {
+        rx: "1",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "x",
+          to: "4.72",
+          start: props.isChecked
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "y",
+          to: "-0.4",
+          start: props.isChecked
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "transform",
+          type: "rotate",
+          to: "45 4.72 -0.4",
+          start: props.isChecked
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "x",
+          to: "0",
+          start: !props.isChecked
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "y",
+          to: "0",
+          start: !props.isChecked
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "transform",
+          type: "rotate",
+          to: "0 0 0",
+          start: !props.isChecked
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("rect", {
         y: "8",
         width: "25",
         height: "3",
-        rx: "1"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("rect", {
+        rx: "1",
+        transform: "rotate(0 0 8)",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "x",
+          to: "12.5",
+          start: props.isChecked
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "width",
+          to: "0",
+          start: props.isChecked
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "opacity",
+          to: "0",
+          start: props.isChecked
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "x",
+          to: "0",
+          start: !props.isChecked
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "width",
+          to: "25",
+          start: !props.isChecked
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "opacity",
+          to: "1",
+          start: !props.isChecked
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("rect", {
         y: "16",
         width: "25",
         height: "3",
-        rx: "1"
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("svg", {
-      viewBox: "0 0 19 20",
-      width: "19",
-      fill: "#657C85",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("rect", {
-        x: "1.72",
-        width: "25",
-        height: "3",
         rx: "1",
-        transform: "rotate(45 1.72 0)"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("rect", {
-        x: "19.4",
-        y: "2.12",
-        width: "25",
-        height: "3",
-        rx: "1",
-        transform: "rotate(135 19.4 2.12)"
+        transform: "rotate(0 0 16)",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "x",
+          to: "2.6",
+          start: props.isChecked
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "y",
+          to: "17.28",
+          start: props.isChecked
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "transform",
+          type: "rotate",
+          to: "-45 2.6 17.28",
+          start: props.isChecked
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "x",
+          to: "0",
+          start: !props.isChecked
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "y",
+          to: "16",
+          start: !props.isChecked
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
+          attributeName: "transform",
+          type: "rotate",
+          to: "0 0 16",
+          start: !props.isChecked
+        })]
       })]
     })]
   });
 }
 
-function Menu() {
+function Menu(props) {
   return (
     /*#__PURE__*/
     // https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-links.html
-    (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       id: "nav__menu",
       className: "nav__menu",
       role: "menu",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(BioLink, {
-        role: "menuitem"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ExpLink, {
-        role: "menuitem"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(BioLink, {
+        role: "menuitem",
+        onClick: props.onLinkClick
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ExpLink, {
+        role: "menuitem",
+        onClick: props.onLinkClick
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         role: "none",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ResumeButton__WEBPACK_IMPORTED_MODULE_0__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ResumeButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
           role: "menuitem"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ContactButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ContactButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
           role: "menuitem"
         })]
       })]
@@ -3313,12 +3459,14 @@ function NavBar(props) {
   var classNames = ['nav', 'tk-lato'];
   if (props.isPageScrolled) classNames.push('nav--scrolling');
   if (props.isMenuOpen) classNames.push('nav--menu-open');
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("nav", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("nav", {
     className: classNames.join(' '),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Logo, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Links, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(MenuToggle, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Logo, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Links, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggle, {
       isChecked: props.isMenuOpen,
       onChange: props.onMenuToggle
-    }), props.isMenuOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Menu, {})]
+    }), props.isMenuOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Menu, {
+      onLinkClick: props.onMenuLinkClick
+    })]
   });
 }
 
@@ -3395,26 +3543,13 @@ var Page = /*#__PURE__*/function (_React$Component) {
       isNavMenuOpen: false,
       isScrolled: false
     };
+    _this.closeNavMenu = _this.closeNavMenu.bind(_assertThisInitialized(_this));
     _this.handleResize = _this.handleResize.bind(_assertThisInitialized(_this));
     _this.handleScroll = _this.handleScroll.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Page, [{
-    key: "handleResize",
-    value: function handleResize() {
-      this.setState({
-        isNavMenuOpen: false
-      });
-    }
-  }, {
-    key: "handleScroll",
-    value: function handleScroll() {
-      this.setState({
-        isScrolled: window.scrollY > 0
-      });
-    }
-  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       window.addEventListener('resize', this.handleResize);
@@ -3425,6 +3560,25 @@ var Page = /*#__PURE__*/function (_React$Component) {
     value: function componentWillUnmount() {
       window.removeEventListener('resize', this.handleResize);
       document.removeEventListener('scroll', this.handleScroll);
+    }
+  }, {
+    key: "closeNavMenu",
+    value: function closeNavMenu() {
+      this.setState({
+        isNavMenuOpen: false
+      });
+    }
+  }, {
+    key: "handleResize",
+    value: function handleResize() {
+      this.closeNavMenu();
+    }
+  }, {
+    key: "handleScroll",
+    value: function handleScroll(e) {
+      this.setState({
+        isScrolled: window.scrollY > 0
+      });
     }
   }, {
     key: "render",
@@ -3439,11 +3593,13 @@ var Page = /*#__PURE__*/function (_React$Component) {
               isNavMenuOpen: e.target.checked
             });
           },
+          onMenuLinkClick: this.closeNavMenu,
           isPageScrolled: this.state.isScrolled
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_BioSection__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_ExpSection__WEBPACK_IMPORTED_MODULE_5__["default"], {
           tags: tags
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_ContactSection__WEBPACK_IMPORTED_MODULE_6__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_SocialLinks__WEBPACK_IMPORTED_MODULE_7__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Footer__WEBPACK_IMPORTED_MODULE_8__["default"], {}), this.state.isNavMenuOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-          className: "blocker"
+          className: "blocker",
+          onClick: this.closeNavMenu
         })]
       });
     }
