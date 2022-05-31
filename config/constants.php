@@ -1,12 +1,37 @@
 <?php
 
 return [
-    'resumeUrl' => asset('pdf/resume.pdf'),
+    'resumeUrl' => asset('doc/resume.pdf'),
     'emailAddress' => 'daniel.pugsley@gmail.com',
     'bio' => [
         'name' => env('APP_NAME'),
         'subtitle' => 'Full stack web developer',
-        'imgUrl' => asset('img/bio.jpg'),
+        'avatar' => [
+            'imgUrls' => [
+                '_1x' => asset('img/bio/avatar.jpg'),
+                '_2x' => asset('img/bio/avatar-2x.jpg'),
+            ],
+            'tags' => [
+                'imgUrls' => [
+                    'small' => [
+                        '_1x' => asset('img/bio/tags/small.png'),
+                        '_2x' => asset('img/bio/tags/small-2x.png'),
+                    ],
+                    'med' => [
+                        '_1x' => asset('img/bio/tags/med.png'),
+                        '_2x' => asset('img/bio/tags/med-2x.png'),
+                    ],
+                    'large' => [
+                        '_1x' => asset('img/bio/tags/large.png'),
+                        '_2x' => asset('img/bio/tags/large-2x.png'),
+                    ],
+                ],
+                'imgAlt' => 'PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript',
+                'scrollRatio' => 0.6,
+                'friction' => 0.00023,
+                'maxAngularVel' => 0.0135,
+            ],
+        ],
     ],
     'social' => [
         'twitterUrl' => '#',

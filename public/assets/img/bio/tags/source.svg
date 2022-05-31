@@ -1,0 +1,43 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    /**
+     * Curved text references:
+     * https://css-tricks.com/snippets/svg/curved-text-along-path/
+     * https://www.smashingmagazine.com/2019/03/svg-circle-decomposition-paths/
+     */
+    <defs>
+        <style type="text/css">
+            @import url('https://use.typekit.net/fyp6lja.css');
+            svg {
+                /* layout parameters */
+                --path-diameter: 209;
+                --font-raise: 11;
+                --font-size: 14;
+
+                /* path diameter fills half the svg element, so svg size must be doubled */
+                --size: calc(2 * (var(--path-diameter) + (2 * var(--font-raise))));
+                --size-px: calc(1px * var(--size));
+
+                width: var(--size-px);
+                height: var(--size-px);
+            }
+            text {
+                /* font parameters */
+                font-family: "lato", sans-serif;
+                font-weight: 500;
+                font-size: calc(var(--font-size) * 100px / var(--size));
+                text-transform: uppercase;
+                word-spacing: 0.5ch;
+                fill: #032F40;
+
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        </style>
+        <path id="path" d="M 25, 50 a 25,25 0 1,1 50,0 a 25,25 0 1,1 -50,0"/>
+    </defs>
+    <text width="100">
+        <textPath href="#path">
+            PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript • CSS
+        </textPath>
+    </text>
+</svg>

@@ -204,12 +204,12 @@ button.btn > div {
 }
 
 .circle-btn {
-    --size: 37px;
+    --diameter: 37px;
 
     all: unset;
 
-    height: var(--size);
-    width: var(--size);
+    height: var(--diameter);
+    width: var(--diameter);
 
     background: var(--c-light-grey);
     border-radius: 50%;
@@ -438,6 +438,13 @@ a.nav__link {
 }
 
 
+
+
+
+
+
+
+
 /* ——— Bio ——— */
 
 .bio {
@@ -476,12 +483,11 @@ a.nav__link {
     margin-top: 24px;
 }
 
-.bio-spinner {
-    --size: 209;
-    --angle: 0deg;
-    --font-size: 14;
-    --font-offset: 11;
-    --font-width-px: calc(1px * (var(--font-size) + var(--font-offset)));
+.bio-avatar {
+    --inner-diameter: 209px;
+    --font-raise: 11px;
+    --font-size: 14px;
+    --font-width: calc(var(--font-raise) + var(--font-size));
 
     -ms-flex-item-align: center;
 
@@ -500,37 +506,36 @@ a.nav__link {
             align-items: center;
 
     position: relative;
-    margin: var(--font-width-px);
+    margin: var(--font-width);
     margin-top: 73px;
 }
 
 /* Increase the size of the spinner slightly as the screen widens */
+/* WARNING: Any changes to this 507px value
+    need to be matched in BioSection.jsx */
 @media only screen and (min-width: 507px) {
-    .bio-spinner {
-        --size: 256;
+    .bio-avatar {
+        --inner-diameter: 256px;
     }
 }
 
-.bio-spinner__disc {
+.bio-avatar__disc {
     display: none;
 }
 
-.bio-spinner__image {
-    --size-px: calc(1px * var(--size));
-
+.bio-avatar__img-cont {
     -ms-flex-negative: 0;
-
         flex-shrink: 0;
 
     position: relative;
-    height: var(--size-px);
-    width: var(--size-px);
+    height: var(--inner-diameter);
+    width: var(--inner-diameter);
     overflow: hidden;
 
     border-radius: 50%;
 }
 
-.bio-spinner__image > img {
+.bio-avatar__img-cont > img {
     position: absolute;
     top: 0; left: 0;
     height: 100%; width: 100%;
@@ -540,15 +545,10 @@ a.nav__link {
        object-fit: cover;
 }
 
-.bio-spinner__text {
+.bio-avatar__tags {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    padding: var(--font-width-px);
-    overflow: hidden;
-    -webkit-transform: rotate(var(--angle));
-        -ms-transform: rotate(var(--angle));
-            transform: rotate(var(--angle));
+    height: 100%; width: 100%;
+    padding: var(--font-width);
 
     display: -webkit-box;
 
@@ -561,21 +561,28 @@ a.nav__link {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+
+    overflow: hidden;
+    pointer-events: none;
 }
 
-.bio-spinner__text > svg {
-    --width: calc(2 * (var(--size) + (2 * var(--font-offset))));
-
+.bio-avatar__tags > picture {
     position: absolute;
-    width: calc(1px * var(--width));
 
-    font-weight: 500;
-    font-size: calc(var(--font-size) * 100px / var(--width));
-    text-transform: uppercase;
-    text-rendering: optimizeSpeed;
-    shape-rendering: optimizeSpeed;
-    fill: var(--c-dark);
+    /* Make sure dimensions match contained 
+    image dimensions, ignoring any whitespace. */
+    line-height: 0;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 /* ——— Experience ——— */
@@ -948,7 +955,7 @@ a.nav__link {
 }
 
 .exp-item__scroll-nav > .circle-btn {
-    --size: 32px;
+    --diameter: 32px;
 }
 .exp-item__scroll-nav > .circle-btn:disabled {
     background: white;
@@ -974,10 +981,10 @@ a.nav__link {
 }
 
 .exp-item-radios__dot {
-    --size: 9px;
+    --diameter: 9px;
 
-    height: var(--size);
-    width: var(--size);
+    height: var(--diameter);
+    width: var(--diameter);
 
     background: var(--c-light-green);
     border-radius: 50%;
@@ -1106,7 +1113,7 @@ input:checked ~ .exp-item-radios__dot {
 }
 
 .social > .circle-btn {
-    --size: 40px;
+    --diameter: 40px;
 }
 .social > .circle-btn:not(:first-child) {
     margin-left: var(--spacing);
@@ -1159,7 +1166,7 @@ input:checked ~ .exp-item-radios__dot {
 }
 
 .footer .circle-btn {
-    --size: 32px;
+    --diameter: 32px;
 }
 
 .blocker {
@@ -1178,6 +1185,8 @@ input:checked ~ .exp-item-radios__dot {
 
 /* ——— Desktop adjustments ——— */
 
+/* WARNING: Any changes to this 885px value, 
+    need to be matched in BioSection.jsx */
 @media only screen and (min-width: 885px) {
     .container {
         --page-padding-x-scale: 2.12vw;
@@ -1210,7 +1219,7 @@ input:checked ~ .exp-item-radios__dot {
     }
 
     .circle-btn {
-        --size: 40px;
+        --diameter: 40px;
     }
 
 
@@ -1231,7 +1240,7 @@ input:checked ~ .exp-item-radios__dot {
         overflow: hidden;
     }
 
-    .bio__text {
+    .bio__text-content {
         max-width: 770px;
         margin-top: 29px;
         margin-bottom: 129px;
@@ -1241,29 +1250,29 @@ input:checked ~ .exp-item-radios__dot {
         margin-top: 36px;
     }
 
-    .bio-spinner {
-        --size: 365;
-        --font-size: 16;
-        --font-offset: 12;
+    .bio-avatar {
+        --inner-diameter: 365px;
+        --font-raise: 12px;
+        --font-size: 16px;
 
         --disc-offset-top: 32.5px;
         --disc-offset-right: 142px;
     
         margin:
-            max(var(--font-width-px), var(--disc-offset-top))
-            max(var(--font-width-px), var(--disc-offset-right))
-            var(--font-width-px)
+            max(var(--font-width), var(--disc-offset-top))
+            max(var(--font-width), var(--disc-offset-right))
+            var(--font-width)
             88px;
     }
 
-    .bio-spinner__disc {
-        --size: 101%;
+    .bio-avatar__disc {
+        --inner-diameter: 101%;
 
         position: absolute;
         top: calc(-1 * var(--disc-offset-top));
         right: calc(-1 * var(--disc-offset-right));
-        height: var(--size);
-        width: var(--size);
+        height: var(--inner-diameter);
+        width: var(--inner-diameter);
         display: block;
 
         background: var(--c-light-green);
@@ -1278,7 +1287,8 @@ input:checked ~ .exp-item-radios__dot {
     }
 
     .exp__header {
-        margin: 0 var(--page-padding-x) 24px var(--page-padding-x-large);
+        margin-bottom: calc(24px - var(--child-margin-y));
+        margin-left: calc(var(--page-padding-x-large) - var(--child-margin-x));
     }
 
     .exp-loader {

@@ -2209,7 +2209,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./resources/js/utils.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2236,120 +2237,158 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-function Content(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    className: "bio__text",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("header", {
+
+function TextContent(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "bio__text-content",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("header", {
       className: "bio__header",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
         children: props.title
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
         className: "subtitle",
         children: props.subtitle
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "bio__desc",
       children: props.children
     })]
   });
 }
 
-var Spinner = /*#__PURE__*/function (_React$Component) {
-  _inherits(Spinner, _React$Component);
+var AvatarTags = /*#__PURE__*/function (_React$Component) {
+  _inherits(AvatarTags, _React$Component);
 
-  var _super = _createSuper(Spinner);
+  var _super = _createSuper(AvatarTags);
 
-  function Spinner() {
-    _classCallCheck(this, Spinner);
+  function AvatarTags(props) {
+    var _this;
 
-    return _super.apply(this, arguments);
+    _classCallCheck(this, AvatarTags);
+
+    _this = _super.call(this, props);
+    _this.ref = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createRef();
+    _this.picRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createRef();
+    _this.calculateRadius = _this.calculateRadius.bind(_assertThisInitialized(_this));
+    _this.prevScroll = 0;
+    _this.angularVel = 0;
+    _this.angle = 0;
+    return _this;
   }
 
-  _createClass(Spinner, [{
+  _createClass(AvatarTags, [{
+    key: "calculateRadius",
+    value: function calculateRadius() {
+      this.radius = 0.5 * this.ref.current.offsetWidth;
+    }
+  }, {
+    key: "update",
+    value: function update(deltaTime) {
+      var data = constants.bio.avatar.tags; // Calculate scroll change
+
+      var scroll = window.scrollY;
+      var deltaScroll = scroll - this.prevScroll; // Convert to angle change, velocity and direction
+
+      var deltaAngle = data.scrollRatio * deltaScroll / this.radius;
+      var angularVel = deltaAngle / deltaTime;
+      var angularDir = Math.sign(angularVel); // If the calculated angular velocity if faster than current, 
+      // or in opposite direction, modify current to match.
+
+      if (angularDir !== 0 && (angularDir !== Math.sign(this.angularVel) || Math.abs(angularVel) > Math.abs(this.angularVel))) {
+        this.angularVel = angularVel;
+      } // Apply friction
+
+
+      if (this.angularVel !== 0) {
+        var currentAngularDir = Math.sign(this.angularVel);
+        this.angularVel -= currentAngularDir * data.friction * Math.sqrt(Math.abs(this.angularVel)) * deltaTime; // If angular direction has changed due to friction, clamp to 0.
+
+        if (Math.sign(this.angularVel) !== currentAngularDir) this.angularVel = 0;
+      } // Apply max limit to angular velocity
+
+
+      this.angularVel = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.clamp)(this.angularVel, -data.maxAngularVel, data.maxAngularVel); // Apply angular velocity
+
+      this.angle -= this.angularVel * deltaTime;
+      this.picRef.current.style.transform = "rotate(".concat((0,_utils__WEBPACK_IMPORTED_MODULE_1__.rad2deg)(this.angle), "deg)");
+      this.prevScroll = scroll;
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.calculateRadius();
+      window.addEventListener('resize', this.calculateRadius);
+      this.updateId = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.startUpdate)(this.update.bind(this));
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      (0,_utils__WEBPACK_IMPORTED_MODULE_1__.stopUpdate)(this.updateId);
+      window.removeEventListener('resize', this.calculateRadius);
+    }
+  }, {
     key: "render",
     value: function render() {
-      return (
-        /*#__PURE__*/
-
-        /**
-         * Curved text references:
-         * https://css-tricks.com/snippets/svg/curved-text-along-path/
-         * https://www.smashingmagazine.com/2019/03/svg-circle-decomposition-paths/
-         */
-        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          className: "bio-spinner",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "bio-spinner__disc"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "bio-spinner__image",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
-              src: this.props.imgSrc,
-              alt: this.props.imgAlt
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "bio-spinner__text",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("svg", {
-              viewBox: "0 0 100 100",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
-                id: "bio-spinner__text-path",
-                fill: "none",
-                d: "M 25, 50 a 25,25 0 1,1 50,0 a 25,25 0 1,1 -50,0"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("text", {
-                width: "100",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("textPath", {
-                  xlinkHref: "#bio-spinner__text-path",
-                  children: "PHP\xA0\xA0\u2022\xA0\xA0SQL\xA0\xA0\u2022\xA0\xA0JavaScript\xA0\xA0\u2022\xA0\xA0CSS\xA0\xA0\u2022\xA0\xA0HTML\xA0\xA0\u2022\xA0\xA0Node.js\xA0\xA0\u2022\xA0\xA0Express.js\xA0\xA0\u2022\xA0vNGINX\xA0\xA0\u2022\xA0\xA0AWS\xA0\xA0\u2022\xA0\xA0Unity engine\xA0\xA0\u2022\xA0\xA0C#\xA0\xA0\u2022\xA0\xA0Figma\xA0\xA0\u2022\xA0\xA0Adobe XD\xA0\xA0\u2022\xA0\xA0C++"
-                })
-              })]
-            })
+      var data = constants.bio.avatar.tags;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "bio-avatar__tags",
+        ref: this.ref,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("picture", {
+          ref: this.picRef,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("source", {
+            media: "(min-width: 885px)",
+            srcSet: "".concat(data.imgUrls.large._1x, ", ").concat(data.imgUrls.large._2x, " 2x")
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("source", {
+            media: "(min-width: 507px)",
+            srcSet: "".concat(data.imgUrls.med._1x, ", ").concat(data.imgUrls.med._2x, " 2x")
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+            srcSet: "".concat(data.imgUrls.small._1x, ", ").concat(data.imgUrls.small._2x, " 2x"),
+            alt: data.imgAlt
           })]
         })
-      );
-    }
-  }]);
-
-  return Spinner;
-}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
-
-var BioSection = /*#__PURE__*/function (_React$Component2) {
-  _inherits(BioSection, _React$Component2);
-
-  var _super2 = _createSuper(BioSection);
-
-  function BioSection() {
-    _classCallCheck(this, BioSection);
-
-    return _super2.apply(this, arguments);
-  }
-
-  _createClass(BioSection, [{
-    key: "render",
-    value: function render() {
-      var bio = constants.bio;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
-        id: "bio",
-        className: "bio tk-lato",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(Content, {
-          title: bio.name,
-          subtitle: bio.subtitle,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-            children: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eleifend tortor tempus auctor. Donec varius, velit eu hendrerit volutpat, odio augue sollicitudin dolor, sed efficitur odio diam ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-              href: "#",
-              children: "vitae ante"
-            }), ". Ut sit amet cursus neque hendrerit volutpat."]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-            children: "Donec varius, velit eu hendrerit volutpat, odio augue sollicitudin dolor, sed efficitur odio."
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Spinner, {
-          imgSrc: bio.imgUrl,
-          imgAlt: bio.name
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {}), " "]
       });
     }
   }]);
 
-  return BioSection;
+  return AvatarTags;
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+
+function Avatar() {
+  var imgUrls = constants.bio.avatar.imgUrls;
+  var imgAlt = constants.bio.name;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "bio-avatar",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "bio-avatar__disc"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "bio-avatar__img-cont",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+        srcSet: "".concat(imgUrls._1x, ", ").concat(imgUrls._2x, " 2x"),
+        alt: imgAlt
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(AvatarTags, {})]
+  });
+}
+
+function BioSection() {
+  var bio = constants.bio;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
+    id: "bio",
+    className: "bio tk-lato",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(TextContent, {
+      title: bio.name,
+      subtitle: bio.subtitle,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+        children: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eleifend tortor tempus auctor. Donec varius, velit eu hendrerit volutpat, odio augue sollicitudin dolor, sed efficitur odio diam ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+          href: "#",
+          children: "vitae ante"
+        }), ". Ut sit amet cursus neque hendrerit volutpat."]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+        children: "Donec varius, velit eu hendrerit volutpat, odio augue sollicitudin dolor, sed efficitur odio."
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Avatar, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {}), " "]
+  });
+}
 
 /* harmony default export */ __webpack_exports__["default"] = (BioSection);
 
@@ -3743,9 +3782,9 @@ function SvgResources() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
     width: "0",
     height: "0",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("defs", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("symbol", {
+      id: "logo-path",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("path", {
-        id: "logo-path",
         d: "M39.71 12.97C38.87 11.51 37.62 10.35 35.94 9.51C34.29 8.66 32.28 8.24 29.89 8.24C29.39 8.24 28.9 8.27 28.41 8.31C28.16 7.65 27.88 7.02 27.54 6.43C26.32 4.33 24.59 2.73 22.33 1.66C20.07 0.55 17.39 0 14.3 0C12.12 0 9.85 0.32 7.49 0.96C5.13 1.58 3.08 2.49 1.33 3.7C0.85 4.03 0.51 4.4 0.3 4.81C0.1 5.2 0 5.7 0 6.31C0 6.85 0.13 7.31 0.38 7.7C0.63 8.06 0.98 8.24 1.41 8.24C1.79 8.24 2.15 8.12 2.47 7.89C4.07 6.84 5.85 5.99 7.83 5.35C9.83 4.71 11.85 4.39 13.88 4.39C17.02 4.39 19.46 5.22 21.18 6.89C21.98 7.67 22.59 8.6 23.02 9.67C22.2 10.04 21.39 10.46 20.61 10.97C17.82 12.77 15.59 15.49 13.92 19.13C12.65 21.92 11.88 25.18 11.58 28.9C11.23 28.92 10.89 28.94 10.53 28.94C9.57 28.94 8.7 28.9 7.94 28.82C8.22 25.69 8.69 22.4 9.35 18.97C10.01 15.51 10.67 12.75 11.33 10.69C11.48 10.23 11.56 9.82 11.56 9.46C11.56 8.59 10.79 8.15 9.24 8.15C8.38 8.15 7.68 8.28 7.15 8.53C6.62 8.8 6.26 9.25 6.09 9.89C5.15 13.35 4.35 16.96 3.69 20.71C3.03 24.43 2.61 27.56 2.43 30.1C2.38 31.02 2.54 31.69 2.92 32.1C3.3 32.51 4 32.78 5.01 32.91C6.87 33.17 8.53 33.3 10 33.3C10.5 33.3 10.99 33.29 11.48 33.26C11.56 35.64 11.93 37.69 12.63 39.38C13.42 41.28 14.46 42.69 15.75 43.61C17.07 44.53 18.5 45 20.05 45C22.86 45 24.59 43.22 25.22 39.65L26.86 30.37C29.8 30.16 32.34 29.48 34.47 28.33C36.6 27.18 38.22 25.69 39.34 23.86C40.46 22.04 41.01 20.04 41.01 17.85C41 16.04 40.57 14.41 39.71 12.97ZM17.23 21.94C18.3 18.96 19.79 16.64 21.72 14.97C22.36 14.42 23.05 13.97 23.76 13.6C23.76 13.72 23.77 13.84 23.77 13.97C23.77 18.51 22.67 22.14 20.46 24.86C19.28 26.34 17.75 27.4 15.9 28.07C16.14 25.87 16.57 23.81 17.23 21.94ZM18.79 40.19C18.33 40.19 17.85 39.86 17.34 39.19C16.86 38.5 16.45 37.53 16.12 36.3C15.86 35.23 15.71 34.02 15.68 32.69C17.4 32.29 18.98 31.7 20.42 30.91C20.78 30.71 21.14 30.5 21.48 30.28L20.23 37.53C19.9 39.3 19.42 40.19 18.79 40.19ZM27.54 26.41L28.52 20.55C29.08 18.56 29.36 16.4 29.36 14.05C29.36 13.52 29.33 13 29.29 12.49C31.23 12.6 32.68 13.12 33.65 14.08C34.77 15.13 35.32 16.51 35.32 18.2C35.33 23.01 32.73 25.74 27.54 26.41Z"
       })
     })
@@ -3765,10 +3804,33 @@ function SvgResources() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "clamp": function() { return /* binding */ clamp; },
+/* harmony export */   "rad2deg": function() { return /* binding */ rad2deg; },
+/* harmony export */   "startUpdate": function() { return /* binding */ startUpdate; },
+/* harmony export */   "stopUpdate": function() { return /* binding */ stopUpdate; },
 /* harmony export */   "wrapIndex": function() { return /* binding */ wrapIndex; }
 /* harmony export */ });
+var startUpdate = function startUpdate(callback) {
+  var _arguments$;
+
+  var prevTime = (_arguments$ = arguments[1]) !== null && _arguments$ !== void 0 ? _arguments$ : 0;
+  return window.requestAnimationFrame(function (time) {
+    var deltaTime = time - prevTime;
+    if (deltaTime > 0) callback(deltaTime);
+    startUpdate(callback, time);
+  });
+};
+var stopUpdate = function stopUpdate(id) {
+  window.cancelAnimationFrame(id);
+};
 var wrapIndex = function wrapIndex(value, max) {
   return (value % max + max) % max;
+};
+var clamp = function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+};
+var rad2deg = function rad2deg(value) {
+  return value * 180 / Math.PI;
 };
 
 /***/ }),
