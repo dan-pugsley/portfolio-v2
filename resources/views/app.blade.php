@@ -15,13 +15,7 @@
         <!-- Scripts -->
         <script>
             const constants = {{ Js::from(config('constants')) }};
-
-            // TODO: Pass/pull in on page load
-            const tags = [
-                {id: 0, name: 'All'},
-                {id: 1, name: 'C#'},
-                {id: 2, name: 'React.js'}
-            ];
+            const tags = {{ Js::from($tags); }};
         </script>
         <script src="{{ mix('/js/app.js') }}" defer></script>
     </head>

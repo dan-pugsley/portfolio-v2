@@ -1,9 +1,7 @@
 <?php
 
-use App\Models\Project;
-use App\Models\Resource;
-use App\Models\Tag;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,40 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/tags', function () {
-    return Tag::join('project_tag', 'project_tag.tag_id', '=', 'tags.id')
-        ->distinct()
-        ->get(['tags.id', 'tags.name']);
-});
-
-Route::get('/projects', function (Request $request) {
-    $request->validate(['tag_id' => 'integer|exists:tags,id|nullable']);
-    $query = Project::leftJoin('companies', 'companies.id', '=', 'projects.company_id');
-
-    if (isset($request['tag_id']))
-    {
-        $query->join('project_tag', 'project_tag.project_id', '=', 'projects.id')
-            ->join('tags', 'tags.id', '=', 'project_tag.tag_id')
-            ->where('tags.id', '=', $request['tag_id']);
-    }
-
-    $projects = $query->orderByDesc('projects.started_at')
-        ->get([
-            'projects.id',
-            'projects.name',
-            'companies.name AS company_name',
-            'projects.role',
-            'projects.duration',
-            'projects.github_url',
-            'projects.live_url',
-            'projects.description'
-        ]);
-
-    foreach ($projects as &$project)
-    {
-        $project->tags = array_column($project->tags()->get(['name'])->toArray(), 'name');
-        $project->resources = Resource::where('project_id', '=', $project->id)->get(['id', 'name', 'url', 'is_video']);
-    }
-
-    return $projects;
-});
+Route::get('/tags', [TagController::class, 'list']);
+Route::get('/projects', [ProjectController::class, 'list']);
