@@ -1,5 +1,5 @@
 import React from 'react';
-import {startUpdate, stopUpdate, clamp, rad2deg} from '../utils';
+import {startUpdate, clamp, rad2deg} from '../utils';
 
 function TextContent(props) {
     return (
@@ -73,11 +73,11 @@ class AvatarTags extends React.Component {
     componentDidMount() {
         this.calculateRadius();
         window.addEventListener('resize', this.calculateRadius);
-        this.updateId = startUpdate(this.update.bind(this));
+        this.stopUpdate = startUpdate(this.update.bind(this));
     }
 
     componentWillUnmount() {
-        stopUpdate(this.updateId);
+        this.stopUpdate();
         window.removeEventListener('resize', this.calculateRadius);
     }
 

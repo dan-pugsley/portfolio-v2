@@ -35,6 +35,11 @@ return [
             ],
         ],
     ],
+    'expLoader' => [
+        'startTime' => 100,
+        'endTime' => 280,
+        'logAmount' => 10,
+    ],
     'social' => [
         'twitterUrl' => '#',
         'gitHubUrl' => '#',

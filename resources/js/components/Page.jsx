@@ -58,7 +58,7 @@ class Page extends React.Component {
                     isPageScrolled={this.state.isScrolled}
                 />
                 <BioSection />
-                <ExpSection tags={tags} />
+                <ExpSection />
                 <ContactSection />
                 <SocialLinks />
                 <Footer />

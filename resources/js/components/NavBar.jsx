@@ -44,7 +44,7 @@ class MenuToggleAnim extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (!prevProps.start && this.props.start)
+        if (this.props.start && !prevProps.start)
             this.ref.current.beginElement();
     }
 

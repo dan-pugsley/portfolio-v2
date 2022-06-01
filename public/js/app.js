@@ -2318,12 +2318,12 @@ var AvatarTags = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       this.calculateRadius();
       window.addEventListener('resize', this.calculateRadius);
-      this.updateId = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.startUpdate)(this.update.bind(this));
+      this.stopUpdate = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.startUpdate)(this.update.bind(this));
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      (0,_utils__WEBPACK_IMPORTED_MODULE_1__.stopUpdate)(this.updateId);
+      this.stopUpdate();
       window.removeEventListener('resize', this.calculateRadius);
     }
   }, {
@@ -2919,14 +2919,14 @@ var ExpItem = /*#__PURE__*/function (_React$Component) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "exp-item__info",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Header, {
-            role: "Lead programmer",
-            duration: "1 yr 8 mos",
-            company: "Auroch Digital"
+            role: this.props.role,
+            duration: this.props.duration,
+            company: this.props.company
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Bar, {
-            project: "Plague Inc. Evolved",
-            tags: ['C#', 'React.js'],
-            githubUrl: "https://github.com/dnpgsly/portfolio-v2",
-            liveUrl: "https://pugs.ly/"
+            project: this.props.project,
+            tags: this.props.tags,
+            githubUrl: this.props.githubUrl,
+            liveUrl: this.props.liveUrl
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Description, {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
               children: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eleifend tortor tempus auctor. Donec varius, velit eu ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
@@ -2939,23 +2939,8 @@ var ExpItem = /*#__PURE__*/function (_React$Component) {
             })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ExpCarousel__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          radiosName: this.props.radiosName,
-          resources: [{
-            id: 1,
-            name: "Achtung! Cthulhu Poster",
-            url: "https://assets2.rockpapershotgun.com/ogre.jpg/BROK/resize/1920x1920%3E/format/jpg/quality/80/ogre.jpg",
-            is_video: false
-          }, {
-            id: 2,
-            name: "Achtung! Cthulhu Gameplay",
-            url: "https://www.youtube.com/embed/pSat_gLDXPc",
-            is_video: true
-          }, {
-            id: 3,
-            name: "Ogre Gameplay",
-            url: "https://cdn.akamai.steamstatic.com/steam/apps/765810/capsule_616x353.jpg?t=1623144957",
-            is_video: false
-          }]
+          radiosName: this.props.id,
+          resources: this.props.resources
         })]
       });
     }
@@ -2976,10 +2961,13 @@ var ExpItem = /*#__PURE__*/function (_React$Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ExpItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExpItem */ "./resources/js/components/ExpItem.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ExpItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ExpItem */ "./resources/js/components/ExpItem.jsx");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils */ "./resources/js/utils.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3007,6 +2995,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var Header = /*#__PURE__*/function (_React$Component) {
   _inherits(Header, _React$Component);
 
@@ -3021,21 +3011,27 @@ var Header = /*#__PURE__*/function (_React$Component) {
   _createClass(Header, [{
     key: "renderTagOptions",
     value: function renderTagOptions() {
-      return this.props.tags.map(function (data) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+      var options = tags.map(function (data) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
           value: data.id,
           children: data.name
         }, data.id);
-      });
+      }); // Prepend an 'All' option
+
+      options.unshift( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+        value: 0,
+        children: "All"
+      }, 0));
+      return options;
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("header", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("header", {
         className: "exp__header",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
           children: "Experience"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("select", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("select", {
           className: "exp__tag-select tk-source-code-pro",
           value: this.props.selectedTagId,
           onChange: this.props.onTagChange,
@@ -3046,57 +3042,103 @@ var Header = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return Header;
-}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+}((react__WEBPACK_IMPORTED_MODULE_1___default().Component));
 
-function Loader(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    className: "exp-loader",
-    style: {
-      "--progress": props.progress
-    },
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("svg", {
-      viewBox: "0 0 41 45",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("mask", {
-        id: "exp-loader__mask",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-          className: "exp-loader__mask-path",
-          transform: "translate(0 12)",
-          fill: "white",
-          d: "M16.5 6.99995C7.3 4.19995 -1.33333 8.16661 -4.5 10.4999V53H43.5C43.4151 36.5 43.4151 32.5 43.4151 6C43.3588 3.33233 42.1803 1.31801 39 0.999977C29 -2.34842e-05 28 10.4999 16.5 6.99995Z"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("use", {
-        href: "#logo-path",
-        fill: "#F5F5F5"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("use", {
-        href: "#logo-path",
-        mask: "url(#exp-loader__mask)",
-        fill: "#032F40"
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-      children: "Loading experience..."
-    })]
-  });
-}
+var Loader = /*#__PURE__*/function (_React$Component2) {
+  _inherits(Loader, _React$Component2);
+
+  var _super2 = _createSuper(Loader);
+
+  function Loader(props) {
+    var _this;
+
+    _classCallCheck(this, Loader);
+
+    _this = _super2.call(this, props);
+    _this.ref = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createRef();
+    return _this;
+  }
+
+  _createClass(Loader, [{
+    key: "setProgress",
+    value: function setProgress(value) {
+      this.ref.current.style.setProperty('--progress', value);
+    }
+  }, {
+    key: "update",
+    value: function update(deltaTime) {
+      var data = constants.expLoader;
+      var normTime = (0,_utils__WEBPACK_IMPORTED_MODULE_3__.clamp01)((this.time - data.startTime) / data.endTime);
+      var logTime = Math.log((0,_utils__WEBPACK_IMPORTED_MODULE_3__.lerp)(1, data.logAmount, normTime));
+      var logTimeMax = Math.log(data.logAmount);
+      this.setProgress((0,_utils__WEBPACK_IMPORTED_MODULE_3__.clamp01)(logTime / logTimeMax));
+      this.time += deltaTime;
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.time = 0;
+      this.stopUpdate = (0,_utils__WEBPACK_IMPORTED_MODULE_3__.startUpdate)(this.update.bind(this));
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.stopUpdate();
+      this.setProgress(1);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        className: "exp-loader",
+        ref: this.ref,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
+          viewBox: "0 0 41 45",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("mask", {
+            id: "exp-loader__mask",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+              className: "exp-loader__mask-path",
+              transform: "translate(0 12)",
+              fill: "white",
+              d: "M16.5 6.99995C7.3 4.19995 -1.33333 8.16661 -4.5 10.4999V53H43.5C43.4151 36.5 43.4151 32.5 43.4151 6C43.3588 3.33233 42.1803 1.31801 39 0.999977C29 -2.34842e-05 28 10.4999 16.5 6.99995Z"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("use", {
+            href: "#logo-path",
+            fill: "#F5F5F5"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("use", {
+            href: "#logo-path",
+            mask: "url(#exp-loader__mask)",
+            fill: "#032F40"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+          children: "Loading experience..."
+        })]
+      });
+    }
+  }]);
+
+  return Loader;
+}((react__WEBPACK_IMPORTED_MODULE_1___default().Component));
 
 function MoreButton(props) {
   var classNames = ['exp-more-btn', 'btn', 'btn--sec'];
   if (props.isLoading) classNames.push('exp-more-btn--loading');
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
     className: classNames.join(' '),
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
         children: "Load more"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("svg", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
         viewBox: "0 0 22 22",
         width: "22",
         fill: "none",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("circle", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("circle", {
           cx: "11",
           cy: "11",
           r: "9.5",
           stroke: "#F5F5F5",
           strokeWidth: "3"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("circle", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("circle", {
           className: "exp-more-btn__spinner",
           cx: "11",
           cy: "11",
@@ -3109,66 +3151,96 @@ function MoreButton(props) {
   });
 }
 
-var ExpSection = /*#__PURE__*/function (_React$Component2) {
-  _inherits(ExpSection, _React$Component2);
+var ExpSection = /*#__PURE__*/function (_React$Component3) {
+  _inherits(ExpSection, _React$Component3);
 
-  var _super2 = _createSuper(ExpSection);
+  var _super3 = _createSuper(ExpSection);
 
   function ExpSection(props) {
-    var _this;
+    var _this2;
 
     _classCallCheck(this, ExpSection);
 
-    _this = _super2.call(this, props);
-    _this.state = {
-      selectedTagId: _this.props.tags[0].id,
-      isLoading: false,
+    _this2 = _super3.call(this, props);
+    _this2.state = {
+      selectedTagId: 3,
+      isLoading: true,
+      projects: null,
       isLoadingMore: false
     };
-    return _this;
+    return _this2;
   }
 
   _createClass(ExpSection, [{
-    key: "handleTagChange",
-    value: function handleTagChange(e) {
-      this.setState({
-        selectedTagId: Number(e.target.value),
-        isLoading: true
-      }); // TODO: fetch new data and update
+    key: "fetchProjects",
+    value: function fetchProjects(tagId) {
+      var _this3 = this;
+
+      var params = {};
+      if (tagId) params.tag_id = tagId;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/projects', {
+        params: params
+      }).then(function (res) {
+        _this3.setState({
+          isLoading: false,
+          projects: res.data
+        });
+      })["catch"](function (error) {
+        _this3.setState({
+          isLoading: false
+        });
+
+        console.log(error);
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.fetchProjects();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (this.state.selectedTagId !== prevState.selectedTagId) this.fetchProjects(this.state.selectedTagId);
     }
   }, {
     key: "renderItems",
     value: function renderItems() {
-      return [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ExpItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        radiosName: "1"
-      }, "1"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ExpItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        radiosName: "2"
-      }, "2"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ExpItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        radiosName: "3"
-      }, "3"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ExpItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        radiosName: "4"
-      }, "4")];
+      return this.state.projects.map(function (data) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ExpItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          id: data.id,
+          role: data.role,
+          duration: data.duration,
+          company: data.company_name,
+          project: data.name,
+          tags: data.tags,
+          githubUrl: data.github_url,
+          liveUrl: data.live_url,
+          description: data.description,
+          resources: data.resources
+        }, data.id);
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
         id: "exp",
         className: "exp tk-lato",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Header, {
-          tags: this.props.tags,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Header, {
           selectedTagId: this.state.selectedTagId,
           onTagChange: function onTagChange(e) {
-            return _this2.handleTagChange(e);
+            return _this4.setState({
+              selectedTagId: Number(e.target.value),
+              isLoading: true
+            });
           }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: "exp__items",
-          children: this.state.isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Loader, {
-            progress: 0.5
-          }) : this.renderItems()
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(MoreButton, {
+          children: this.state.isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Loader, {}) : this.renderItems()
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(MoreButton, {
           isLoading: this.state.isLoadingMore
         })]
       });
@@ -3176,7 +3248,7 @@ var ExpSection = /*#__PURE__*/function (_React$Component2) {
   }]);
 
   return ExpSection;
-}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+}((react__WEBPACK_IMPORTED_MODULE_1___default().Component));
 
 /* harmony default export */ __webpack_exports__["default"] = (ExpSection);
 
@@ -3321,7 +3393,7 @@ var MenuToggleAnim = /*#__PURE__*/function (_React$Component) {
   _createClass(MenuToggleAnim, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      if (!prevProps.start && this.props.start) this.ref.current.beginElement();
+      if (this.props.start && !prevProps.start) this.ref.current.beginElement();
     }
   }, {
     key: "render",
@@ -3634,9 +3706,7 @@ var Page = /*#__PURE__*/function (_React$Component) {
           },
           onMenuLinkClick: this.closeNavMenu,
           isPageScrolled: this.state.isScrolled
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_BioSection__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_ExpSection__WEBPACK_IMPORTED_MODULE_5__["default"], {
-          tags: tags
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_ContactSection__WEBPACK_IMPORTED_MODULE_6__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_SocialLinks__WEBPACK_IMPORTED_MODULE_7__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Footer__WEBPACK_IMPORTED_MODULE_8__["default"], {}), this.state.isNavMenuOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_BioSection__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_ExpSection__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_ContactSection__WEBPACK_IMPORTED_MODULE_6__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_SocialLinks__WEBPACK_IMPORTED_MODULE_7__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Footer__WEBPACK_IMPORTED_MODULE_8__["default"], {}), this.state.isNavMenuOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
           className: "blocker",
           onClick: this.closeNavMenu
         })]
@@ -3805,29 +3875,39 @@ function SvgResources() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "clamp": function() { return /* binding */ clamp; },
+/* harmony export */   "clamp01": function() { return /* binding */ clamp01; },
+/* harmony export */   "lerp": function() { return /* binding */ lerp; },
 /* harmony export */   "rad2deg": function() { return /* binding */ rad2deg; },
 /* harmony export */   "startUpdate": function() { return /* binding */ startUpdate; },
-/* harmony export */   "stopUpdate": function() { return /* binding */ stopUpdate; },
 /* harmony export */   "wrapIndex": function() { return /* binding */ wrapIndex; }
 /* harmony export */ });
 var startUpdate = function startUpdate(callback) {
-  var _arguments$;
+  var id;
 
-  var prevTime = (_arguments$ = arguments[1]) !== null && _arguments$ !== void 0 ? _arguments$ : 0;
-  return window.requestAnimationFrame(function (time) {
-    var deltaTime = time - prevTime;
-    if (deltaTime > 0) callback(deltaTime);
-    startUpdate(callback, time);
-  });
-};
-var stopUpdate = function stopUpdate(id) {
-  window.cancelAnimationFrame(id);
+  var loop = function loop(prevTime) {
+    id = window.requestAnimationFrame(function (time) {
+      var deltaTime = time - prevTime;
+      if (deltaTime > 0) callback(deltaTime);
+      loop(time);
+    });
+  };
+
+  loop(performance.now());
+  return function () {
+    window.cancelAnimationFrame(id);
+  };
 };
 var wrapIndex = function wrapIndex(value, max) {
   return (value % max + max) % max;
 };
 var clamp = function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
+};
+var clamp01 = function clamp01(value) {
+  return clamp(value, 0, 1);
+};
+var lerp = function lerp(from, to, progress) {
+  return from + (to - from) * progress;
 };
 var rad2deg = function rad2deg(value) {
   return value * 180 / Math.PI;

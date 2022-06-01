@@ -53,27 +53,23 @@ class ExpItem extends React.Component {
             <div className="exp-item">
                 <div className="exp-item__info">
                     <Header
-                        role="Lead programmer"
-                        duration="1 yr 8 mos"
-                        company="Auroch Digital"
+                        role={this.props.role}
+                        duration={this.props.duration}
+                        company={this.props.company}
                     />
                     <Bar
-                        project="Plague Inc. Evolved"
-                        tags={['C#', 'React.js']}
-                        githubUrl="https://github.com/dnpgsly/portfolio-v2"
-                        liveUrl="https://pugs.ly/"
+                        project={this.props.project}
+                        tags={this.props.tags}
+                        githubUrl={this.props.githubUrl}
+                        liveUrl={this.props.liveUrl}
                     />
                     <Description>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eleifend tortor tempus auctor. Donec varius, velit eu <a href="#">hendrerit volutpat</a>, odio augue sollicitudin dolor, sed efficitur odio diam <a href="#">vitae ante</a>. Ut sit amet cursus neque hendrerit volutpat.</p>
                     </Description>
                 </div>
                 <Carousel
-                    radiosName={this.props.radiosName}
-                    resources={[
-                        {id: 1, name: "Achtung! Cthulhu Poster", url: "https://assets2.rockpapershotgun.com/ogre.jpg/BROK/resize/1920x1920%3E/format/jpg/quality/80/ogre.jpg", is_video: false},
-                        {id: 2, name: "Achtung! Cthulhu Gameplay", url: "https://www.youtube.com/embed/pSat_gLDXPc", is_video: true},
-                        {id: 3, name: "Ogre Gameplay", url: "https://cdn.akamai.steamstatic.com/steam/apps/765810/capsule_616x353.jpg?t=1623144957", is_video: false},
-                    ]}
+                    radiosName={this.props.id}
+                    resources={this.props.resources}
                 />
             </div>
         );

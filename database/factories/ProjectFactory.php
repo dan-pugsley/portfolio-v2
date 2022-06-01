@@ -47,7 +47,7 @@ class ProjectFactory extends Factory
             ]),
             'github_url' => 'https://github.com/dnpgsly/portfolio-v2',
             'live_url' => 'https://pugs.ly/',
-            'description' => $this->faker->realTextBetween(200, 500),
+            'description' => "<p>{$this->faker->realTextBetween(200, 500)}</p>",
             'started_at' => $this->faker->dateTimeBetween('-7 years'),
         ];
     }

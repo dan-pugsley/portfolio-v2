@@ -438,13 +438,6 @@ a.nav__link {
 }
 
 
-
-
-
-
-
-
-
 /* ——— Bio ——— */
 
 .bio {
@@ -575,16 +568,6 @@ a.nav__link {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 /* ——— Experience ——— */
 
 .exp {
@@ -660,6 +643,12 @@ a.nav__link {
     font-size: 16px;
     line-height: 20px;
     color: var(--c-blue);
+
+    -webkit-transition: color var(--trans-time);
+
+    -o-transition: color var(--trans-time);
+
+    transition: color var(--trans-time);
 }
 .exp__tag-select:focus {
 	outline: none;
