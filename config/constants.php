@@ -41,7 +41,7 @@ return [
             'endTime' => 280,
             'logAmount' => 10,
         ],
-        'pageSize' => 3,
+        'pageSize' => 4,
     ],
     'social' => [
         'twitterUrl' => '#',
