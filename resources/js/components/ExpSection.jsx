@@ -196,7 +196,7 @@ class ExpSection extends React.Component {
                     {this.state.isLoading ? <Loader /> : this.renderItems()}
                 </div>
                 <hr/>
-                {this.state.canLoadMore && this.renderMoreButton()}
+                {this.state.canLoadMore && !this.state.isLoading && this.renderMoreButton()}
             </section>
         );
     }
