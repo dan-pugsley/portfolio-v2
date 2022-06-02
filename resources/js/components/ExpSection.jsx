@@ -97,17 +97,17 @@ class ExpSection extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedTagId: 3,
+            selectedTagId: 9,
             isLoading: true,
             projects: null,
             isLoadingMore: false,
         };
     }
 
-    fetchProjects(tagId) {
+    fetchProjects() {
         const params = {};
-        if (tagId)
-            params.tag_id = tagId;
+        if (this.state.selectedTagId)
+            params.tag_id = this.state.selectedTagId;
 
         axios.get('/api/projects', {params})
         .then(res => {
@@ -129,23 +129,25 @@ class ExpSection extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (this.state.selectedTagId !== prevState.selectedTagId)
-            this.fetchProjects(this.state.selectedTagId);
+            this.fetchProjects();
     }
 
     renderItems() {
         return this.state.projects.map(data => {
+            const hasRole = !!data.role;
+            // Replace 'role' with 'project' if it doesn't exist.
             return (
                 <ExpItem
                     key={data.id}
                     id={data.id}
-                    role={data.role}
+                    role={hasRole ? data.role : data.name}
                     duration={data.duration}
                     company={data.company_name}
-                    project={data.name}
+                    project={hasRole ? data.name : null}
                     tags={data.tags}
                     githubUrl={data.github_url}
                     liveUrl={data.live_url}
-                    description={data.description}
+                    descriptionHtml={data.description_html}
                     resources={data.resources}
                 />
             );

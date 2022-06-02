@@ -191,6 +191,8 @@ button.btn > div {
     background: var(--c-light-grey);
     border-radius: 50%;
     cursor: pointer;
+
+    transition: background var(--trans-time);
 }
 /* buttons cannot be flex */
 a.circle-btn,
@@ -625,6 +627,9 @@ a.nav__link {
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
 }
+.exp-item-bar--no-project {
+    align-items: center;
+}
 
 .exp-item-bar__content {
     flex: 1;
@@ -678,8 +683,9 @@ a.nav__link {
 }
 
 .exp-item__scroll {
-    display: flex;
+    --spacing: 18px;
 
+    display: flex;
     height: 225px;
 
     /* push scroll area to screen edges without changing internal layout */
@@ -687,8 +693,11 @@ a.nav__link {
     margin-right: calc(-1 * var(--exp-item-padding-right));
     /* (only left here because Safari doesn't respect end-padding in scroll-areas) */
     padding-left: var(--exp-item-padding-left);
+    scroll-padding: 0 var(--spacing);
 
     overflow-y: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
 }
 /* apply 'end-padding' with a pseudo element */
 .exp-item__scroll::after {
@@ -704,17 +713,21 @@ a.nav__link {
 
     position: relative;
     min-width: 345px;
+    max-width: 100%;
     aspect-ratio: 1.53;
 
     background: var(--c-light-grey);
     border-radius: 8px;
     overflow: hidden;
+
+    scroll-snap-align: center;
+    /* scroll-snap-stop: always; */
 }
 .exp-item__scroll > div:not(:first-child) {
-    margin-left: 18px;
+    margin-left: var(--spacing);
 }
 
-/* img and YouTube iframe */
+/* <img> and YouTube <iframe> */
 .exp-item__scroll > div > * {
     position: absolute;
     top: 0; left: 0;
@@ -1117,16 +1130,20 @@ input:checked ~ .exp-item-radios__dot {
         border-left: 1px solid var(--c-light-grey);
     }
 
+    .exp-item__scroll {
+        height: 328px;
+    }
+    /* If the scroll-nav is missing, add extra top margin. */
+    .exp-item__scroll:last-child {
+        margin-top: 53px;
+    }
+
     .exp-item__scroll-nav {
         justify-content: flex-end;
 
         /* move margin to bottom, since order is reversed */
         margin-top: 0;
         margin-bottom: 21px;
-    }
-
-    .exp-item__scroll {
-        height: 328px;
     }
 
 

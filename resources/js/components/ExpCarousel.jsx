@@ -2,13 +2,39 @@ import React from 'react';
 import {wrapIndex} from '../utils';
 
 class ScrollArea extends React.Component {
-    renderImage(data) {
-        return <div key={data.id}><img src={data.url} alt={data.name} /></div>;
+    constructor(props) {
+        super(props);
+        this.resourceEls = [];
+        this.addResourceEl = el => {
+            this.resourceEls.push(el);
+        };
     }
 
-    renderVideo(data) {
+    componentDidUpdate(prevProps) {
+        if (this.props.selectedIndex !== prevProps.selectedIndex
+            && this.props.jumpToSelected) {
+            this.resourceEls[this.props.selectedIndex].scrollIntoView({
+                behaviour: 'smooth',
+                block: 'nearest',
+                inline: 'center',
+            });
+        }
+    }
+
+    renderImage(data) {
         return (
-            <div key={data.id}>
+            <div key={data.id} ref={this.addResourceEl}>
+                <img
+                    src={data.url}
+                    alt={data.name}
+                />
+            </div>
+        );
+    }
+
+    renderYtEmbed(data) {
+        return (
+            <div key={data.id} ref={this.addResourceEl}>
                 <iframe
                     src={data.url}
                     title={data.name}
@@ -22,31 +48,36 @@ class ScrollArea extends React.Component {
 
     renderResources() {
         return this.props.resources.map(data => {
-            return data.is_video ? this.renderVideo(data) : this.renderImage(data);
+            return data.is_yt_embed ? this.renderYtEmbed(data) : this.renderImage(data);
         });
     }
 
     render() {
-        return <div className="exp-item__scroll no-scrollbar">{this.renderResources()}</div>;
+        return (
+            <div
+                ref={this.props.innerRef}
+                className="exp-item__scroll no-scrollbar"
+                onMouseEnter={this.props.onMouseEnter}
+                onTouchStart={this.props.onTouchStart}
+                onScroll={this.props.onScroll}
+            >
+                {this.renderResources()}
+            </div>
+        );
     }
 }
 
-class ControlsButton extends React.Component {
-    getIconPath() {
-        return this.props.isPrev ? "M6 1.75 1 7.37 6 13" : "m1 12.25 5-5.63L1 1";
-    }
-
-    render() {
-        return (
-            <button className="circle-btn" onClick={this.props.onClick} disabled={this.props.isDisabled}>
-                <div>
-                    <svg viewBox="0 0 7 14" width="7">
-                        <path fill="none" d={this.getIconPath()} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                </div>
-            </button>
-        );
-    }
+function ControlsButton(props) {
+    const iconPath = props.isPrev ? "M6 1.75 1 7.37 6 13" : "m1 12.25 5-5.63L1 1";
+    return (
+        <button className="circle-btn" onClick={props.onClick} disabled={props.isDisabled}>
+            <div>
+                <svg viewBox="0 0 7 14" width="7">
+                    <path fill="none" d={iconPath} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+            </div>
+        </button>
+    );
 }
 
 function ControlsRadio(props) {
@@ -94,37 +125,86 @@ class Controls extends React.Component {
 class Carousel extends React.Component {
     constructor(props) {
         super(props);
+        this.scrollAreaRef = React.createRef();
         this.state = {
-            selectedIndex: 0
+            selectedIndex: 0,
+            showControls: true,
+            controlScroll: false,
         };
+        this.updateShowControls = this.updateShowControls.bind(this);
     }
 
-    handleButtonClick(inc) {
+    updateShowControls() {
+        const scrollArea = this.scrollAreaRef.current;
+        this.setState({
+            showControls: this.props.resources.length > 1 && scrollArea.scrollWidth > scrollArea.clientWidth
+        });
+    }
+
+    componentDidMount() {
+        this.updateShowControls();
+        window.addEventListener('resize', this.updateShowControls);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateShowControls);
+    }
+
+    handleScroll(e) {
+        const t = e.target;
+        const normScrollPos = (t.scrollLeft + 0.5 * t.offsetWidth) / t.scrollWidth;
+        const scrollIndex = Math.floor(normScrollPos * this.props.resources.length);
+        
+        if (!this.state.controlScroll) {
+            this.setState({
+                selectedIndex: scrollIndex
+            });
+        } else if (scrollIndex === this.state.selectedIndex) {
+            this.setState({
+                controlScroll: false
+            });
+        }
+    }
+
+    handleButtonClick(incr) {
         this.setState((prevState) => ({
-            selectedIndex: wrapIndex(prevState.selectedIndex + inc, this.props.resources.length),
+            selectedIndex: wrapIndex(prevState.selectedIndex + incr, this.props.resources.length),
+            controlScroll: true,
         }));
     }
 
     handleRadioChange(e) {
         this.setState({
             selectedIndex: this.props.resources.findIndex(r => r.id == e.target.value),
+            controlScroll: true,
         });
+    }
+
+    renderControls() {
+        return (
+            <Controls
+                items={this.props.resources}
+                radiosName={this.props.radiosName}
+                selectedIndex={this.state.selectedIndex}
+                onButtonClick={inc => this.handleButtonClick(inc)}
+                onRadioChange={e => this.handleRadioChange(e)}
+            />  
+        );
     }
 
     render() {
         return (
             <div className="exp-item__carousel">
                 <ScrollArea
+                    innerRef={this.scrollAreaRef}
                     resources={this.props.resources}
                     selectedIndex={this.state.selectedIndex}
+                    jumpToSelected={this.state.controlScroll}
+                    onMouseEnter={() => this.setState({controlScroll: false})}
+                    onTouchStart={() => this.setState({controlScroll: false})}
+                    onScroll={e => this.handleScroll(e)}
                 />
-                <Controls
-                    items={this.props.resources}
-                    radiosName={this.props.radiosName}
-                    selectedIndex={this.state.selectedIndex}
-                    onButtonClick={inc => this.handleButtonClick(inc)}
-                    onRadioChange={e => this.handleRadioChange(e)}
-                />  
+                {this.state.showControls && this.renderControls()}
             </div>
         );
     }

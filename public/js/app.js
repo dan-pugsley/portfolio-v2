@@ -2549,16 +2549,37 @@ var ScrollArea = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(ScrollArea);
 
-  function ScrollArea() {
+  function ScrollArea(props) {
+    var _this;
+
     _classCallCheck(this, ScrollArea);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.resourceEls = [];
+
+    _this.addResourceEl = function (el) {
+      _this.resourceEls.push(el);
+    };
+
+    return _this;
   }
 
   _createClass(ScrollArea, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.selectedIndex !== prevProps.selectedIndex && this.props.jumpToSelected) {
+        this.resourceEls[this.props.selectedIndex].scrollIntoView({
+          behaviour: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+      }
+    }
+  }, {
     key: "renderImage",
     value: function renderImage(data) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        ref: this.addResourceEl,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
           src: data.url,
           alt: data.name
@@ -2566,9 +2587,10 @@ var ScrollArea = /*#__PURE__*/function (_React$Component) {
       }, data.id);
     }
   }, {
-    key: "renderVideo",
-    value: function renderVideo(data) {
+    key: "renderYtEmbed",
+    value: function renderYtEmbed(data) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        ref: this.addResourceEl,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("iframe", {
           src: data.url,
           title: data.name,
@@ -2581,17 +2603,21 @@ var ScrollArea = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderResources",
     value: function renderResources() {
-      var _this = this;
+      var _this2 = this;
 
       return this.props.resources.map(function (data) {
-        return data.is_video ? _this.renderVideo(data) : _this.renderImage(data);
+        return data.is_yt_embed ? _this2.renderYtEmbed(data) : _this2.renderImage(data);
       });
     }
   }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        ref: this.props.innerRef,
         className: "exp-item__scroll no-scrollbar",
+        onMouseEnter: this.props.onMouseEnter,
+        onTouchStart: this.props.onTouchStart,
+        onScroll: this.props.onScroll,
         children: this.renderResources()
       });
     }
@@ -2600,48 +2626,27 @@ var ScrollArea = /*#__PURE__*/function (_React$Component) {
   return ScrollArea;
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
-var ControlsButton = /*#__PURE__*/function (_React$Component2) {
-  _inherits(ControlsButton, _React$Component2);
-
-  var _super2 = _createSuper(ControlsButton);
-
-  function ControlsButton() {
-    _classCallCheck(this, ControlsButton);
-
-    return _super2.apply(this, arguments);
-  }
-
-  _createClass(ControlsButton, [{
-    key: "getIconPath",
-    value: function getIconPath() {
-      return this.props.isPrev ? "M6 1.75 1 7.37 6 13" : "m1 12.25 5-5.63L1 1";
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-        className: "circle-btn",
-        onClick: this.props.onClick,
-        disabled: this.props.isDisabled,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
-            viewBox: "0 0 7 14",
-            width: "7",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
-              fill: "none",
-              d: this.getIconPath(),
-              strokeWidth: "2",
-              strokeLinecap: "round",
-              strokeLinejoin: "round"
-            })
-          })
+function ControlsButton(props) {
+  var iconPath = props.isPrev ? "M6 1.75 1 7.37 6 13" : "m1 12.25 5-5.63L1 1";
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+    className: "circle-btn",
+    onClick: props.onClick,
+    disabled: props.isDisabled,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
+        viewBox: "0 0 7 14",
+        width: "7",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("path", {
+          fill: "none",
+          d: iconPath,
+          strokeWidth: "2",
+          strokeLinecap: "round",
+          strokeLinejoin: "round"
         })
-      });
-    }
-  }]);
-
-  return ControlsButton;
-}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+      })
+    })
+  });
+}
 
 function ControlsRadio(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
@@ -2658,49 +2663,49 @@ function ControlsRadio(props) {
   });
 }
 
-var Controls = /*#__PURE__*/function (_React$Component3) {
-  _inherits(Controls, _React$Component3);
+var Controls = /*#__PURE__*/function (_React$Component2) {
+  _inherits(Controls, _React$Component2);
 
-  var _super3 = _createSuper(Controls);
+  var _super2 = _createSuper(Controls);
 
   function Controls() {
     _classCallCheck(this, Controls);
 
-    return _super3.apply(this, arguments);
+    return _super2.apply(this, arguments);
   }
 
   _createClass(Controls, [{
     key: "renderRadios",
     value: function renderRadios() {
-      var _this2 = this;
+      var _this3 = this;
 
       return this.props.items.map(function (item, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ControlsRadio, {
-          name: _this2.props.radiosName,
+          name: _this3.props.radiosName,
           value: item.id,
-          isChecked: index === _this2.props.selectedIndex,
-          onChange: _this2.props.onRadioChange
+          isChecked: index === _this3.props.selectedIndex,
+          onChange: _this3.props.onRadioChange
         }, item.id);
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "exp-item__scroll-nav",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ControlsButton, {
           isPrev: true,
           onClick: function onClick(e) {
-            return _this3.props.onButtonClick(-1);
+            return _this4.props.onButtonClick(-1);
           }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "exp-item-radios",
           children: this.renderRadios()
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ControlsButton, {
           onClick: function onClick(e) {
-            return _this3.props.onButtonClick(1);
+            return _this4.props.onButtonClick(1);
           }
         })]
       });
@@ -2710,31 +2715,72 @@ var Controls = /*#__PURE__*/function (_React$Component3) {
   return Controls;
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
-var Carousel = /*#__PURE__*/function (_React$Component4) {
-  _inherits(Carousel, _React$Component4);
+var Carousel = /*#__PURE__*/function (_React$Component3) {
+  _inherits(Carousel, _React$Component3);
 
-  var _super4 = _createSuper(Carousel);
+  var _super3 = _createSuper(Carousel);
 
   function Carousel(props) {
-    var _this4;
+    var _this5;
 
     _classCallCheck(this, Carousel);
 
-    _this4 = _super4.call(this, props);
-    _this4.state = {
-      selectedIndex: 0
+    _this5 = _super3.call(this, props);
+    _this5.scrollAreaRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createRef();
+    _this5.state = {
+      selectedIndex: 0,
+      showControls: true,
+      controlScroll: false
     };
-    return _this4;
+    _this5.updateShowControls = _this5.updateShowControls.bind(_assertThisInitialized(_this5));
+    return _this5;
   }
 
   _createClass(Carousel, [{
+    key: "updateShowControls",
+    value: function updateShowControls() {
+      var scrollArea = this.scrollAreaRef.current;
+      this.setState({
+        showControls: this.props.resources.length > 1 && scrollArea.scrollWidth > scrollArea.clientWidth
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.updateShowControls();
+      window.addEventListener('resize', this.updateShowControls);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      window.removeEventListener('resize', this.updateShowControls);
+    }
+  }, {
+    key: "handleScroll",
+    value: function handleScroll(e) {
+      var t = e.target;
+      var normScrollPos = (t.scrollLeft + 0.5 * t.offsetWidth) / t.scrollWidth;
+      var scrollIndex = Math.floor(normScrollPos * this.props.resources.length);
+
+      if (!this.state.controlScroll) {
+        this.setState({
+          selectedIndex: scrollIndex
+        });
+      } else if (scrollIndex === this.state.selectedIndex) {
+        this.setState({
+          controlScroll: false
+        });
+      }
+    }
+  }, {
     key: "handleButtonClick",
-    value: function handleButtonClick(inc) {
-      var _this5 = this;
+    value: function handleButtonClick(incr) {
+      var _this6 = this;
 
       this.setState(function (prevState) {
         return {
-          selectedIndex: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.wrapIndex)(prevState.selectedIndex + inc, _this5.props.resources.length)
+          selectedIndex: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.wrapIndex)(prevState.selectedIndex + incr, _this6.props.resources.length),
+          controlScroll: true
         };
       });
     }
@@ -2744,30 +2790,53 @@ var Carousel = /*#__PURE__*/function (_React$Component4) {
       this.setState({
         selectedIndex: this.props.resources.findIndex(function (r) {
           return r.id == e.target.value;
-        })
+        }),
+        controlScroll: true
+      });
+    }
+  }, {
+    key: "renderControls",
+    value: function renderControls() {
+      var _this7 = this;
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Controls, {
+        items: this.props.resources,
+        radiosName: this.props.radiosName,
+        selectedIndex: this.state.selectedIndex,
+        onButtonClick: function onButtonClick(inc) {
+          return _this7.handleButtonClick(inc);
+        },
+        onRadioChange: function onRadioChange(e) {
+          return _this7.handleRadioChange(e);
+        }
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this6 = this;
+      var _this8 = this;
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "exp-item__carousel",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ScrollArea, {
+          innerRef: this.scrollAreaRef,
           resources: this.props.resources,
-          selectedIndex: this.state.selectedIndex
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Controls, {
-          items: this.props.resources,
-          radiosName: this.props.radiosName,
           selectedIndex: this.state.selectedIndex,
-          onButtonClick: function onButtonClick(inc) {
-            return _this6.handleButtonClick(inc);
+          jumpToSelected: this.state.controlScroll,
+          onMouseEnter: function onMouseEnter() {
+            return _this8.setState({
+              controlScroll: false
+            });
           },
-          onRadioChange: function onRadioChange(e) {
-            return _this6.handleRadioChange(e);
+          onTouchStart: function onTouchStart() {
+            return _this8.setState({
+              controlScroll: false
+            });
+          },
+          onScroll: function onScroll(e) {
+            return _this8.handleScroll(e);
           }
-        })]
+        }), this.state.showControls && this.renderControls()]
       });
     }
   }]);
@@ -2846,26 +2915,27 @@ function BarLink(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
     className: "circle-btn circle-btn--light",
     href: props.url,
+    target: "_blank",
     children: props.children
   });
 }
 
-function Bar(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    className: "exp-item-bar",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "exp-item-bar__content",
-      children: [props.project && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-        className: "exp-item-bar__project",
-        children: props.project
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-        className: "exp-item-bar__tags tk-source-code-pro ellipsis-multiline",
-        children: props.tags.join(' / ')
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "exp-item-bar__links",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(BarLink, {
-        url: props.githubUrl,
+var Bar = /*#__PURE__*/function (_React$Component) {
+  _inherits(Bar, _React$Component);
+
+  var _super = _createSuper(Bar);
+
+  function Bar() {
+    _classCallCheck(this, Bar);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Bar, [{
+    key: "renderGitHubLink",
+    value: function renderGitHubLink(url) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(BarLink, {
+        url: url,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
           viewBox: "0 0 17 19",
           width: "17",
@@ -2876,8 +2946,13 @@ function Bar(props) {
             d: "M6.77 16.5c0 .11-.01.22-.03.32a1.9 1.9 0 0 1-.23.57c-.3.52-.83.86-1.51.86-1.6 0-2.22-.78-3-2.73-.53-1.33-.78-1.64-1.38-1.64v-1.75c1.6 0 2.22.78 3 2.74.53 1.32.78 1.63 1.38 1.63l-.01-.78c-.02-.71-.02-.86.01-1.05.01-.42.12-.71.34-1-1.96-.43-3.27-1.31-4.03-2.73l-.28-.67c-.28-.8-.4-1.7-.4-2.73 0-1.2.36-2.26 1.04-3.15a4.93 4.93 0 0 1 .29-3.06L2.1.95l.4-.13a.6.6 0 0 1 .18-.04c.77-.12 1.86.16 3.28 1.07a11.6 11.6 0 0 1 4.95-.05C12.3.93 13.36.66 14.1.78a.6.6 0 0 1 .2.04l.39.12.15.39c.41 1.03.48 1.98.33 2.8a5.2 5.2 0 0 1 1.2 3.41 9.8 9.8 0 0 1-.3 2.75l-.24.66c-.63 1.42-2.02 2.3-4.16 2.73.23.3.33.62.33 1.07v3.51c-.75 0-1.3-.37-1.57-.94a1.8 1.8 0 0 1-.18-.83v-1.74c0-.07 0-.07-.18-.25-.48-.48-.7-.84-.7-1.5v-.79l.8-.08c2.34-.23 3.61-.88 4.03-1.84l.2-.54c.16-.56.22-1.25.22-2.2 0-1.03-.35-1.87-1.02-2.54l-.38-.38.16-.5a3 3 0 0 0 .02-1.57l-.07.02a6.4 6.4 0 0 0-1.76.88l-.32.22-.38-.1a9.6 9.6 0 0 0-4.83.06l-.4.1-.33-.22a6.57 6.57 0 0 0-1.92-.96c-.17.7-.1 1.26.07 1.7l.2.5-.37.41c-.6.65-.92 1.44-.92 2.37 0 .86.1 1.56.29 2.1l.23.54c.57 1.07 1.79 1.72 3.95 1.95l.79.09V13c0 .66-.22 1.02-.7 1.5-.18.18-.18.18-.18.25l-.02.16v.77a34.67 34.67 0 0 1 .04.82Z"
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(BarLink, {
-        url: props.liveUrl,
+      });
+    }
+  }, {
+    key: "renderLiveLink",
+    value: function renderLiveLink(url) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(BarLink, {
+        url: url,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
           viewBox: "0 0 17 17",
           width: "17",
@@ -2888,27 +2963,53 @@ function Bar(props) {
             d: "m8.24 10 6.38-6.39v4.02h1.75v-7h-7v1.75h4.02L7 8.75l1.24 1.23Zm6.38 4.63v-4.38h-1.74v4.38H2.38V4.13h4.37V2.38H2.37c-.96 0-1.75.78-1.75 1.75v10.5c0 .96.79 1.74 1.75 1.74h10.5c.97 0 1.76-.78 1.76-1.75Z"
           })
         })
-      })]
-    })]
-  });
-}
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var classNames = ['exp-item-bar'];
+      if (!this.props.project) classNames.push('exp-item-bar--no-project');
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: classNames.join(' '),
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "exp-item-bar__content",
+          children: [this.props.project && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            className: "exp-item-bar__project",
+            children: this.props.project
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            className: "exp-item-bar__tags tk-source-code-pro ellipsis-multiline",
+            children: this.props.tags.join(' / ')
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "exp-item-bar__links",
+          children: [this.props.githubUrl && this.renderGitHubLink(this.props.githubUrl), this.props.liveUrl && this.renderLiveLink(this.props.liveUrl)]
+        })]
+      });
+    }
+  }]);
+
+  return Bar;
+}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
 function Description(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "exp-item__desc",
-    children: props.children
+    dangerouslySetInnerHTML: {
+      __html: props.children
+    }
   });
 }
 
-var ExpItem = /*#__PURE__*/function (_React$Component) {
-  _inherits(ExpItem, _React$Component);
+var ExpItem = /*#__PURE__*/function (_React$Component2) {
+  _inherits(ExpItem, _React$Component2);
 
-  var _super = _createSuper(ExpItem);
+  var _super2 = _createSuper(ExpItem);
 
   function ExpItem() {
     _classCallCheck(this, ExpItem);
 
-    return _super.apply(this, arguments);
+    return _super2.apply(this, arguments);
   }
 
   _createClass(ExpItem, [{
@@ -2928,15 +3029,7 @@ var ExpItem = /*#__PURE__*/function (_React$Component) {
             githubUrl: this.props.githubUrl,
             liveUrl: this.props.liveUrl
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Description, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-              children: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eleifend tortor tempus auctor. Donec varius, velit eu ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                href: "#",
-                children: "hendrerit volutpat"
-              }), ", odio augue sollicitudin dolor, sed efficitur odio diam ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                href: "#",
-                children: "vitae ante"
-              }), ". Ut sit amet cursus neque hendrerit volutpat."]
-            })
+            children: this.props.descriptionHtml
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ExpCarousel__WEBPACK_IMPORTED_MODULE_1__["default"], {
           radiosName: this.props.id,
@@ -3163,7 +3256,7 @@ var ExpSection = /*#__PURE__*/function (_React$Component3) {
 
     _this2 = _super3.call(this, props);
     _this2.state = {
-      selectedTagId: 3,
+      selectedTagId: 9,
       isLoading: true,
       projects: null,
       isLoadingMore: false
@@ -3173,11 +3266,11 @@ var ExpSection = /*#__PURE__*/function (_React$Component3) {
 
   _createClass(ExpSection, [{
     key: "fetchProjects",
-    value: function fetchProjects(tagId) {
+    value: function fetchProjects() {
       var _this3 = this;
 
       var params = {};
-      if (tagId) params.tag_id = tagId;
+      if (this.state.selectedTagId) params.tag_id = this.state.selectedTagId;
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/projects', {
         params: params
       }).then(function (res) {
@@ -3201,22 +3294,24 @@ var ExpSection = /*#__PURE__*/function (_React$Component3) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
-      if (this.state.selectedTagId !== prevState.selectedTagId) this.fetchProjects(this.state.selectedTagId);
+      if (this.state.selectedTagId !== prevState.selectedTagId) this.fetchProjects();
     }
   }, {
     key: "renderItems",
     value: function renderItems() {
       return this.state.projects.map(function (data) {
+        var hasRole = !!data.role; // Replace 'role' with 'project' if it doesn't exist.
+
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ExpItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
           id: data.id,
-          role: data.role,
+          role: hasRole ? data.role : data.name,
           duration: data.duration,
           company: data.company_name,
-          project: data.name,
+          project: hasRole ? data.name : null,
           tags: data.tags,
           githubUrl: data.github_url,
           liveUrl: data.live_url,
-          description: data.description,
+          descriptionHtml: data.description_html,
           resources: data.resources
         }, data.id);
       });
@@ -3775,13 +3870,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+function SocialLink(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
+    className: "circle-btn",
+    href: props.url,
+    children: props.children
+  });
+}
+
 function SocialLinks() {
   var social = constants.social;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
     className: "social",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-      className: "circle-btn",
-      href: social.twitterUrl,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(SocialLink, {
+      url: social.twitterUrl,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
         viewBox: "0 0 20 16",
         width: "20",
@@ -3790,9 +3892,8 @@ function SocialLinks() {
           d: "M19.16 1.3A.83.83 0 0 0 17.9.57c-.49.29-1.01.5-1.56.66a4.36 4.36 0 0 0-7.16 3.18A9.2 9.2 0 0 1 3.5 1.15.84.84 0 0 0 2.4.97a.83.83 0 0 0-.27.3 4.4 4.4 0 0 0-.2 3.97.87.87 0 0 0-.42.74A4.32 4.32 0 0 0 2.84 9.1a.83.83 0 0 0-.05.64 4.34 4.34 0 0 0 1.96 2.43c-.95.37-1.97.5-2.99.38a.83.83 0 0 0-.55 1.52 10.79 10.79 0 0 0 5.84 1.72A10.66 10.66 0 0 0 17.44 8c.3-.99.44-2.01.44-3.04v-.17a4.8 4.8 0 0 0 1.28-3.5ZM16.4 3.96a.83.83 0 0 0-.2.58c.02.14.02.28.02.41 0 .87-.13 1.73-.38 2.57a8.9 8.9 0 0 1-8.79 6.6c-.72 0-1.43-.08-2.13-.25a7.9 7.9 0 0 0 2.46-1.3.83.83 0 0 0-.5-1.49 2.67 2.67 0 0 1-1.85-.78l.37-.08a.83.83 0 0 0-.07-1.62 2.67 2.67 0 0 1-1.87-1.44l.45.04a.85.85 0 0 0 .82-.58.83.83 0 0 0-.33-.95 2.66 2.66 0 0 1-1.18-2.4 10.84 10.84 0 0 0 6.84 2.9.85.85 0 0 0 .68-.3.83.83 0 0 0 .17-.72 2.64 2.64 0 0 1 .72-2.5 2.7 2.7 0 0 1 3.85.06.83.83 0 0 0 .77.25c.34-.07.68-.16 1-.27-.22.46-.5.89-.85 1.27Z"
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-      className: "circle-btn",
-      href: social.gitHubUrl,
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(SocialLink, {
+      url: social.gitHubUrl,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
         viewBox: "0 0 17 19",
         width: "17",
@@ -3803,9 +3904,8 @@ function SocialLinks() {
           d: "M6.72 16.35c0 .11 0 .21-.03.32-.04.18-.12.38-.22.56-.31.51-.83.85-1.5.85-1.57 0-2.19-.77-2.96-2.7-.53-1.31-.77-1.62-1.36-1.62v-1.73c1.57 0 2.19.77 2.96 2.7.53 1.32.77 1.62 1.36 1.62v-.77c-.02-.7-.03-.85 0-1.04.02-.41.12-.7.34-1-1.93-.41-3.24-1.28-3.98-2.69l-.28-.66a8.15 8.15 0 0 1-.4-2.7c0-1.17.36-2.23 1.03-3.11a4.87 4.87 0 0 1 .28-3.02l.15-.38.4-.13.18-.04c.76-.12 1.83.16 3.24 1.06a11.47 11.47 0 0 1 4.9-.05C12.18.96 13.22.7 13.96.81l.19.04.39.13.15.38c.4 1.01.47 1.95.33 2.77a5.14 5.14 0 0 1 1.19 3.37 9.7 9.7 0 0 1-.3 2.7l-.24.66c-.63 1.4-2 2.28-4.11 2.7.22.3.32.62.32 1.06v3.46c-.73 0-1.28-.36-1.55-.92a1.9 1.9 0 0 1-.18-.82v-1.72c0-.07 0-.07-.18-.25-.47-.47-.68-.83-.68-1.48v-.78l.78-.08c2.31-.23 3.57-.87 4-1.81l.19-.54c.15-.55.22-1.23.22-2.18 0-1.01-.36-1.84-1.02-2.51l-.37-.37.15-.5c.13-.43.17-.95.03-1.55l-.08.02c-.46.13-1.04.4-1.73.87l-.32.22-.37-.1A9.48 9.48 0 0 0 6 3.64l-.39.1-.33-.22a6.5 6.5 0 0 0-1.9-.95 2.8 2.8 0 0 0 .07 1.68l.2.5-.37.4c-.59.65-.9 1.42-.9 2.35 0 .84.1 1.54.28 2.07l.22.53c.57 1.07 1.77 1.7 3.91 1.93l.78.09v.77c0 .65-.22 1-.69 1.48-.17.18-.18.18-.18.25l-.01.16a34.34 34.34 0 0 1 .01 1.44l.02.13Z"
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-      className: "circle-btn",
-      href: social.linkedInUrl,
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(SocialLink, {
+      url: social.linkedInUrl,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
         viewBox: "0 0 19 19",
         width: "19",
@@ -3816,9 +3916,8 @@ function SocialLinks() {
           d: "M2.65.78h13.84c.95 0 1.73.78 1.73 1.73v13.84c0 .96-.78 1.73-1.73 1.73H2.65c-.96 0-1.73-.77-1.73-1.73V2.51c0-.95.77-1.73 1.73-1.73Zm0 1.73v13.84h13.84V2.51H2.65Zm7.78 4.33c-.45 0-.92.13-1.34.39l-.39-.4h-.86v6.06h1.73V9.43c0-.5.51-.86.86-.86h.87c.35 0 .86.36.86.86v3.46h1.73V9.43c0-1.6-1.39-2.6-2.6-2.6h-.86Zm-4.32-.87a.86.86 0 1 0 0-1.73.86.86 0 0 0 0 1.73Zm-.87.87v6.05h1.73V6.84H5.24Z"
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
-      className: "circle-btn",
-      href: social.instagramUrl,
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(SocialLink, {
+      url: social.instagramUrl,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {
         viewBox: "0 0 19 19",
         width: "19",

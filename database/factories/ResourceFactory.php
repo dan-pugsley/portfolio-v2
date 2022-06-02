@@ -17,6 +17,15 @@ class ResourceFactory extends Factory
      */
     public function definition()
     {
+        $url = $this->faker->randomElement([
+            'https://cdn.akamai.steamstatic.com/steam/apps/874460/capsule_616x353.jpg?t=1592571523',
+            'https://i.ytimg.com/vi/pSat_gLDXPc/maxresdefault.jpg',
+            'https://cdn.akamai.steamstatic.com/steam/apps/765810/capsule_616x353.jpg?t=1623144957',
+            'https://cdn.mos.cms.futurecdn.net/a5fgK9428EwVEy2FGiUXoG.png',
+            'https://assets2.rockpapershotgun.com/ogre.jpg/BROK/resize/1920x1920%3E/format/jpg/quality/80/ogre.jpg',
+            'https://cdn.cloudflare.steamstatic.com/steam/apps/517780/capsule_616x353.jpg?t=1652890621',
+        ]);
+
         return [
             'project_id' => $this->faker->randomElement(Project::Pluck('id')->toArray()),
             'name' => $this->faker->randomElement([
@@ -25,26 +34,21 @@ class ResourceFactory extends Factory
                 'Ogre Gameplay',
                 'Plague Inc. Evloved Poster',
             ]),
-            'url' => $this->faker->randomElement([
-                'https://cdn.akamai.steamstatic.com/steam/apps/874460/capsule_616x353.jpg?t=1592571523',
-                'https://i.ytimg.com/vi/pSat_gLDXPc/maxresdefault.jpg',
-                'https://cdn.akamai.steamstatic.com/steam/apps/765810/capsule_616x353.jpg?t=1623144957',
-                'https://cdn.mos.cms.futurecdn.net/a5fgK9428EwVEy2FGiUXoG.png',
-                'https://assets2.rockpapershotgun.com/ogre.jpg/BROK/resize/1920x1920%3E/format/jpg/quality/80/ogre.jpg',
-                'https://cdn.cloudflare.steamstatic.com/steam/apps/517780/capsule_616x353.jpg?t=1652890621',
-            ]),
+            'url' => $url,
+            'url_2x' => $url,
         ];
     }
     
-    public function video()
+    public function ytEmbed()
     {
         return $this->state(function (array $attributes) {
             return [
                 'url' => $this->faker->randomElement([
-                    'https://youtu.be/pSat_gLDXPc',
-                    'https://youtu.be/O6has2MD6e0',
+                    'https://www.youtube.com/embed/pSat_gLDXPc',
+                    'https://www.youtube.com/embed/O6has2MD6e0',
                 ]),
-                'is_video' => true,
+                'url_2x' => null,
+                'is_yt_embed' => true,
             ];
         });
     }

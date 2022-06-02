@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         $projects = Project::factory(7)->create();
         $projects = $projects->merge(Project::factory(3)->personal()->create());
         Resource::factory(20)->create();
-        Resource::factory(4)->video()->create();
+        Resource::factory(4)->ytEmbed()->create();
 
         $numTags = 15;
         $tags = Tag::factory($numTags)->create();

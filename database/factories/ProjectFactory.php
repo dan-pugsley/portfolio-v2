@@ -47,9 +47,21 @@ class ProjectFactory extends Factory
             ]),
             'github_url' => 'https://github.com/dnpgsly/portfolio-v2',
             'live_url' => 'https://pugs.ly/',
-            'description' => "<p>{$this->faker->realTextBetween(200, 500)}</p>",
+            'description_html' => $this->generateDescriptionHtml(),
             'started_at' => $this->faker->dateTimeBetween('-7 years'),
         ];
+    }
+
+    private function generateDescriptionHtml()
+    {
+        $output = $this->faker->realTextBetween(100, 250);
+
+        if (rand(0, 1))
+            $output .= " <a href=\"#\">Test link</a>.";
+            
+        $output .= ' '.$this->faker->realTextBetween(100, 250);
+
+        return "<p>$output</p>";
     }
     
     public function personal()
