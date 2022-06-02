@@ -66,9 +66,24 @@ function Description(props) {
 }
 
 class ExpItem extends React.Component {
-    render() {
+    renderCarousel() {
         return (
-            <div className="exp-item">
+            <Carousel
+                radiosName={this.props.id}
+                resources={this.props.resources}
+            />
+        );
+    }
+
+    render() {
+        const showCarousel = this.props.resources.length > 0;
+        const classNames = ['exp-item'];
+
+        if (!showCarousel)
+            classNames.push('exp-item--no-carousel');
+
+        return (
+            <div className={classNames.join(' ')}>
                 <div className="exp-item__info">
                     <Header
                         role={this.props.role}
@@ -85,10 +100,7 @@ class ExpItem extends React.Component {
                         {this.props.descriptionHtml}
                     </Description>
                 </div>
-                <Carousel
-                    radiosName={this.props.id}
-                    resources={this.props.resources}
-                />
+                {showCarousel && this.renderCarousel()}
             </div>
         );
     }

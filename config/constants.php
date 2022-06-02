@@ -35,10 +35,13 @@ return [
             ],
         ],
     ],
-    'expLoader' => [
-        'startTime' => 100,
-        'endTime' => 280,
-        'logAmount' => 10,
+    'exp' => [
+        'loader' => [
+            'startTime' => 100,
+            'endTime' => 280,
+            'logAmount' => 10,
+        ],
+        'pageSize' => 3,
     ],
     'social' => [
         'twitterUrl' => '#',

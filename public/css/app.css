@@ -1349,15 +1349,16 @@ input:checked ~ .exp-item-radios__dot {
     }
 
     .exp-item__info {
-        --width: 372px;
-
-        /* lock info width */
-        min-width: var(--width);
-        max-width: var(--width);
-
         /* override horizontal paddings */
         padding-left: var(--page-padding-x-large);
         padding-right: 60px;
+    }
+    /* lock info width (if there is a carousel) */
+    :not(.exp-item--no-carousel) > .exp-item__info {
+        --width: 372px;
+
+        min-width: var(--width);
+        max-width: var(--width);
     }
 
     .exp-item__header {

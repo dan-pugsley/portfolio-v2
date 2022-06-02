@@ -3013,10 +3013,21 @@ var ExpItem = /*#__PURE__*/function (_React$Component2) {
   }
 
   _createClass(ExpItem, [{
+    key: "renderCarousel",
+    value: function renderCarousel() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ExpCarousel__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        radiosName: this.props.id,
+        resources: this.props.resources
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var showCarousel = this.props.resources.length > 0;
+      var classNames = ['exp-item'];
+      if (!showCarousel) classNames.push('exp-item--no-carousel');
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "exp-item",
+        className: classNames.join(' '),
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "exp-item__info",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Header, {
@@ -3031,10 +3042,7 @@ var ExpItem = /*#__PURE__*/function (_React$Component2) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Description, {
             children: this.props.descriptionHtml
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ExpCarousel__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          radiosName: this.props.id,
-          resources: this.props.resources
-        })]
+        }), showCarousel && this.renderCarousel()]
       });
     }
   }]);
@@ -3160,7 +3168,7 @@ var Loader = /*#__PURE__*/function (_React$Component2) {
   }, {
     key: "update",
     value: function update(deltaTime) {
-      var data = constants.expLoader;
+      var data = constants.exp.loader;
       var normTime = (0,_utils__WEBPACK_IMPORTED_MODULE_3__.clamp01)((this.time - data.startTime) / data.endTime);
       var logTime = Math.log((0,_utils__WEBPACK_IMPORTED_MODULE_3__.lerp)(1, data.logAmount, normTime));
       var logTimeMax = Math.log(data.logAmount);
@@ -3218,6 +3226,7 @@ function MoreButton(props) {
   if (props.isLoading) classNames.push('exp-more-btn--loading');
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
     className: classNames.join(' '),
+    onClick: props.onClick,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
         children: "Load more"
@@ -3256,10 +3265,12 @@ var ExpSection = /*#__PURE__*/function (_React$Component3) {
 
     _this2 = _super3.call(this, props);
     _this2.state = {
-      selectedTagId: 9,
+      selectedTagId: 0,
+      page: 0,
       isLoading: true,
+      isLoadingMore: false,
       projects: null,
-      isLoadingMore: false
+      canLoadMore: false
     };
     return _this2;
   }
@@ -3269,21 +3280,34 @@ var ExpSection = /*#__PURE__*/function (_React$Component3) {
     value: function fetchProjects() {
       var _this3 = this;
 
-      var params = {};
+      var append = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      if (this.abortController) this.abortController.abort();
+      this.abortController = new AbortController();
+      var page = append ? this.state.page + 1 : 0;
+      var params = {
+        page: page
+      };
       if (this.state.selectedTagId) params.tag_id = this.state.selectedTagId;
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/projects', {
-        params: params
+        params: params,
+        signal: this.abortController.signal
       }).then(function (res) {
-        _this3.setState({
-          isLoading: false,
-          projects: res.data
+        _this3.setState(function (prevState) {
+          return {
+            page: page,
+            isLoading: false,
+            isLoadingMore: false,
+            projects: append ? prevState.projects.concat(res.data) : res.data,
+            canLoadMore: res.data.length >= constants.exp.pageSize
+          };
         });
       })["catch"](function (error) {
         _this3.setState({
-          isLoading: false
+          isLoading: false,
+          isLoadingMore: false
         });
 
-        console.log(error);
+        console.error(error.response.data.message);
       });
     }
   }, {
@@ -3295,6 +3319,14 @@ var ExpSection = /*#__PURE__*/function (_React$Component3) {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
       if (this.state.selectedTagId !== prevState.selectedTagId) this.fetchProjects();
+    }
+  }, {
+    key: "handleClickMore",
+    value: function handleClickMore() {
+      this.setState({
+        isLoadingMore: true
+      });
+      this.fetchProjects(true);
     }
   }, {
     key: "renderItems",
@@ -3317,9 +3349,21 @@ var ExpSection = /*#__PURE__*/function (_React$Component3) {
       });
     }
   }, {
+    key: "renderMoreButton",
+    value: function renderMoreButton() {
+      var _this4 = this;
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(MoreButton, {
+        isLoading: this.state.isLoadingMore,
+        onClick: function onClick() {
+          return _this4.handleClickMore();
+        }
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
         id: "exp",
@@ -3327,7 +3371,7 @@ var ExpSection = /*#__PURE__*/function (_React$Component3) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Header, {
           selectedTagId: this.state.selectedTagId,
           onTagChange: function onTagChange(e) {
-            return _this4.setState({
+            return _this5.setState({
               selectedTagId: Number(e.target.value),
               isLoading: true
             });
@@ -3335,9 +3379,7 @@ var ExpSection = /*#__PURE__*/function (_React$Component3) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: "exp__items",
           children: this.state.isLoading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Loader, {}) : this.renderItems()
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(MoreButton, {
-          isLoading: this.state.isLoadingMore
-        })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("hr", {}), this.state.canLoadMore && this.renderMoreButton()]
       });
     }
   }]);

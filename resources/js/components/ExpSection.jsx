@@ -40,7 +40,7 @@ class Loader extends React.Component {
     }
 
     update(deltaTime) {
-        const data = constants.expLoader;
+        const data = constants.exp.loader;
         const normTime = clamp01((this.time - data.startTime) / data.endTime);
         const logTime = Math.log(lerp(1, data.logAmount, normTime));
         const logTimeMax = Math.log(data.logAmount);
@@ -76,12 +76,11 @@ class Loader extends React.Component {
 
 function MoreButton(props) {
     const classNames = ['exp-more-btn', 'btn', 'btn--sec'];
-
     if (props.isLoading)
         classNames.push('exp-more-btn--loading');
     
     return (
-        <button className={classNames.join(' ')}>
+        <button className={classNames.join(' ')} onClick={props.onClick}>
             <div>
                 <span>Load more</span>
                 <svg viewBox="0 0 22 22" width="22" fill="none">
@@ -97,29 +96,44 @@ class ExpSection extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedTagId: 9,
+            selectedTagId: 0,
+            page: 0,
             isLoading: true,
-            projects: null,
             isLoadingMore: false,
+            projects: null,
+            canLoadMore: false,
         };
     }
 
-    fetchProjects() {
-        const params = {};
+    fetchProjects(append = false) {
+        if (this.abortController)
+            this.abortController.abort();
+
+        this.abortController = new AbortController();
+
+        const page = append ? this.state.page + 1 : 0;
+        const params = {page};
+        
         if (this.state.selectedTagId)
             params.tag_id = this.state.selectedTagId;
 
-        axios.get('/api/projects', {params})
-        .then(res => {
-            this.setState({
+        axios.get('/api/projects', {
+            params,
+            signal: this.abortController.signal,
+        }).then(res => {
+            this.setState(prevState => ({
+                page,
                 isLoading: false,
-                projects: res.data,
-            });
+                isLoadingMore: false,
+                projects: append ? prevState.projects.concat(res.data) : res.data,
+                canLoadMore: res.data.length >= constants.exp.pageSize,
+            }));
         }).catch(error => {
             this.setState({
                 isLoading: false,
+                isLoadingMore: false,
             });
-            console.log(error);
+            console.error(error.response.data.message);
         });
     }
 
@@ -130,6 +144,13 @@ class ExpSection extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         if (this.state.selectedTagId !== prevState.selectedTagId)
             this.fetchProjects();
+    }
+
+    handleClickMore() {
+        this.setState({
+            isLoadingMore: true
+        });
+        this.fetchProjects(true);
     }
 
     renderItems() {
@@ -153,6 +174,15 @@ class ExpSection extends React.Component {
             );
         });
     }
+
+    renderMoreButton() {
+        return (
+            <MoreButton
+                isLoading={this.state.isLoadingMore}
+                onClick={() => this.handleClickMore()}
+            />
+        );
+    }
     
     render() {
         return (
@@ -166,7 +196,7 @@ class ExpSection extends React.Component {
                     {this.state.isLoading ? <Loader /> : this.renderItems()}
                 </div>
                 <hr/>
-                <MoreButton isLoading={this.state.isLoadingMore} />
+                {this.state.canLoadMore && this.renderMoreButton()}
             </section>
         );
     }

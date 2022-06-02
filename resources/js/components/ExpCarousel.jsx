@@ -167,7 +167,7 @@ class Carousel extends React.Component {
     }
 
     handleButtonClick(incr) {
-        this.setState((prevState) => ({
+        this.setState(prevState => ({
             selectedIndex: wrapIndex(prevState.selectedIndex + incr, this.props.resources.length),
             controlScroll: true,
         }));

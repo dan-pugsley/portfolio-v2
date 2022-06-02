@@ -10,7 +10,11 @@ class ProjectController extends Controller
 {
     public function list(Request $request)
     {
-        $request->validate(['tag_id' => 'integer|exists:tags,id|nullable']);
+        $request->validate([
+            'tag_id' => 'integer|exists:tags,id|nullable',
+            'page' => 'integer|min:0|nullable',
+        ]);
+
         $query = Project::leftJoin('companies', 'companies.id', '=', 'projects.company_id');
     
         if (isset($request['tag_id']))
@@ -20,7 +24,12 @@ class ProjectController extends Controller
                 ->where('tags.id', '=', $request['tag_id']);
         }
     
+        $pageIndex = $request['page'] ?? 0;
+        $pageSize = config('constants.exp.pageSize');
+        
         $projects = $query->orderByDesc('projects.started_at')
+            ->skip($pageIndex * $pageSize)
+            ->take($pageSize)
             ->get([
                 'projects.id',
                 'projects.name',
