@@ -19,9 +19,27 @@ class Page extends React.Component {
             isNavBarMenuOpen: false,
         };
         this.closeNavBarMenu = this.closeNavBarMenu.bind(this);
+        this.handleResize = this.handleResize.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
         this.prevTime = 0;
         this.prevScroll = 0;
+    }
+
+    closeNavBarMenu() {
+        this.setState({
+            isNavBarMenuOpen: false,
+        });
+    }
+
+    updatePrevWidth() {
+        this.prevWidth = window.innerWidth;
+    }
+
+    handleResize() {
+        if (window.innerWidth !== this.prevWidth)
+            this.closeNavBarMenu();
+
+        this.updatePrevWidth();
     }
 
     handleScroll() {
@@ -53,31 +71,32 @@ class Page extends React.Component {
     }
 
     componentDidMount() {
-        window.addEventListener('resize', this.closeNavBarMenu);
+        window.addEventListener('resize', this.handleResize);
         document.addEventListener('scroll', this.handleScroll);
+        this.updatePrevWidth();
     }
 
     componentWillUnmount() {
-        window.removeEventListener('resize', this.closeNavBarMenu);
+        window.removeEventListener('resize', this.handleResize);
         document.removeEventListener('scroll', this.handleScroll);
     }
 
-    closeNavBarMenu() {
-        this.setState({
-            isNavBarMenuOpen: false,
-        });
+    enableDocumentNavScrollPadding(value) {
+        document.documentElement.classList.toggle('nav-scroll-padding', value);
     }
 
     handleNavBarLinkClick(e) {
         const hrefEl = getHrefElement(e.target);
 
-        /**
-         * If the href element requires scrolling UP, 
-         * this will cause the nav-bar to reveal and require 
-         * the HTML element to have additional scroll padding.
-         */
-        if (hrefEl)
-            document.documentElement.classList.toggle('nav-scroll-padding', getScrollOffset(hrefEl) < 0);
+        if (hrefEl) {
+            /**
+             * If the href element requires scrolling UP, 
+             * this will cause the nav-bar to reveal and require 
+             * the HTML element to have additional scroll padding.
+             */
+            const requiresScrollUp = getScrollOffset(hrefEl) < 0;
+            this.enableDocumentNavScrollPadding(requiresScrollUp);
+        }
         
         this.closeNavBarMenu();
     }

@@ -3802,6 +3802,7 @@ var Page = /*#__PURE__*/function (_React$Component) {
       isNavBarMenuOpen: false
     };
     _this.closeNavBarMenu = _this.closeNavBarMenu.bind(_assertThisInitialized(_this));
+    _this.handleResize = _this.handleResize.bind(_assertThisInitialized(_this));
     _this.handleScroll = _this.handleScroll.bind(_assertThisInitialized(_this));
     _this.prevTime = 0;
     _this.prevScroll = 0;
@@ -3809,6 +3810,24 @@ var Page = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Page, [{
+    key: "closeNavBarMenu",
+    value: function closeNavBarMenu() {
+      this.setState({
+        isNavBarMenuOpen: false
+      });
+    }
+  }, {
+    key: "updatePrevWidth",
+    value: function updatePrevWidth() {
+      this.prevWidth = window.innerWidth;
+    }
+  }, {
+    key: "handleResize",
+    value: function handleResize() {
+      if (window.innerWidth !== this.prevWidth) this.closeNavBarMenu();
+      this.updatePrevWidth();
+    }
+  }, {
     key: "handleScroll",
     value: function handleScroll() {
       if (this.state.isNavBarMenuOpen) return;
@@ -3831,33 +3850,36 @@ var Page = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      window.addEventListener('resize', this.closeNavBarMenu);
+      window.addEventListener('resize', this.handleResize);
       document.addEventListener('scroll', this.handleScroll);
+      this.updatePrevWidth();
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      window.removeEventListener('resize', this.closeNavBarMenu);
+      window.removeEventListener('resize', this.handleResize);
       document.removeEventListener('scroll', this.handleScroll);
     }
   }, {
-    key: "closeNavBarMenu",
-    value: function closeNavBarMenu() {
-      this.setState({
-        isNavBarMenuOpen: false
-      });
+    key: "enableDocumentNavScrollPadding",
+    value: function enableDocumentNavScrollPadding(value) {
+      document.documentElement.classList.toggle('nav-scroll-padding', value);
     }
   }, {
     key: "handleNavBarLinkClick",
     value: function handleNavBarLinkClick(e) {
       var hrefEl = (0,_utils__WEBPACK_IMPORTED_MODULE_9__.getHrefElement)(e.target);
-      /**
-       * If the href element requires scrolling UP, 
-       * this will cause the nav-bar to reveal and require 
-       * the HTML element to have additional scroll padding.
-       */
 
-      if (hrefEl) document.documentElement.classList.toggle('nav-scroll-padding', (0,_utils__WEBPACK_IMPORTED_MODULE_9__.getScrollOffset)(hrefEl) < 0);
+      if (hrefEl) {
+        /**
+         * If the href element requires scrolling UP, 
+         * this will cause the nav-bar to reveal and require 
+         * the HTML element to have additional scroll padding.
+         */
+        var requiresScrollUp = (0,_utils__WEBPACK_IMPORTED_MODULE_9__.getScrollOffset)(hrefEl) < 0;
+        this.enableDocumentNavScrollPadding(requiresScrollUp);
+      }
+
       this.closeNavBarMenu();
     }
   }, {
