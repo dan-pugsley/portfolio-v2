@@ -213,11 +213,6 @@ button.circle-btn > div {
     cursor: not-allowed;
 }
 
-@keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: var(--target-opacity); }
-}
-
 
 /* ——— Nav ——— */
 
@@ -324,11 +319,11 @@ a.nav__link {
     display: flex;
     flex-direction: column;
 
-    background: #FAFAFA;
-    opacity: 0;
-
-    --target-opacity: 1;
-    animation: fade-in var(--trans-time) forwards;
+    background-color: rgba(250, 250, 250, 0);
+    animation: nav-menu-fade-in var(--trans-time) ease-out forwards;
+}
+@keyframes nav-menu-fade-in {
+    to { background-color: rgba(250, 250, 250, 1); }
 }
 
 /* Button container */
@@ -934,11 +929,11 @@ input:checked ~ .exp-item-radios__dot {
     top: 0; left: 0;
     height: 100%; width: 100%;
 
-    background: var(--c-grey);
-    opacity: 0;
-
-    --target-opacity: 0.6;
-    animation: fade-in var(--trans-time) forwards;
+    background-color: rgba(101, 124, 133, 0);
+    animation: blocker-fade-in var(--trans-time) ease-out forwards;
+}
+@keyframes blocker-fade-in {
+    to { background-color: rgba(101, 124, 133, 0.6); }
 }
 
 
