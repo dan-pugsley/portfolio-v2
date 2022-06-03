@@ -24,11 +24,11 @@ function ExpLink(props) {
     return <Link role={props.role} url="#exp" text="Experience" onClick={props.onClick} />;
 }
 
-function Links() {
+function Links(props) {
     return (
         <div className="nav__links">
-            <BioLink />
-            <ExpLink />
+            <BioLink onClick={props.onLinkClick} />
+            <ExpLink onClick={props.onLinkClick} />
             <div>
                 <ResumeButton />
                 <ContactButton />
@@ -125,25 +125,22 @@ function Menu(props) {
     );
 }
 
-
 function NavBar(props) {
     const classNames = ['nav', 'tk-lato'];
 
-    if (props.isPageScrolled)
-        classNames.push('nav--scrolling');
-
-    if (props.isMenuOpen)
-        classNames.push('nav--menu-open');
+    if (props.isHidden) classNames.push('nav--hidden');
+    if (props.isPageScrolled) classNames.push('nav--page-scrolled');
+    if (props.isMenuOpen) classNames.push('nav--menu-open');
 
     return (
         <nav className={classNames.join(' ')}>
             <Logo />
-            <Links />
+            <Links onLinkClick={props.onLinkClick} />
             <MenuToggle
                 isChecked={props.isMenuOpen}
                 onChange={props.onMenuToggle}
             />
-            {props.isMenuOpen && <Menu onLinkClick={props.onMenuLinkClick} />}
+            {props.isMenuOpen && <Menu onLinkClick={props.onLinkClick} />}
         </nav>
     );
 }

@@ -14,6 +14,23 @@ export const startUpdate = function(callback) {
     };
 };
 
+
+// ——— DOM ———
+
+export const getHrefElement = function(anchor) {
+    return document.body.querySelector(anchor.getAttribute('href'));
+};
+
+export const getScrollOffset = function(element) {
+    let scrollMarginTop = parseInt(window.getComputedStyle(element).scrollMarginTop, 10);
+    if (isNaN(scrollMarginTop))
+        scrollMarginTop = 0;
+    return element.getBoundingClientRect().top - scrollMarginTop;
+};
+
+
+// ——— Math ———
+
 export const wrapIndex = function(value, max) {
     return ((value % max) + max) % max;
 };

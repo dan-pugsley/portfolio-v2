@@ -3503,10 +3503,14 @@ function ExpLink(props) {
   });
 }
 
-function Links() {
+function Links(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "nav__links",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(BioLink, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ExpLink, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(BioLink, {
+      onClick: props.onLinkClick
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ExpLink, {
+      onClick: props.onLinkClick
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ResumeButton__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ContactButton__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
     })]
   });
@@ -3705,15 +3709,18 @@ function Menu(props) {
 
 function NavBar(props) {
   var classNames = ['nav', 'tk-lato'];
-  if (props.isPageScrolled) classNames.push('nav--scrolling');
+  if (props.isHidden) classNames.push('nav--hidden');
+  if (props.isPageScrolled) classNames.push('nav--page-scrolled');
   if (props.isMenuOpen) classNames.push('nav--menu-open');
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("nav", {
     className: classNames.join(' '),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Logo, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Links, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggle, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Logo, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Links, {
+      onLinkClick: props.onLinkClick
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggle, {
       isChecked: props.isMenuOpen,
       onChange: props.onMenuToggle
     }), props.isMenuOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Menu, {
-      onLinkClick: props.onMenuLinkClick
+      onLinkClick: props.onLinkClick
     })]
   });
 }
@@ -3740,7 +3747,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ContactSection__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ContactSection */ "./resources/js/components/ContactSection.jsx");
 /* harmony import */ var _SocialLinks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SocialLinks */ "./resources/js/components/SocialLinks.jsx");
 /* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Footer */ "./resources/js/components/Footer.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../utils */ "./resources/js/utils.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3776,6 +3784,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Page = /*#__PURE__*/function (_React$Component) {
   _inherits(Page, _React$Component);
 
@@ -3788,44 +3797,74 @@ var Page = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      isNavMenuOpen: false,
-      isScrolled: false
+      isScrolled: false,
+      isNavBarHidden: false,
+      isNavBarMenuOpen: false
     };
-    _this.closeNavMenu = _this.closeNavMenu.bind(_assertThisInitialized(_this));
-    _this.handleResize = _this.handleResize.bind(_assertThisInitialized(_this));
+    _this.closeNavBarMenu = _this.closeNavBarMenu.bind(_assertThisInitialized(_this));
     _this.handleScroll = _this.handleScroll.bind(_assertThisInitialized(_this));
+    _this.prevTime = 0;
+    _this.prevScroll = 0;
     return _this;
   }
 
   _createClass(Page, [{
+    key: "handleScroll",
+    value: function handleScroll() {
+      if (this.state.isNavBarMenuOpen) return;
+      var time = performance.now();
+      var deltaTime = time - this.prevTime;
+      var scroll = window.scrollY;
+      var deltaScroll = scroll - this.prevScroll;
+      var scrollVel = deltaScroll / deltaTime;
+      var partialState = {
+        isScrolled: scroll > 0
+      };
+      this.setState(function (prevState) {
+        if (!prevState.isNavBarHidden) partialState.isNavBarHidden = scrollVel > 0.07;else if (scrollVel <= -0.185) partialState.isNavBarHidden = false;
+        return partialState;
+      });
+      this.prevTime = time;
+      this.prevScroll = scroll;
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      window.addEventListener('resize', this.handleResize);
+      window.addEventListener('resize', this.closeNavBarMenu);
       document.addEventListener('scroll', this.handleScroll);
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      window.removeEventListener('resize', this.handleResize);
+      window.removeEventListener('resize', this.closeNavBarMenu);
       document.removeEventListener('scroll', this.handleScroll);
     }
   }, {
-    key: "closeNavMenu",
-    value: function closeNavMenu() {
+    key: "closeNavBarMenu",
+    value: function closeNavBarMenu() {
       this.setState({
-        isNavMenuOpen: false
+        isNavBarMenuOpen: false
       });
     }
   }, {
-    key: "handleResize",
-    value: function handleResize() {
-      this.closeNavMenu();
+    key: "handleNavBarLinkClick",
+    value: function handleNavBarLinkClick(e) {
+      var hrefEl = (0,_utils__WEBPACK_IMPORTED_MODULE_9__.getHrefElement)(e.target);
+      /**
+       * If the href element requires scrolling UP, 
+       * this will cause the nav-bar to reveal and require 
+       * the HTML element to have additional scroll padding.
+       */
+
+      if (hrefEl) document.documentElement.classList.toggle('nav-scroll-padding', (0,_utils__WEBPACK_IMPORTED_MODULE_9__.getScrollOffset)(hrefEl) < 0);
+      this.closeNavBarMenu();
     }
   }, {
-    key: "handleScroll",
-    value: function handleScroll(e) {
-      this.setState({
-        isScrolled: window.scrollY > 0
+    key: "renderBlocker",
+    value: function renderBlocker() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+        className: "blocker",
+        onClick: this.closeNavBarMenu
       });
     }
   }, {
@@ -3833,22 +3872,22 @@ var Page = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
           id: "top"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_SvgResources__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_NavBar__WEBPACK_IMPORTED_MODULE_3__["default"], {
-          isMenuOpen: this.state.isNavMenuOpen,
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_SvgResources__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_NavBar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          isHidden: this.state.isNavBarHidden,
+          isPageScrolled: this.state.isScrolled,
+          isMenuOpen: this.state.isNavBarMenuOpen,
           onMenuToggle: function onMenuToggle(e) {
             return _this2.setState({
-              isNavMenuOpen: e.target.checked
+              isNavBarMenuOpen: e.target.checked
             });
           },
-          onMenuLinkClick: this.closeNavMenu,
-          isPageScrolled: this.state.isScrolled
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_BioSection__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_ExpSection__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_ContactSection__WEBPACK_IMPORTED_MODULE_6__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_SocialLinks__WEBPACK_IMPORTED_MODULE_7__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Footer__WEBPACK_IMPORTED_MODULE_8__["default"], {}), this.state.isNavMenuOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-          className: "blocker",
-          onClick: this.closeNavMenu
-        })]
+          onLinkClick: function onLinkClick(e) {
+            return _this2.handleNavBarLinkClick(e);
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_BioSection__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_ExpSection__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_ContactSection__WEBPACK_IMPORTED_MODULE_6__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_SocialLinks__WEBPACK_IMPORTED_MODULE_7__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Footer__WEBPACK_IMPORTED_MODULE_8__["default"], {}), this.state.isNavBarMenuOpen && this.renderBlocker()]
       });
     }
   }]);
@@ -3856,7 +3895,7 @@ var Page = /*#__PURE__*/function (_React$Component) {
   return Page;
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
-react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementById('js-container')).render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(Page, {}));
+react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementById('js-container')).render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(Page, {}));
 
 /***/ }),
 
@@ -4019,6 +4058,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "clamp": function() { return /* binding */ clamp; },
 /* harmony export */   "clamp01": function() { return /* binding */ clamp01; },
+/* harmony export */   "getHrefElement": function() { return /* binding */ getHrefElement; },
+/* harmony export */   "getScrollOffset": function() { return /* binding */ getScrollOffset; },
 /* harmony export */   "lerp": function() { return /* binding */ lerp; },
 /* harmony export */   "rad2deg": function() { return /* binding */ rad2deg; },
 /* harmony export */   "startUpdate": function() { return /* binding */ startUpdate; },
@@ -4039,7 +4080,17 @@ var startUpdate = function startUpdate(callback) {
   return function () {
     window.cancelAnimationFrame(id);
   };
+}; // ——— DOM ———
+
+var getHrefElement = function getHrefElement(anchor) {
+  return document.body.querySelector(anchor.getAttribute('href'));
 };
+var getScrollOffset = function getScrollOffset(element) {
+  var scrollMarginTop = parseInt(window.getComputedStyle(element).scrollMarginTop, 10);
+  if (isNaN(scrollMarginTop)) scrollMarginTop = 0;
+  return element.getBoundingClientRect().top - scrollMarginTop;
+}; // ——— Math ———
+
 var wrapIndex = function wrapIndex(value, max) {
   return (value % max + max) % max;
 };

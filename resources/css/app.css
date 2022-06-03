@@ -11,13 +11,12 @@
     --page-padding-x: min(max(var(--page-padding-x-scale), 21px), 32px);
     --page-padding-x-large: max(min(10.25vw, 155px), var(--page-padding-x));
 
-    --nav-height: 79px;
+    --nav-height: 80px;
     --trans-time: 0.2s;
 }
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: var(--nav-height);
 }
 
 body {
@@ -217,6 +216,10 @@ button.circle-btn > div {
 
 /* ——— Nav ——— */
 
+.nav-scroll-padding {
+    scroll-padding-top: var(--nav-height);
+}
+
 .nav {
     display: flex;
     justify-content: space-between;
@@ -224,15 +227,21 @@ button.circle-btn > div {
 
     position: sticky;
     top: 0;
-    height: 79px;
+    height: var(--nav-height);
+    box-sizing: border-box;
     z-index: 1;
 
     background: white;
     border-bottom: 1px solid var(--c-light-grey);
 
-    transition: box-shadow var(--trans-time);
+    transition:
+        box-shadow var(--trans-time),
+        top 0.25s ease-in-out;
 }
-.nav--scrolling {
+.nav--hidden {
+    top: calc(-1 * var(--nav-height));
+}
+.nav--page-scrolled:not(.nav--hidden) {
     box-shadow: 0px 4px 20px rgba(190, 190, 190, 0.25);
 }
 .nav--menu-open {
