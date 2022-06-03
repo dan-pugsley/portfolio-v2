@@ -17,6 +17,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-height);
 }
 
 body {
@@ -460,7 +461,7 @@ a.nav__link {
             flex-direction: column;
 
     margin-top: var(--margin-top);
-    scroll-margin-top: calc(var(--margin-top) + var(--nav-height));
+    scroll-margin-top: var(--margin-top);
     padding: 0 var(--page-padding-x);
 }
 
@@ -580,7 +581,7 @@ a.nav__link {
     --margin-top: 32.5px;
 
     margin-top: var(--margin-top);
-    scroll-margin-top: calc(var(--margin-top) + var(--nav-height));
+    scroll-margin-top: max(var(--margin-top), 32.5px);
 
     display: -webkit-box;
 
@@ -1237,15 +1238,19 @@ input:checked ~ .exp-item-radios__dot {
     /* ——— Bio (desktop) ——— */
 
     .bio {
+        --margin-top: 26px;
+
         -webkit-box-orient: horizontal;
+
         -webkit-box-direction: normal;
+
             -ms-flex-direction: row;
+
                 flex-direction: row;
         -webkit-box-pack: justify;
             -ms-flex-pack: justify;
                 justify-content: space-between;
     
-        margin-top: 26px;
         padding-right: max(5.55%, 84px);
         padding-left: var(--page-padding-x-large);
         overflow: hidden;
@@ -1294,7 +1299,7 @@ input:checked ~ .exp-item-radios__dot {
     /* ——— Experience (desktop) ——— */
 
     .exp {
-        margin-top: -52px;
+        --margin-top: -52px;
     }
 
     .exp__header {

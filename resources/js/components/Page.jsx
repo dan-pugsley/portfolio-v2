@@ -50,6 +50,7 @@ class Page extends React.Component {
     render() {
         return (
             <>
+                <div id="top"></div>
                 <SvgResources />
                 <NavBar
                     isMenuOpen={this.state.isNavMenuOpen}
