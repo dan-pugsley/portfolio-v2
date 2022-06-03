@@ -3804,6 +3804,7 @@ var Page = /*#__PURE__*/function (_React$Component) {
     _this.closeNavBarMenu = _this.closeNavBarMenu.bind(_assertThisInitialized(_this));
     _this.handleResize = _this.handleResize.bind(_assertThisInitialized(_this));
     _this.handleScroll = _this.handleScroll.bind(_assertThisInitialized(_this));
+    _this.handleTouchMove = _this.handleTouchMove.bind(_assertThisInitialized(_this));
     _this.prevTime = 0;
     _this.prevScroll = 0;
     return _this;
@@ -3848,10 +3849,16 @@ var Page = /*#__PURE__*/function (_React$Component) {
       this.prevScroll = scroll;
     }
   }, {
+    key: "handleTouchMove",
+    value: function handleTouchMove(e) {
+      if (this.state.isNavBarMenuOpen) e.preventDefault();
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       window.addEventListener('resize', this.handleResize);
       document.addEventListener('scroll', this.handleScroll);
+      document.addEventListener('touchmove', this.handleTouchMove);
       this.updatePrevWidth();
     }
   }, {
@@ -3859,6 +3866,7 @@ var Page = /*#__PURE__*/function (_React$Component) {
     value: function componentWillUnmount() {
       window.removeEventListener('resize', this.handleResize);
       document.removeEventListener('scroll', this.handleScroll);
+      document.removeEventListener('touchmove', this.handleTouchMove);
     }
   }, {
     key: "enableDocumentNavScrollPadding",
@@ -3881,6 +3889,11 @@ var Page = /*#__PURE__*/function (_React$Component) {
       }
 
       this.closeNavBarMenu();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (this.state.isNavBarMenuOpen !== prevState.isNavBarMenuOpen) document.body.classList.toggle('no-scroll', this.state.isNavBarMenuOpen);
     }
   }, {
     key: "renderBlocker",

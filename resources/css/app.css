@@ -114,6 +114,11 @@ hr {
     display: none; /* Chrome, Safari and Opera */
 }
 
+.no-scroll {
+    height: 100%;
+    overflow: hidden;
+}
+
 .ellipsis-multiline {
     --max-lines: 2;
 

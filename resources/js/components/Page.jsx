@@ -21,6 +21,7 @@ class Page extends React.Component {
         this.closeNavBarMenu = this.closeNavBarMenu.bind(this);
         this.handleResize = this.handleResize.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
+        this.handleTouchMove = this.handleTouchMove.bind(this);
         this.prevTime = 0;
         this.prevScroll = 0;
     }
@@ -70,15 +71,22 @@ class Page extends React.Component {
         this.prevScroll = scroll;
     }
 
+    handleTouchMove(e) {
+        if (this.state.isNavBarMenuOpen)
+            e.preventDefault();
+    }
+
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
         document.addEventListener('scroll', this.handleScroll);
+        document.addEventListener('touchmove', this.handleTouchMove);
         this.updatePrevWidth();
     }
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.handleResize);
         document.removeEventListener('scroll', this.handleScroll);
+        document.removeEventListener('touchmove', this.handleTouchMove);
     }
 
     enableDocumentNavScrollPadding(value) {
@@ -99,6 +107,11 @@ class Page extends React.Component {
         }
         
         this.closeNavBarMenu();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.isNavBarMenuOpen !== prevState.isNavBarMenuOpen)
+            document.body.classList.toggle('no-scroll', this.state.isNavBarMenuOpen);
     }
 
     renderBlocker() {
