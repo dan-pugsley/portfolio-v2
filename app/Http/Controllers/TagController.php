@@ -10,6 +10,7 @@ class TagController extends Controller
     {
         return Tag::join('project_tag', 'project_tag.tag_id', '=', 'tags.id')
                 ->distinct()
+                ->orderBy('tags.name')
                 ->get(['tags.id', 'tags.name']);
     }
 }
