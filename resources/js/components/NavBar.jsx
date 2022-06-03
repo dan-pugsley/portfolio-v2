@@ -2,9 +2,9 @@ import React from 'react';
 import ResumeButton from './ResumeButton';
 import ContactButton from './ContactButton';
 
-function Logo() {
+function Logo(props) {
     return (
-        <a className="nav__logo" href="#top">
+        <a className="nav__logo" href="#top" onClick={props.onClick}>
             <svg viewBox="0 0 41 45" width="41">
                 <use href="#logo-path" fill="#032F40"/>
             </svg>
@@ -135,7 +135,7 @@ function NavBar(props) {
 
     return (
         <nav className={classNames.join(' ')}>
-            <Logo />
+            <Logo onClick={props.onLogoClick}/>
             <Links onLinkClick={props.onLinkClick} />
             <MenuToggle
                 isChecked={props.isMenuOpen}

@@ -127,8 +127,9 @@ class Page extends React.Component {
                     isHidden={this.state.isNavBarHidden}
                     isPageScrolled={this.state.isScrolled}
                     isMenuOpen={this.state.isNavBarMenuOpen}
-                    onMenuToggle={e => this.setState({isNavBarMenuOpen: e.target.checked})}
+                    onLogoClick={this.closeNavBarMenu}
                     onLinkClick={e => this.handleNavBarLinkClick(e)}
+                    onMenuToggle={e => this.setState({isNavBarMenuOpen: e.target.checked})}
                 />
                 <BioSection />
                 <ExpSection />

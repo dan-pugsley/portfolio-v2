@@ -3460,10 +3460,11 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-function Logo() {
+function Logo(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
     className: "nav__logo",
     href: "#top",
+    onClick: props.onClick,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("svg", {
       viewBox: "0 0 41 45",
       width: "41",
@@ -3729,7 +3730,9 @@ function NavBar(props) {
   if (props.isMenuOpen) classNames.push('nav--menu-open');
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("nav", {
     className: classNames.join(' '),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Logo, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Links, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Logo, {
+      onClick: props.onLogoClick
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Links, {
       onLinkClick: props.onLinkClick
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggle, {
       isChecked: props.isMenuOpen,
@@ -3930,13 +3933,14 @@ var Page = /*#__PURE__*/function (_React$Component) {
           isHidden: this.state.isNavBarHidden,
           isPageScrolled: this.state.isScrolled,
           isMenuOpen: this.state.isNavBarMenuOpen,
+          onLogoClick: this.closeNavBarMenu,
+          onLinkClick: function onLinkClick(e) {
+            return _this2.handleNavBarLinkClick(e);
+          },
           onMenuToggle: function onMenuToggle(e) {
             return _this2.setState({
               isNavBarMenuOpen: e.target.checked
             });
-          },
-          onLinkClick: function onLinkClick(e) {
-            return _this2.handleNavBarLinkClick(e);
           }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_BioSection__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_ExpSection__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_ContactSection__WEBPACK_IMPORTED_MODULE_6__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_SocialLinks__WEBPACK_IMPORTED_MODULE_7__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Footer__WEBPACK_IMPORTED_MODULE_8__["default"], {}), this.state.isNavBarMenuOpen && this.renderBlocker()]
       });
