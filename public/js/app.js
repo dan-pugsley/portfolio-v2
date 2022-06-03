@@ -3545,6 +3545,7 @@ var MenuToggleAnim = /*#__PURE__*/function (_React$Component) {
         attributeName: this.props.attributeName,
         attributeType: "XML",
         type: this.props.type,
+        from: this.props.from,
         to: this.props.to,
         dur: "200ms",
         begin: "indefinite",
@@ -3582,9 +3583,12 @@ function MenuToggle(props) {
         to: "#38A186",
         start: !props.isChecked
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("rect", {
+        x: "0",
+        y: "0",
         width: "25",
         height: "3",
         rx: "1",
+        transform: "rotate(0 0 0)",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
           attributeName: "x",
           to: "4.72",
@@ -3600,19 +3604,23 @@ function MenuToggle(props) {
           start: props.isChecked
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
           attributeName: "x",
+          from: "4.72",
           to: "0",
           start: !props.isChecked
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
           attributeName: "y",
+          from: "-0.4",
           to: "0",
           start: !props.isChecked
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
           attributeName: "transform",
           type: "rotate",
+          from: "45 4.72 -0.4",
           to: "0 0 0",
           start: !props.isChecked
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("rect", {
+        x: "0",
         y: "8",
         width: "25",
         height: "3",
@@ -3632,18 +3640,22 @@ function MenuToggle(props) {
           start: props.isChecked
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
           attributeName: "x",
+          from: "12.5",
           to: "0",
           start: !props.isChecked
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
           attributeName: "width",
+          from: "0",
           to: "25",
           start: !props.isChecked
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
           attributeName: "opacity",
+          from: "0",
           to: "1",
           start: !props.isChecked
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("rect", {
+        x: "0",
         y: "16",
         width: "25",
         height: "3",
@@ -3664,15 +3676,18 @@ function MenuToggle(props) {
           start: props.isChecked
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
           attributeName: "x",
+          from: "2.6",
           to: "0",
           start: !props.isChecked
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
           attributeName: "y",
+          from: "17.28",
           to: "16",
           start: !props.isChecked
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MenuToggleAnim, {
           attributeName: "transform",
           type: "rotate",
+          from: "-45 2.6 17.28",
           to: "0 0 16",
           start: !props.isChecked
         })]
