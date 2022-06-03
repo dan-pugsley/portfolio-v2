@@ -3,6 +3,10 @@
 $isConsole = app()->runningInConsole();
 
 return [
+    'navBar' => [
+        'hideVel' => 0.07,
+        'showVel' => 0.185,
+    ],
     'resumeUrl' => $isConsole ? '' : asset('doc/resume.pdf'),
     'emailAddress' => 'daniel.pugsley@gmail.com',
     'bio' => [

@@ -3812,6 +3812,7 @@ var Page = /*#__PURE__*/function (_React$Component) {
     key: "handleScroll",
     value: function handleScroll() {
       if (this.state.isNavBarMenuOpen) return;
+      var data = constants.navBar;
       var time = performance.now();
       var deltaTime = time - this.prevTime;
       var scroll = window.scrollY;
@@ -3821,7 +3822,7 @@ var Page = /*#__PURE__*/function (_React$Component) {
         isScrolled: scroll > 0
       };
       this.setState(function (prevState) {
-        if (!prevState.isNavBarHidden) partialState.isNavBarHidden = scrollVel > 0.07;else if (scrollVel <= -0.185) partialState.isNavBarHidden = false;
+        if (!prevState.isNavBarHidden) partialState.isNavBarHidden = scrollVel >= data.hideVel;else if (scrollVel <= -data.showVel) partialState.isNavBarHidden = false;
         return partialState;
       });
       this.prevTime = time;

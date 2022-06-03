@@ -27,7 +27,8 @@ class Page extends React.Component {
     handleScroll() {
         if (this.state.isNavBarMenuOpen)
             return;
-            
+
+        const data = constants.navBar;
         const time = performance.now();
         const deltaTime = time - this.prevTime;
 
@@ -41,8 +42,8 @@ class Page extends React.Component {
         
         this.setState(prevState => {
             if (!prevState.isNavBarHidden)
-                partialState.isNavBarHidden = scrollVel > 0.07;
-            else if (scrollVel <= -0.185)
+                partialState.isNavBarHidden = scrollVel >= data.hideVel;
+            else if (scrollVel <= -data.showVel)
                 partialState.isNavBarHidden = false;
             return partialState;
         });
