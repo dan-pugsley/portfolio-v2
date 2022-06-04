@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TagController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'app', [
-    'tags' => app(TagController::class)->list()
-]);
+Route::get('/', function(Request $request) {
+    return view('app', [
+        'tags' => app(TagController::class)->list($request)
+    ]);
+});
