@@ -80,7 +80,7 @@ function MoreButton(props) {
         classNames.push('exp-more-btn--loading');
     
     return (
-        <button className={classNames.join(' ')} onClick={props.onClick}>
+        <button className={classNames.join(' ')} onClick={props.onClick} disabled={props.isDisabled}>
             <div>
                 <span>Load more</span>
                 <svg viewBox="0 0 22 22" width="22" fill="none">
@@ -133,7 +133,7 @@ class ExpSection extends React.Component {
                 isLoading: false,
                 isLoadingMore: false,
             });
-            console.error(error.response.data.message);
+            console.error(error.response ? error.response.data.message : error);
         });
     }
 
@@ -178,8 +178,9 @@ class ExpSection extends React.Component {
     renderMoreButton() {
         return (
             <MoreButton
-                isLoading={this.state.isLoadingMore}
                 onClick={() => this.handleClickMore()}
+                isLoading={this.state.isLoadingMore}
+                isDisabled={this.state.isLoadingMore}
             />
         );
     }

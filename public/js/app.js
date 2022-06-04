@@ -3227,6 +3227,7 @@ function MoreButton(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
     className: classNames.join(' '),
     onClick: props.onClick,
+    disabled: props.isDisabled,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
         children: "Load more"
@@ -3307,7 +3308,7 @@ var ExpSection = /*#__PURE__*/function (_React$Component3) {
           isLoadingMore: false
         });
 
-        console.error(error.response.data.message);
+        console.error(error.response ? error.response.data.message : error);
       });
     }
   }, {
@@ -3354,10 +3355,11 @@ var ExpSection = /*#__PURE__*/function (_React$Component3) {
       var _this4 = this;
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(MoreButton, {
-        isLoading: this.state.isLoadingMore,
         onClick: function onClick() {
           return _this4.handleClickMore();
-        }
+        },
+        isLoading: this.state.isLoadingMore,
+        isDisabled: this.state.isLoadingMore
       });
     }
   }, {
