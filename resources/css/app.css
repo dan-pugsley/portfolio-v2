@@ -995,13 +995,13 @@ input:checked ~ .exp-item-radios__dot {
         flex-direction: row;
         justify-content: space-between;
     
-        padding-right: max(5.55%, 84px);
-        padding-left: var(--page-padding-x-large);
+        padding: 0 var(--page-padding-x-large);
+        max-width: 1652px;
         overflow: hidden;
     }
 
     .bio__text-content {
-        max-width: 770px;
+        max-width: 890px;
         margin-top: 29px;
         margin-bottom: 129px;
     }
