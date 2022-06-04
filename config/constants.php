@@ -3,17 +3,22 @@
 $isConsole = app()->runningInConsole();
 
 return [
+    'meta' => [
+        'description' => 'Daniel Pugsley is a full-stack web developer specialising in large, complex projects using Laravel and React.js.',
+        'imgUrl' => '', // TODO: Add image
+        'twitterHandle' => '@pugs_ly',
+    ],
+    'resumeUrl' => $isConsole ? '' : asset('doc/resume.pdf'),
+    'emailAddress' => 'daniel.pugsley@gmail.com',
     'navBar' => [
         'hideVel' => 0.07,
         'showVel' => 0.185,
     ],
-    'resumeUrl' => $isConsole ? '' : asset('doc/resume.pdf'),
-    'emailAddress' => 'daniel.pugsley@gmail.com',
     'bio' => [
         'name' => env('APP_NAME'),
         'subtitle' => 'Full stack web developer',
         'avatar' => [
-            'imgUrls' => [
+            'imgUrl' => [
                 'x1' => $isConsole ? '' : asset('img/bio/avatar.jpg'),
                 'x2' => $isConsole ? '' : asset('img/bio/avatar-2x.jpg'),
             ],

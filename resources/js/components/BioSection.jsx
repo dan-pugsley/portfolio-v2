@@ -98,13 +98,13 @@ class AvatarTags extends React.Component {
 }
 
 function Avatar() {
-    const imgUrls = constants.bio.avatar.imgUrls;
+    const imgUrl = constants.bio.avatar.imgUrl;
     const imgAlt = constants.bio.name;
     return (
         <div className="bio-avatar">
             <div className="bio-avatar__disc"></div>
             <div className="bio-avatar__img-cont">
-                <img srcSet={`${imgUrls.x1}, ${imgUrls.x2} 2x`} alt={imgAlt}></img>
+                <img srcSet={`${imgUrl.x1}, ${imgUrl.x2} 2x`} alt={imgAlt}></img>
             </div>
             <AvatarTags />
         </div>

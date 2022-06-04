@@ -2354,7 +2354,7 @@ var AvatarTags = /*#__PURE__*/function (_React$Component) {
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
 function Avatar() {
-  var imgUrls = constants.bio.avatar.imgUrls;
+  var imgUrl = constants.bio.avatar.imgUrl;
   var imgAlt = constants.bio.name;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "bio-avatar",
@@ -2363,7 +2363,7 @@ function Avatar() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "bio-avatar__img-cont",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-        srcSet: "".concat(imgUrls.x1, ", ").concat(imgUrls.x2, " 2x"),
+        srcSet: "".concat(imgUrl.x1, ", ").concat(imgUrl.x2, " 2x"),
         alt: imgAlt
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(AvatarTags, {})]
