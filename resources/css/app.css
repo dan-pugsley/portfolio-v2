@@ -222,6 +222,8 @@ button.circle-btn > div {
 }
 
 .nav {
+    --background: white;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -232,7 +234,7 @@ button.circle-btn > div {
     box-sizing: border-box;
     z-index: 1;
 
-    background: white;
+    background: var(--background);
     border-bottom: 1px solid var(--c-light-grey);
 
     transition:
@@ -243,7 +245,9 @@ button.circle-btn > div {
     top: calc(-1 * var(--nav-height));
 }
 .nav--page-scrolled:not(.nav--hidden) {
-    box-shadow: 0px 4px 20px rgba(190, 190, 190, 0.25);
+    box-shadow:
+        0 -1px 0 var(--background), /* cover 1px gap that sometimes appears above nav-bar on iOS */
+        0px 4px 20px rgba(190, 190, 190, 0.25);
 }
 .nav--menu-open {
     /* hide border and box-shadow */
