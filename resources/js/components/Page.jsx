@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import SvgResources from './SvgResources';
 import NavBar from './NavBar';
 import BioSection from './BioSection';
 import ExpSection from './ExpSection';
@@ -118,7 +117,6 @@ class Page extends React.Component {
         return (
             <>
                 <div id="top"></div>
-                <SvgResources />
                 <NavBar
                     isHidden={this.state.isNavBarHidden}
                     isPageScrolled={this.state.isScrolled}

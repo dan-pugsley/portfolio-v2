@@ -20,6 +20,7 @@
         <script src="{{ mix('/js/app.js') }}" defer></script>
     </head>
     <body>
+        <x-svg-resources />
         <div id="js-container" class="container"></div>
     </body>
 </html>
