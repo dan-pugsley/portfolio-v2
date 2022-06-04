@@ -58,4 +58,5 @@ return [
         'linkedInUrl' => '#',
         'instagramUrl' => '#',
     ],
+    'repoUrl' => 'https://github.com/dnpgsly/portfolio-v2',
 ];

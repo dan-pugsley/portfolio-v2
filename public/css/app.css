@@ -1207,6 +1207,11 @@ input:checked ~ .exp-item-radios__dot {
     color: var(--c-grey);
 }
 
+.footer > small > a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .footer > .social {
     --spacing: 16px;
 
