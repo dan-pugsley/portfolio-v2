@@ -14,22 +14,22 @@ return [
         'subtitle' => 'Full stack web developer',
         'avatar' => [
             'imgUrls' => [
-                '_1x' => $isConsole ? '' : asset('img/bio/avatar.jpg'),
-                '_2x' => $isConsole ? '' : asset('img/bio/avatar-2x.jpg'),
+                'x1' => $isConsole ? '' : asset('img/bio/avatar.jpg'),
+                'x2' => $isConsole ? '' : asset('img/bio/avatar-2x.jpg'),
             ],
             'tags' => [
                 'imgUrls' => [
                     'small' => [
-                        '_1x' => $isConsole ? '' : asset('img/bio/tags/small.png'),
-                        '_2x' => $isConsole ? '' : asset('img/bio/tags/small-2x.png'),
+                        'x1' => $isConsole ? '' : asset('img/bio/tags/small.png'),
+                        'x2' => $isConsole ? '' : asset('img/bio/tags/small-2x.png'),
                     ],
                     'med' => [
-                        '_1x' => $isConsole ? '' : asset('img/bio/tags/med.png'),
-                        '_2x' => $isConsole ? '' : asset('img/bio/tags/med-2x.png'),
+                        'x1' => $isConsole ? '' : asset('img/bio/tags/med.png'),
+                        'x2' => $isConsole ? '' : asset('img/bio/tags/med-2x.png'),
                     ],
                     'large' => [
-                        '_1x' => $isConsole ? '' : asset('img/bio/tags/large.png'),
-                        '_2x' => $isConsole ? '' : asset('img/bio/tags/large-2x.png'),
+                        'x1' => $isConsole ? '' : asset('img/bio/tags/large.png'),
+                        'x2' => $isConsole ? '' : asset('img/bio/tags/large-2x.png'),
                     ],
                 ],
                 'imgAlt' => 'PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript',

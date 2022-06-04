@@ -2337,12 +2337,12 @@ var AvatarTags = /*#__PURE__*/function (_React$Component) {
           ref: this.picRef,
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("source", {
             media: "(min-width: 885px)",
-            srcSet: "".concat(data.imgUrls.large._1x, ", ").concat(data.imgUrls.large._2x, " 2x")
+            srcSet: "".concat(data.imgUrls.large.x1, ", ").concat(data.imgUrls.large.x2, " 2x")
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("source", {
             media: "(min-width: 507px)",
-            srcSet: "".concat(data.imgUrls.med._1x, ", ").concat(data.imgUrls.med._2x, " 2x")
+            srcSet: "".concat(data.imgUrls.med.x1, ", ").concat(data.imgUrls.med.x2, " 2x")
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-            srcSet: "".concat(data.imgUrls.small._1x, ", ").concat(data.imgUrls.small._2x, " 2x"),
+            srcSet: "".concat(data.imgUrls.small.x1, ", ").concat(data.imgUrls.small.x2, " 2x"),
             alt: data.imgAlt
           })]
         })
@@ -2363,7 +2363,7 @@ function Avatar() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "bio-avatar__img-cont",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-        srcSet: "".concat(imgUrls._1x, ", ").concat(imgUrls._2x, " 2x"),
+        srcSet: "".concat(imgUrls.x1, ", ").concat(imgUrls.x2, " 2x"),
         alt: imgAlt
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(AvatarTags, {})]

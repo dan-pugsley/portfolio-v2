@@ -88,9 +88,9 @@ class AvatarTags extends React.Component {
                 <picture ref={this.picRef}>
                     {/* WARNING: Any changes to these min-width
                         values need to be matched in app.css */}
-                    <source media="(min-width: 885px)" srcSet={`${data.imgUrls.large._1x}, ${data.imgUrls.large._2x} 2x`} />
-                    <source media="(min-width: 507px)" srcSet={`${data.imgUrls.med._1x}, ${data.imgUrls.med._2x} 2x`} />
-                    <img srcSet={`${data.imgUrls.small._1x}, ${data.imgUrls.small._2x} 2x`} alt={data.imgAlt} />
+                    <source media="(min-width: 885px)" srcSet={`${data.imgUrls.large.x1}, ${data.imgUrls.large.x2} 2x`} />
+                    <source media="(min-width: 507px)" srcSet={`${data.imgUrls.med.x1}, ${data.imgUrls.med.x2} 2x`} />
+                    <img srcSet={`${data.imgUrls.small.x1}, ${data.imgUrls.small.x2} 2x`} alt={data.imgAlt} />
                 </picture>
             </div>
         );
@@ -104,7 +104,7 @@ function Avatar() {
         <div className="bio-avatar">
             <div className="bio-avatar__disc"></div>
             <div className="bio-avatar__img-cont">
-                <img srcSet={`${imgUrls._1x}, ${imgUrls._2x} 2x`} alt={imgAlt}></img>
+                <img srcSet={`${imgUrls.x1}, ${imgUrls.x2} 2x`} alt={imgAlt}></img>
             </div>
             <AvatarTags />
         </div>
