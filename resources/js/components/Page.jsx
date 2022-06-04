@@ -114,10 +114,6 @@ class Page extends React.Component {
             document.body.classList.toggle('no-scroll', this.state.isNavBarMenuOpen);
     }
 
-    renderBlocker() {
-        return <div className="blocker" onClick={this.closeNavBarMenu}></div>;
-    }
-
     render() {
         return (
             <>
@@ -130,13 +126,13 @@ class Page extends React.Component {
                     onLogoClick={this.closeNavBarMenu}
                     onLinkClick={e => this.handleNavBarLinkClick(e)}
                     onMenuToggle={e => this.setState({isNavBarMenuOpen: e.target.checked})}
+                    onMenuBlockerClick={this.closeNavBarMenu}
                 />
                 <BioSection />
                 <ExpSection />
                 <ContactSection />
                 <SocialLinks />
                 <Footer />
-                {this.state.isNavBarMenuOpen && this.renderBlocker()}
             </>
         );
     }

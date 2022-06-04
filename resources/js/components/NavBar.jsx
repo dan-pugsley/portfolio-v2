@@ -122,6 +122,7 @@ function Menu(props) {
                 <ResumeButton role="menuitem" />
                 <ContactButton role="menuitem" />
             </div>
+            <div className="nav__blocker" onClick={props.onBlockerClick}></div>
         </div>
     );
 }
@@ -141,7 +142,7 @@ function NavBar(props) {
                 isChecked={props.isMenuOpen}
                 onChange={props.onMenuToggle}
             />
-            {props.isMenuOpen && <Menu onLinkClick={props.onLinkClick} />}
+            {props.isMenuOpen && <Menu onLinkClick={props.onLinkClick} onBlockerClick={props.onMenuBlockerClick} />}
         </nav>
     );
 }

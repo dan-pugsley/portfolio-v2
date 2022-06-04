@@ -3720,6 +3720,9 @@ function Menu(props) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ContactButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
           role: "menuitem"
         })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "nav__blocker",
+        onClick: props.onBlockerClick
       })]
     })
   );
@@ -3740,7 +3743,8 @@ function NavBar(props) {
       isChecked: props.isMenuOpen,
       onChange: props.onMenuToggle
     }), props.isMenuOpen && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Menu, {
-      onLinkClick: props.onLinkClick
+      onLinkClick: props.onLinkClick,
+      onBlockerClick: props.onMenuBlockerClick
     })]
   });
 }
@@ -3916,14 +3920,6 @@ var Page = /*#__PURE__*/function (_React$Component) {
       if (this.state.isNavBarMenuOpen !== prevState.isNavBarMenuOpen) document.body.classList.toggle('no-scroll', this.state.isNavBarMenuOpen);
     }
   }, {
-    key: "renderBlocker",
-    value: function renderBlocker() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
-        className: "blocker",
-        onClick: this.closeNavBarMenu
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -3943,8 +3939,9 @@ var Page = /*#__PURE__*/function (_React$Component) {
             return _this2.setState({
               isNavBarMenuOpen: e.target.checked
             });
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_BioSection__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_ExpSection__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_ContactSection__WEBPACK_IMPORTED_MODULE_6__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_SocialLinks__WEBPACK_IMPORTED_MODULE_7__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Footer__WEBPACK_IMPORTED_MODULE_8__["default"], {}), this.state.isNavBarMenuOpen && this.renderBlocker()]
+          },
+          onMenuBlockerClick: this.closeNavBarMenu
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_BioSection__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_ExpSection__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_ContactSection__WEBPACK_IMPORTED_MODULE_6__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_SocialLinks__WEBPACK_IMPORTED_MODULE_7__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Footer__WEBPACK_IMPORTED_MODULE_8__["default"], {})]
       });
     }
   }]);
