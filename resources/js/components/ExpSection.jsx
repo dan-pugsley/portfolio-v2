@@ -193,7 +193,7 @@ class ExpSection extends React.Component {
                     onTagChange={e => this.setState({selectedTagId: Number(e.target.value), isLoading: true})}
                 />
                 <hr/>
-                <div className="exp__items">
+                <div>
                     {this.state.isLoading ? <Loader /> : this.renderItems()}
                 </div>
                 <hr/>
