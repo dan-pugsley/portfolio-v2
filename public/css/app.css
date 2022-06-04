@@ -909,6 +909,7 @@ a.nav__link {
 }
 
 .exp-item__scroll {
+    --height: 225px;
     --spacing: 18px;
 
     display: -webkit-box;
@@ -916,16 +917,18 @@ a.nav__link {
     display: -ms-flexbox;
 
     display: flex;
-    height: 225px;
+    height: var(--height);
 
     /* push scroll area to screen edges without changing internal layout */
     margin-left: calc(-1 * var(--exp-item-padding-left));
     margin-right: calc(-1 * var(--exp-item-padding-right));
-    /* (only left here because Safari doesn't respect end-padding in scroll-areas) */
+    
+    /* only padding 'left' (and not 'right') here because 
+        Safari doesn't respect end-padding in scroll-areas */
     padding-left: var(--exp-item-padding-left);
     scroll-padding: 0 var(--spacing);
 
-    overflow-y: scroll;
+    overflow-x: scroll;
     scroll-behavior: smooth;
     -ms-scroll-snap-type: x mandatory;
         scroll-snap-type: x mandatory;
@@ -935,19 +938,18 @@ a.nav__link {
     -ms-flex-negative: 0;
         flex-shrink: 0;
 
-    content: '';
+    content: "";
     width: var(--exp-item-padding-right);
 }
 
-/* Img container */
+/* img/iframe container */
 .exp-item__scroll > div {
     -ms-flex-negative: 0;
         flex-shrink: 0;
 
     position: relative;
-    min-width: 345px;
-    max-width: 100%;
-    aspect-ratio: 1.53;
+    width: calc(1.53 * var(--height));
+    max-width: calc(100% - var(--exp-item-padding-left));
 
     background: var(--c-light-grey);
     border-radius: 8px;
@@ -960,13 +962,18 @@ a.nav__link {
     margin-left: var(--spacing);
 }
 
-/* <img> and YouTube <iframe> */
+/* <img> and <iframe> (for YouTube videos) */
 .exp-item__scroll > div > * {
     position: absolute;
     top: 0; left: 0;
     height: 100%; width: 100%;
+}
+.exp-item__scroll > div > img {
     -o-object-fit: cover;
        object-fit: cover;
+}
+.exp-item__scroll > div > iframe {
+    border-radius: inherit;
 }
 
 .exp-item__scroll-nav {
@@ -1444,7 +1451,7 @@ input:checked ~ .exp-item-radios__dot {
     }
 
     .exp-item__scroll {
-        height: 328px;
+        --height: 328px;
     }
     /* If the scroll-nav is missing, add extra top margin. */
     .exp-item__scroll:last-child {
