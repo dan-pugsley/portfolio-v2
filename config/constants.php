@@ -5,7 +5,6 @@ $isConsole = app()->runningInConsole();
 return [
     'meta' => [
         'description' => 'Daniel Pugsley is a full-stack web developer specialising in large, complex projects using Laravel and React.js.',
-        'imgUrl' => '', // TODO: Add image
         'twitterHandle' => '@pugs_ly',
     ],
     'resumeUrl' => $isConsole ? '' : asset('doc/resume.pdf'),
