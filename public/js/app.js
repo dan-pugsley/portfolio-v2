@@ -2209,8 +2209,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./resources/js/utils.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _ImgFadeIn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ImgFadeIn */ "./resources/js/components/ImgFadeIn.jsx");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils */ "./resources/js/utils.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2238,18 +2239,19 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 function TextContent(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "bio__text-content",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("header", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("header", {
       className: "bio__header",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
         children: props.title
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
         className: "subtitle",
         children: props.subtitle
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "bio__desc",
       children: props.children
     })]
@@ -2307,10 +2309,10 @@ var AvatarTags = /*#__PURE__*/function (_React$Component) {
       } // Apply max limit to angular velocity
 
 
-      this.angularVel = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.clamp)(this.angularVel, -data.maxAngularVel, data.maxAngularVel); // Apply angular velocity
+      this.angularVel = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.clamp)(this.angularVel, -data.maxAngularVel, data.maxAngularVel); // Apply angular velocity
 
       this.angle -= this.angularVel * deltaTime;
-      this.picRef.current.style.transform = "rotate(".concat((0,_utils__WEBPACK_IMPORTED_MODULE_1__.rad2deg)(this.angle), "deg)");
+      this.picRef.current.style.transform = "rotate(".concat((0,_utils__WEBPACK_IMPORTED_MODULE_2__.rad2deg)(this.angle), "deg)");
       this.prevScroll = scroll;
     }
   }, {
@@ -2318,7 +2320,7 @@ var AvatarTags = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       this.calculateRadius();
       window.addEventListener('resize', this.calculateRadius);
-      this.stopUpdate = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.startUpdate)(this.update.bind(this));
+      this.stopUpdate = (0,_utils__WEBPACK_IMPORTED_MODULE_2__.startUpdate)(this.update.bind(this));
     }
   }, {
     key: "componentWillUnmount",
@@ -2330,18 +2332,18 @@ var AvatarTags = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var data = constants.bio.avatar.tags;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "bio-avatar__tags",
         ref: this.ref,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("picture", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("picture", {
           ref: this.picRef,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("source", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("source", {
             media: "(min-width: 885px)",
             srcSet: "".concat(data.imgUrls.large.x1, ", ").concat(data.imgUrls.large.x2, " 2x")
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("source", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("source", {
             media: "(min-width: 507px)",
             srcSet: "".concat(data.imgUrls.med.x1, ", ").concat(data.imgUrls.med.x2, " 2x")
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ImgFadeIn__WEBPACK_IMPORTED_MODULE_1__["default"], {
             srcSet: "".concat(data.imgUrls.small.x1, ", ").concat(data.imgUrls.small.x2, " 2x"),
             alt: data.imgAlt
           })]
@@ -2356,37 +2358,37 @@ var AvatarTags = /*#__PURE__*/function (_React$Component) {
 function Avatar() {
   var imgUrl = constants.bio.avatar.imgUrl;
   var imgAlt = constants.bio.name;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "bio-avatar",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "bio-avatar__disc"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "bio-avatar__img-cont",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ImgFadeIn__WEBPACK_IMPORTED_MODULE_1__["default"], {
         srcSet: "".concat(imgUrl.x1, ", ").concat(imgUrl.x2, " 2x"),
         alt: imgAlt
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(AvatarTags, {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(AvatarTags, {})]
   });
 }
 
 function BioSection() {
   var bio = constants.bio;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("section", {
     id: "bio",
     className: "bio tk-lato",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(TextContent, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(TextContent, {
       title: bio.name,
       subtitle: bio.subtitle,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-        children: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eleifend tortor tempus auctor. Donec varius, velit eu hendrerit volutpat, odio augue sollicitudin dolor, sed efficitur odio diam ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+        children: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eleifend tortor tempus auctor. Donec varius, velit eu hendrerit volutpat, odio augue sollicitudin dolor, sed efficitur odio diam ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
           href: "#",
           children: "vitae ante"
         }), ". Ut sit amet cursus neque hendrerit volutpat."]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
         children: "Donec varius, velit eu hendrerit volutpat, odio augue sollicitudin dolor, sed efficitur odio."
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Avatar, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {}), " "]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Avatar, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {}), " "]
   });
 }
 
@@ -2578,11 +2580,22 @@ var ScrollArea = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "handleImgLoad",
+    value: function handleImgLoad(e) {
+      var el = e.target;
+      if ((0,_utils__WEBPACK_IMPORTED_MODULE_2__.isImgLoaded)(el)) el.classList.add('fade-in');
+    }
+  }, {
     key: "renderImage",
     value: function renderImage(data) {
+      var _this2 = this;
+
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         ref: this.addResourceEl,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_LoadingAttrPolyfill__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          onLoad: function onLoad(e) {
+            return _this2.handleImgLoad(e);
+          },
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
             src: data.url,
             alt: data.name,
@@ -2611,10 +2624,10 @@ var ScrollArea = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderResources",
     value: function renderResources() {
-      var _this2 = this;
+      var _this3 = this;
 
       return this.props.resources.map(function (data) {
-        return data.is_yt_embed ? _this2.renderYtEmbed(data) : _this2.renderImage(data);
+        return data.is_yt_embed ? _this3.renderYtEmbed(data) : _this3.renderImage(data);
       });
     }
   }, {
@@ -2685,35 +2698,35 @@ var Controls = /*#__PURE__*/function (_React$Component2) {
   _createClass(Controls, [{
     key: "renderRadios",
     value: function renderRadios() {
-      var _this3 = this;
+      var _this4 = this;
 
       return this.props.items.map(function (item, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ControlsRadio, {
-          name: _this3.props.radiosName,
+          name: _this4.props.radiosName,
           value: item.id,
-          isChecked: index === _this3.props.selectedIndex,
-          onChange: _this3.props.onRadioChange
+          isChecked: index === _this4.props.selectedIndex,
+          onChange: _this4.props.onRadioChange
         }, item.id);
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "exp-item__scroll-nav",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ControlsButton, {
           isPrev: true,
           onClick: function onClick(e) {
-            return _this4.props.onButtonClick(-1);
+            return _this5.props.onButtonClick(-1);
           }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "exp-item-radios",
           children: this.renderRadios()
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ControlsButton, {
           onClick: function onClick(e) {
-            return _this4.props.onButtonClick(1);
+            return _this5.props.onButtonClick(1);
           }
         })]
       });
@@ -2729,19 +2742,19 @@ var Carousel = /*#__PURE__*/function (_React$Component3) {
   var _super3 = _createSuper(Carousel);
 
   function Carousel(props) {
-    var _this5;
+    var _this6;
 
     _classCallCheck(this, Carousel);
 
-    _this5 = _super3.call(this, props);
-    _this5.scrollAreaRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createRef();
-    _this5.state = {
+    _this6 = _super3.call(this, props);
+    _this6.scrollAreaRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createRef();
+    _this6.state = {
       selectedIndex: 0,
       showControls: true,
       controlScroll: false
     };
-    _this5.updateShowControls = _this5.updateShowControls.bind(_assertThisInitialized(_this5));
-    return _this5;
+    _this6.updateShowControls = _this6.updateShowControls.bind(_assertThisInitialized(_this6));
+    return _this6;
   }
 
   _createClass(Carousel, [{
@@ -2783,11 +2796,11 @@ var Carousel = /*#__PURE__*/function (_React$Component3) {
   }, {
     key: "handleButtonClick",
     value: function handleButtonClick(incr) {
-      var _this6 = this;
+      var _this7 = this;
 
       this.setState(function (prevState) {
         return {
-          selectedIndex: (0,_utils__WEBPACK_IMPORTED_MODULE_2__.wrapIndex)(prevState.selectedIndex + incr, _this6.props.resources.length),
+          selectedIndex: (0,_utils__WEBPACK_IMPORTED_MODULE_2__.wrapIndex)(prevState.selectedIndex + incr, _this7.props.resources.length),
           controlScroll: true
         };
       });
@@ -2805,24 +2818,24 @@ var Carousel = /*#__PURE__*/function (_React$Component3) {
   }, {
     key: "renderControls",
     value: function renderControls() {
-      var _this7 = this;
+      var _this8 = this;
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Controls, {
         items: this.props.resources,
         radiosName: this.props.radiosName,
         selectedIndex: this.state.selectedIndex,
         onButtonClick: function onButtonClick(inc) {
-          return _this7.handleButtonClick(inc);
+          return _this8.handleButtonClick(inc);
         },
         onRadioChange: function onRadioChange(e) {
-          return _this7.handleRadioChange(e);
+          return _this8.handleRadioChange(e);
         }
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this8 = this;
+      var _this9 = this;
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "exp-item__carousel",
@@ -2832,17 +2845,17 @@ var Carousel = /*#__PURE__*/function (_React$Component3) {
           selectedIndex: this.state.selectedIndex,
           jumpToSelected: this.state.controlScroll,
           onMouseEnter: function onMouseEnter() {
-            return _this8.setState({
+            return _this9.setState({
               controlScroll: false
             });
           },
           onTouchStart: function onTouchStart() {
-            return _this8.setState({
+            return _this9.setState({
               controlScroll: false
             });
           },
           onScroll: function onScroll(e) {
-            return _this8.handleScroll(e);
+            return _this9.handleScroll(e);
           }
         }), this.state.showControls && this.renderControls()]
       });
@@ -3432,6 +3445,87 @@ function Footer() {
 
 /***/ }),
 
+/***/ "./resources/js/components/ImgFadeIn.jsx":
+/*!***********************************************!*\
+  !*** ./resources/js/components/ImgFadeIn.jsx ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./resources/js/utils.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var ImgFadeIn = /*#__PURE__*/function (_React$Component) {
+  _inherits(ImgFadeIn, _React$Component);
+
+  var _super = _createSuper(ImgFadeIn);
+
+  function ImgFadeIn() {
+    _classCallCheck(this, ImgFadeIn);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(ImgFadeIn, [{
+    key: "handleLoad",
+    value: function handleLoad(e) {
+      var el = e.target;
+      if ((0,_utils__WEBPACK_IMPORTED_MODULE_1__.isImgLoaded)(el)) el.classList.add('fade-in');
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+        style: {
+          opacity: 0
+        },
+        src: this.props.src,
+        srcSet: this.props.srcSet,
+        alt: this.props.alt,
+        onLoad: function onLoad(e) {
+          return _this.handleLoad(e);
+        }
+      });
+    }
+  }]);
+
+  return ImgFadeIn;
+}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+
+/* harmony default export */ __webpack_exports__["default"] = (ImgFadeIn);
+
+/***/ }),
+
 /***/ "./resources/js/components/LoadingAttrPolyfill.jsx":
 /*!*********************************************************!*\
   !*** ./resources/js/components/LoadingAttrPolyfill.jsx ***!
@@ -3491,7 +3585,15 @@ var LoadingAttrPolyfill = /*#__PURE__*/function (_React$Component) {
   _createClass(LoadingAttrPolyfill, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      if (this.ref.current) loading_attribute_polyfill__WEBPACK_IMPORTED_MODULE_2___default().prepareElement(this.ref.current);
+      if (this.ref.current) {
+        var parent = this.ref.current.parentElement;
+        loading_attribute_polyfill__WEBPACK_IMPORTED_MODULE_2___default().prepareElement(this.ref.current);
+
+        if (this.props.onLoad) {
+          var resource = parent.querySelector('img, iframe');
+          if (resource) resource.addEventListener('load', this.props.onLoad);
+        }
+      }
     }
   }, {
     key: "render",
@@ -3797,7 +3899,7 @@ function Menu(props) {
     // https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-links.html
     (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       id: "nav__menu",
-      className: "nav__menu",
+      className: "nav__menu fade-in",
       role: "menu",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(BioLink, {
         role: "menuitem",
@@ -4176,6 +4278,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "clamp01": function() { return /* binding */ clamp01; },
 /* harmony export */   "getHrefElement": function() { return /* binding */ getHrefElement; },
 /* harmony export */   "getScrollOffset": function() { return /* binding */ getScrollOffset; },
+/* harmony export */   "isImgLoaded": function() { return /* binding */ isImgLoaded; },
 /* harmony export */   "lerp": function() { return /* binding */ lerp; },
 /* harmony export */   "rad2deg": function() { return /* binding */ rad2deg; },
 /* harmony export */   "startUpdate": function() { return /* binding */ startUpdate; },
@@ -4205,6 +4308,9 @@ var getScrollOffset = function getScrollOffset(element) {
   var scrollMarginTop = parseInt(window.getComputedStyle(element).scrollMarginTop, 10);
   if (isNaN(scrollMarginTop)) scrollMarginTop = 0;
   return element.getBoundingClientRect().top - scrollMarginTop;
+};
+var isImgLoaded = function isImgLoaded(element) {
+  return element.complete && element.naturalHeight !== 0;
 }; // ——— Math ———
 
 var wrapIndex = function wrapIndex(value, max) {

@@ -131,6 +131,14 @@ hr {
            line-clamp: var(--max-lines);
 }
 
+.fade-in {
+    opacity: 0;
+    animation: fade-in var(--trans-time) ease-out forwards;
+}
+@keyframes fade-in {
+    to { opacity: var(--opacity, 1)}
+}
+
 .btn {
     --height: 42px;
 
@@ -239,7 +247,7 @@ button.circle-btn > div {
 
     transition:
         box-shadow var(--trans-time),
-        top 0.25s ease-in-out;
+        top var(--trans-time) ease-out;
 }
 .nav--hidden {
     top: calc(-1 * var(--nav-height));
@@ -325,12 +333,6 @@ a.nav__link {
     flex-direction: column;
 
     background: white;
-    opacity: 0;
-
-    animation: nav-menu-fade-in var(--trans-time) ease-out forwards;
-}
-@keyframes nav-menu-fade-in {
-    to { opacity: 1; }
 }
 
 /* Button container */
@@ -758,6 +760,7 @@ a.nav__link {
 }
 .exp-item__scroll img {
     object-fit: cover;
+    opacity: 0;
 }
 .exp-item__scroll iframe {
     border-radius: inherit;

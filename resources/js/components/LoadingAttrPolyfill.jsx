@@ -9,8 +9,16 @@ class LoadingAttrPolyfill extends React.Component {
     }
 
     componentDidMount() {
-        if (this.ref.current)
+        if (this.ref.current) {
+            const parent = this.ref.current.parentElement;
             loadingAttributePolyfill.prepareElement(this.ref.current);
+
+            if (this.props.onLoad) {
+                const resource = parent.querySelector('img, iframe');
+                if (resource)
+                    resource.addEventListener('load', this.props.onLoad);
+            }
+        }
     }
 
     render() {

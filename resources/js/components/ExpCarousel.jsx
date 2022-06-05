@@ -1,6 +1,6 @@
 import React from 'react';
 import LoadingAttrPolyfill from './LoadingAttrPolyfill';
-import {wrapIndex} from '../utils';
+import {isImgLoaded, wrapIndex} from '../utils';
 
 class ScrollArea extends React.Component {
     constructor(props) {
@@ -23,10 +23,16 @@ class ScrollArea extends React.Component {
         }
     }
 
+    handleImgLoad(e) {
+        const el = e.target;
+        if (isImgLoaded(el))
+            el.classList.add('fade-in');
+    }
+
     renderImage(data) {
         return (
             <div key={data.id} ref={this.addResourceEl}>
-                <LoadingAttrPolyfill>
+                <LoadingAttrPolyfill onLoad={e => this.handleImgLoad(e)} >
                     <img src={data.url} alt={data.name} loading="lazy" />
                 </LoadingAttrPolyfill>
             </div>

@@ -28,6 +28,10 @@ export const getScrollOffset = function(element) {
     return element.getBoundingClientRect().top - scrollMarginTop;
 };
 
+export const isImgLoaded = function(element) {
+    return element.complete && element.naturalHeight !== 0;
+}
+
 
 // ——— Math ———
 

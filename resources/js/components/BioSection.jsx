@@ -1,4 +1,5 @@
 import React from 'react';
+import ImgFadeIn from './ImgFadeIn';
 import {startUpdate, clamp, rad2deg} from '../utils';
 
 function TextContent(props) {
@@ -90,7 +91,7 @@ class AvatarTags extends React.Component {
                         values need to be matched in app.css */}
                     <source media="(min-width: 885px)" srcSet={`${data.imgUrls.large.x1}, ${data.imgUrls.large.x2} 2x`} />
                     <source media="(min-width: 507px)" srcSet={`${data.imgUrls.med.x1}, ${data.imgUrls.med.x2} 2x`} />
-                    <img srcSet={`${data.imgUrls.small.x1}, ${data.imgUrls.small.x2} 2x`} alt={data.imgAlt} />
+                    <ImgFadeIn srcSet={`${data.imgUrls.small.x1}, ${data.imgUrls.small.x2} 2x`} alt={data.imgAlt} />
                 </picture>
             </div>
         );
@@ -104,7 +105,7 @@ function Avatar() {
         <div className="bio-avatar">
             <div className="bio-avatar__disc"></div>
             <div className="bio-avatar__img-cont">
-                <img srcSet={`${imgUrl.x1}, ${imgUrl.x2} 2x`} alt={imgAlt}></img>
+                <ImgFadeIn srcSet={`${imgUrl.x1}, ${imgUrl.x2} 2x`} alt={imgAlt} />
             </div>
             <AvatarTags />
         </div>

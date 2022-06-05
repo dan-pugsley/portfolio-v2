@@ -115,7 +115,7 @@ function MenuToggle(props) {
 function Menu(props) {
     return (
         // https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-links.html
-        <div id="nav__menu" className="nav__menu" role="menu">
+        <div id="nav__menu" className="nav__menu fade-in" role="menu">
             <BioLink role="menuitem" onClick={props.onLinkClick} />
             <ExpLink role="menuitem" onClick={props.onLinkClick} />
             <div role="none">
