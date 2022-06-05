@@ -978,17 +978,17 @@ a.nav__link {
     margin-left: var(--spacing);
 }
 
-/* <img> and <iframe> (for YouTube videos) */
-.exp-item__scroll > div > * {
+.exp-item__scroll img,
+.exp-item__scroll iframe {
     position: absolute;
     top: 0; left: 0;
     height: 100%; width: 100%;
 }
-.exp-item__scroll > div > img {
+.exp-item__scroll img {
     -o-object-fit: cover;
        object-fit: cover;
 }
-.exp-item__scroll > div > iframe {
+.exp-item__scroll iframe {
     border-radius: inherit;
 }
 

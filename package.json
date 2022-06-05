@@ -266,6 +266,7 @@
     "lines-and-columns": "^1.2.4",
     "loader-runner": "^4.3.0",
     "loader-utils": "^2.0.2",
+    "loading-attribute-polyfill": "^2.1.0",
     "locate-path": "^5.0.0",
     "lodash.debounce": "^4.0.8",
     "lodash.memoize": "^4.1.2",

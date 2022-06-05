@@ -1,4 +1,5 @@
 import React from 'react';
+import LoadingAttrPolyfill from './LoadingAttrPolyfill';
 import {wrapIndex} from '../utils';
 
 class ScrollArea extends React.Component {
@@ -6,7 +7,8 @@ class ScrollArea extends React.Component {
         super(props);
         this.resourceEls = [];
         this.addResourceEl = el => {
-            this.resourceEls.push(el);
+            if (el)
+                this.resourceEls.push(el);
         };
     }
 
@@ -24,10 +26,9 @@ class ScrollArea extends React.Component {
     renderImage(data) {
         return (
             <div key={data.id} ref={this.addResourceEl}>
-                <img
-                    src={data.url}
-                    alt={data.name}
-                />
+                <LoadingAttrPolyfill>
+                    <img src={data.url} alt={data.name} loading="lazy" />
+                </LoadingAttrPolyfill>
             </div>
         );
     }
@@ -35,13 +36,16 @@ class ScrollArea extends React.Component {
     renderYtEmbed(data) {
         return (
             <div key={data.id} ref={this.addResourceEl}>
-                <iframe
-                    src={data.url}
-                    title={data.name}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                ></iframe>
+                <LoadingAttrPolyfill>
+                    <iframe
+                        src={data.url}
+                        title={data.name}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        loading="lazy"
+                    ></iframe>
+                </LoadingAttrPolyfill>
             </div>
         );
     }
