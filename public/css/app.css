@@ -141,6 +141,9 @@ hr {
 
 .fade-in {
     opacity: 0;
+    /* animation breaks parent overflow:hidden, so
+        roughly fix by inheriting any border radius. */
+    border-radius: inherit;
     -webkit-animation: fade-in var(--trans-time) ease-out forwards;
             animation: fade-in var(--trans-time) ease-out forwards;
 }
@@ -286,30 +289,30 @@ button.circle-btn > div {
     height: var(--nav-height);
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-    z-index: 1;
+    z-index: 2;
 
     background: var(--background);
     border-bottom: 1px solid var(--c-light-grey);
 
     -webkit-transition:
-        top var(--trans-time) ease-out,
+        top 0.22s ease-out,
         -webkit-box-shadow var(--trans-time);
 
     transition:
-        top var(--trans-time) ease-out,
+        top 0.22s ease-out,
         -webkit-box-shadow var(--trans-time);
 
     -o-transition:
         box-shadow var(--trans-time),
-        top var(--trans-time) ease-out;
+        top 0.22s ease-out;
 
     transition:
         box-shadow var(--trans-time),
-        top var(--trans-time) ease-out;
+        top 0.22s ease-out;
 
     transition:
         box-shadow var(--trans-time),
-        top var(--trans-time) ease-out,
+        top 0.22s ease-out,
         -webkit-box-shadow var(--trans-time);
 }
 .nav--hidden {
@@ -630,6 +633,7 @@ a.nav__link {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    z-index: 1;
 }
 
 .exp__header {

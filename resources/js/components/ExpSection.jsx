@@ -60,7 +60,7 @@ class Loader extends React.Component {
 
     render() {
         return (
-            <div className="exp-loader" ref={this.ref}>
+            <div className="exp-loader fade-in" ref={this.ref}>
                 <svg viewBox="0 0 41 45">
                     <mask id="exp-loader__mask">
                         <path className="exp-loader__mask-path" transform="translate(0 12)" fill="white" d="M16.5 6.99995C7.3 4.19995 -1.33333 8.16661 -4.5 10.4999V53H43.5C43.4151 36.5 43.4151 32.5 43.4151 6C43.3588 3.33233 42.1803 1.31801 39 0.999977C29 -2.34842e-05 28 10.4999 16.5 6.99995Z"/>

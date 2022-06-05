@@ -2,7 +2,7 @@ import ContactButton from "./ContactButton";
 
 function ContactSection() {
     return (
-        <div className="contact">
+        <div className="contact fade-in">
             <div className="contact__inner tk-lato">
                 <h2>Get in touch</h2>
                 <svg viewBox="0 0 32 32">

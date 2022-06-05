@@ -115,7 +115,7 @@ function Avatar() {
 function BioSection() {
     const bio = constants.bio;
     return (
-        <section id="bio" className="bio tk-lato">
+        <section id="bio" className="bio tk-lato fade-in">
             <TextContent title={bio.name} subtitle={bio.subtitle}>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eleifend tortor tempus auctor. Donec varius, velit eu hendrerit volutpat, odio augue sollicitudin dolor, sed efficitur odio diam <a href="#">vitae ante</a>. Ut sit amet cursus neque hendrerit volutpat.</p>
                 <p>Donec varius, velit eu hendrerit volutpat, odio augue sollicitudin dolor, sed efficitur odio.</p>

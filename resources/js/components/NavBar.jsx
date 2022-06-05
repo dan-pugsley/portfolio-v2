@@ -128,7 +128,7 @@ function Menu(props) {
 }
 
 function NavBar(props) {
-    const classNames = ['nav', 'tk-lato'];
+    const classNames = ['nav', 'tk-lato', 'fade-in'];
 
     if (props.isHidden) classNames.push('nav--hidden');
     if (props.isPageScrolled) classNames.push('nav--page-scrolled');

@@ -2376,7 +2376,7 @@ function BioSection() {
   var bio = constants.bio;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("section", {
     id: "bio",
-    className: "bio tk-lato",
+    className: "bio tk-lato fade-in",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(TextContent, {
       title: bio.name,
       subtitle: bio.subtitle,
@@ -2479,7 +2479,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function ContactSection() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "contact",
+    className: "contact fade-in",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "contact__inner tk-lato",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
@@ -3045,7 +3045,7 @@ var ExpItem = /*#__PURE__*/function (_React$Component2) {
     key: "render",
     value: function render() {
       var showCarousel = this.props.resources.length > 0;
-      var classNames = ['exp-item'];
+      var classNames = ['exp-item fade-in'];
       if (!showCarousel) classNames.push('exp-item--no-carousel');
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: classNames.join(' '),
@@ -3212,7 +3212,7 @@ var Loader = /*#__PURE__*/function (_React$Component2) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "exp-loader",
+        className: "exp-loader fade-in",
         ref: this.ref,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
           viewBox: "0 0 41 45",
@@ -3429,7 +3429,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function Footer() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("footer", {
-    className: "footer",
+    className: "footer fade-in",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("small", {
       className: "tk-lato",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
@@ -3923,7 +3923,7 @@ function Menu(props) {
 }
 
 function NavBar(props) {
-  var classNames = ['nav', 'tk-lato'];
+  var classNames = ['nav', 'tk-lato', 'fade-in'];
   if (props.isHidden) classNames.push('nav--hidden');
   if (props.isPageScrolled) classNames.push('nav--page-scrolled');
   if (props.isMenuOpen) classNames.push('nav--menu-open');
@@ -4210,7 +4210,7 @@ function SocialLink(props) {
 function SocialLinks() {
   var social = constants.social;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-    className: "social",
+    className: "social fade-in",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(SocialLink, {
       url: social.twitterUrl,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("svg", {

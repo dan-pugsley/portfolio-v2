@@ -77,7 +77,7 @@ class ExpItem extends React.Component {
 
     render() {
         const showCarousel = this.props.resources.length > 0;
-        const classNames = ['exp-item'];
+        const classNames = ['exp-item fade-in'];
 
         if (!showCarousel)
             classNames.push('exp-item--no-carousel');
