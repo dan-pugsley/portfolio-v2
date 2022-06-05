@@ -18,22 +18,22 @@ return [
         'subtitle' => 'Full stack web developer',
         'avatar' => [
             'imgUrl' => [
-                'x1' => $isConsole ? '' : asset('img/bio/avatar.jpg'),
-                'x2' => $isConsole ? '' : asset('img/bio/avatar-2x.jpg'),
+                'x1' => $isConsole ? '' : asset('img/avatar.jpg'),
+                'x2' => $isConsole ? '' : asset('img/avatar-2x.jpg'),
             ],
             'tags' => [
                 'imgUrls' => [
                     'small' => [
-                        'x1' => $isConsole ? '' : asset('img/bio/tags/small.png'),
-                        'x2' => $isConsole ? '' : asset('img/bio/tags/small-2x.png'),
+                        'x1' => $isConsole ? '' : asset('img/tags/small.png'),
+                        'x2' => $isConsole ? '' : asset('img/tags/small-2x.png'),
                     ],
                     'med' => [
-                        'x1' => $isConsole ? '' : asset('img/bio/tags/med.png'),
-                        'x2' => $isConsole ? '' : asset('img/bio/tags/med-2x.png'),
+                        'x1' => $isConsole ? '' : asset('img/tags/med.png'),
+                        'x2' => $isConsole ? '' : asset('img/tags/med-2x.png'),
                     ],
                     'large' => [
-                        'x1' => $isConsole ? '' : asset('img/bio/tags/large.png'),
-                        'x2' => $isConsole ? '' : asset('img/bio/tags/large-2x.png'),
+                        'x1' => $isConsole ? '' : asset('img/tags/large.png'),
+                        'x2' => $isConsole ? '' : asset('img/tags/large-2x.png'),
                     ],
                 ],
                 'imgAlt' => 'PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript',
