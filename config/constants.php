@@ -1,13 +1,12 @@
 <?php
 
-$isConsole = app()->runningInConsole();
-
+$assetUrl = env('ASSET_URL');
 return [
     'meta' => [
         'description' => 'Daniel Pugsley is a full-stack web developer specialising in large, complex projects using Laravel and React.js.',
         'twitterHandle' => '@pugs_ly',
     ],
-    'resumeUrl' => $isConsole ? '' : asset('doc/resume.pdf'),
+    'resumeUrl' => "$assetUrl/doc/resume.pdf",
     'emailAddress' => 'daniel.pugsley@gmail.com',
     'navBar' => [
         'hideVel' => 0.07,
@@ -18,22 +17,22 @@ return [
         'subtitle' => 'Full stack web developer',
         'avatar' => [
             'imgUrl' => [
-                'x1' => $isConsole ? '' : asset('img/avatar.jpg'),
-                'x2' => $isConsole ? '' : asset('img/avatar-2x.jpg'),
+                'x1' => "$assetUrl/img/avatar.jpg",
+                'x2' => "$assetUrl/img/avatar-2x.jpg",
             ],
             'tags' => [
                 'imgUrls' => [
                     'small' => [
-                        'x1' => $isConsole ? '' : asset('img/tags/small.png'),
-                        'x2' => $isConsole ? '' : asset('img/tags/small-2x.png'),
+                        'x1' => "$assetUrl/img/tags/small.png",
+                        'x2' => "$assetUrl/img/tags/small-2x.png",
                     ],
                     'med' => [
-                        'x1' => $isConsole ? '' : asset('img/tags/med.png'),
-                        'x2' => $isConsole ? '' : asset('img/tags/med-2x.png'),
+                        'x1' => "$assetUrl/img/tags/med.png",
+                        'x2' => "$assetUrl/img/tags/med-2x.png",
                     ],
                     'large' => [
-                        'x1' => $isConsole ? '' : asset('img/tags/large.png'),
-                        'x2' => $isConsole ? '' : asset('img/tags/large-2x.png'),
+                        'x1' => "$assetUrl/img/tags/large.png",
+                        'x2' => "$assetUrl/img/tags/large-2x.png",
                     ],
                 ],
                 'imgAlt' => 'PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript',
