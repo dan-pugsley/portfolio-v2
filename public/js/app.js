@@ -4054,11 +4054,12 @@ var Page = /*#__PURE__*/function (_React$Component) {
       var scroll = window.scrollY;
       var deltaScroll = scroll - this.prevScroll;
       var scrollVel = deltaScroll / deltaTime;
+      var isAtBottom = scroll + window.innerHeight >= document.body.offsetHeight;
       var partialState = {
         isScrolled: scroll > 0
       };
       this.setState(function (prevState) {
-        if (!prevState.isNavBarHidden) partialState.isNavBarHidden = scrollVel >= data.hideVel;else if (scrollVel <= -data.showVel) partialState.isNavBarHidden = false;
+        if (isAtBottom) partialState.isNavBarHidden = false;else if (!prevState.isNavBarHidden) partialState.isNavBarHidden = scrollVel >= data.hideVel;else if (scrollVel <= -data.showVel) partialState.isNavBarHidden = false;
         return partialState;
       });
       this.prevTime = time;

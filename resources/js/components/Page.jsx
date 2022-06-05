@@ -53,13 +53,16 @@ class Page extends React.Component {
         const scroll = window.scrollY;
         const deltaScroll = scroll - this.prevScroll;
         const scrollVel = deltaScroll / deltaTime;
-
+        const isAtBottom = scroll + window.innerHeight >= document.body.offsetHeight;
+        
         const partialState = {
             isScrolled: scroll > 0
         };
-        
+
         this.setState(prevState => {
-            if (!prevState.isNavBarHidden)
+            if (isAtBottom)
+                partialState.isNavBarHidden = false;
+            else if (!prevState.isNavBarHidden)
                 partialState.isNavBarHidden = scrollVel >= data.hideVel;
             else if (scrollVel <= -data.showVel)
                 partialState.isNavBarHidden = false;
