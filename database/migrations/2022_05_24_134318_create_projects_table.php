@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('live_url', 512)->nullable();
             $table->string('description_html', 1024);
             $table->date('started_at');
+            $table->date('ended_at')->nullable();
             $table->timestamps();
         });
     }

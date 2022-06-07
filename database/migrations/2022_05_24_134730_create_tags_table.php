@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->string('name', 70)->unique();
+            $table->tinyInteger('priority')->unsigned()->nullable();
             $table->timestamps();
         });
     }
