@@ -44,9 +44,21 @@ class ProjectController extends Controller
         foreach ($projects as &$project)
         {
             $project->tags = array_column($project->tags()->get(['name'])->toArray(), 'name');
-            $project->resources = Resource::where('project_id', '=', $project->id)->get(['id', 'name', 'url', 'url_2x', 'is_yt_embed']);
+            $project->resources = Resource::where('project_id', '=', $project->id)->get(['id', 'name', 'url', 'url_2x', 'url_max', 'is_yt_embed']);
+
+            foreach ($project->resources as &$resource)
+            {
+                $resource->url = $this->prepareResourceUrl($resource->url);
+                $resource->url_2x = $this->prepareResourceUrl($resource->url_2x);
+                $resource->url_max = $this->prepareResourceUrl($resource->url_max);
+            }
         }
     
         return $projects;
+    }
+
+    private function prepareResourceUrl($value)
+    {
+        return stream_is_local($value) ? asset($value) : $value;
     }
 }
