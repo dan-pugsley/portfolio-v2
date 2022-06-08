@@ -2377,21 +2377,19 @@ function BioSection() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("section", {
     id: "bio",
     className: "bio tk-lato fade-in",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(TextContent, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(TextContent, {
       title: bio.name,
       subtitle: bio.subtitle,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-        children: "Hi! Thanks for checking out my portfolio \uD83D\uDE42."
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-        children: ["I\u2019m a software engineer currently specialising in large-scale web projects using Laravel and React.js. I am also co-founder and chief engineer at ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+        children: ["Hi! I\u2019m a software engineer currently specialising in large-scale web projects using Laravel and React.js. I\u2019m also co-founder and chief engineer at ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
           href: "https://wordpool.com/",
           target: "_blank",
           children: "Wordpool"
-        }), " and have previous experience in the games industry. I love a challenge, and no problem is too big or complex, so ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+        }), " and have previous experience in the video games industry. I love a challenge, and no problem is too big or complex, so ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
           href: "#contact",
           children: "let\u2019s get started"
         }), "!"]
-      })]
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Avatar, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {}), " "]
   });
 }
