@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Resource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -27,7 +28,10 @@ class ProjectController extends Controller
         $pageIndex = $request['page'] ?? 0;
         $pageSize = config('constants.exp.pageSize');
         
-        $projects = $query->orderByDesc('projects.started_at')
+        $projects = $query
+            ->orderByDesc(DB::raw('ISNULL(projects.ended_at)'))
+            ->orderByDesc('projects.ended_at')
+            ->orderByDesc('projects.started_at')
             ->skip($pageIndex * $pageSize)
             ->take($pageSize)
             ->get([
@@ -59,6 +63,7 @@ class ProjectController extends Controller
 
     private function prepareResourceUrl($value)
     {
+        // If the URL is a local path, convert it to asset URL.
         return stream_is_local($value) ? asset($value) : $value;
     }
 }
