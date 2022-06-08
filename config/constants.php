@@ -3,7 +3,7 @@
 $assetUrl = env('ASSET_URL');
 return [
     'meta' => [
-        'description' => 'Daniel Pugsley is a software engineer currently specialising in large-scale web projects using Laravel and React.js.',
+        'description' => 'Daniel Pugsley is a software engineer currently specialising in large-scale web applications using Laravel and React.',
         'twitterHandle' => '@pugs_ly',
     ],
     'resumeUrl' => "$assetUrl/doc/resume.pdf",

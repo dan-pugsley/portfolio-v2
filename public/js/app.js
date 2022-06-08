@@ -2377,19 +2377,18 @@ function BioSection() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("section", {
     id: "bio",
     className: "bio tk-lato fade-in",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(TextContent, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(TextContent, {
       title: bio.name,
       subtitle: bio.subtitle,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-        children: ["Hi! I\u2019m a software engineer currently specialising in large-scale web projects using Laravel and React.js. I\u2019m also co-founder and chief engineer at ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+        children: ["Hi! I\u2019m a software engineer currently specialising in large-scale web applications built on Laravel and React. I\u2019m co-founder and CTO at ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
           href: "https://wordpool.com/",
           target: "_blank",
           children: "Wordpool"
-        }), " and have previous experience in the video games industry. I love a challenge, and no problem is too big or complex, so ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-          href: "#contact",
-          children: "let\u2019s get started"
-        }), "!"]
-      })
+        }), " and have a history in the video games industry."]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+        children: "I love challenges, and no task is too big or complex!"
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Avatar, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {}), " "]
   });
 }
@@ -2493,8 +2492,8 @@ function ContactSection() {
           fill: "#85C8B6",
           d: "M9.67 14.42a1.58 1.58 0 1 0 0 3.16 1.58 1.58 0 0 0 0-3.16Zm6.33 0a1.58 1.58 0 1 0 0 3.16 1.58 1.58 0 0 0 0-3.16Zm6.33 0a1.58 1.58 0 1 0 0 3.16 1.58 1.58 0 0 0 0-3.16ZM16 .17A15.83 15.83 0 0 0 3.75 26.02L.58 29.2a1.58 1.58 0 0 0-.33 1.72 1.58 1.58 0 0 0 1.5.92H16A15.83 15.83 0 0 0 16 .17Zm0 28.5H5.57l1.47-1.48a1.58 1.58 0 0 0 .47-1.12c0-.42-.17-.82-.47-1.1a12.67 12.67 0 1 1 8.96 3.7Z"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-        children: "If there\u2019s something I can help with, I\u2019d love to hear about it. Send me a message and I\u2019ll get back to you as soon as possible."
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+        children: ["I\u2019d love to hear about your project and how I can be a part of it.", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), "Just send me a message and I\u2019ll get back to you as soon as possible."]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ContactButton__WEBPACK_IMPORTED_MODULE_0__["default"], {})]
     })
   });
