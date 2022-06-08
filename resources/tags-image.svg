@@ -1,4 +1,4 @@
-<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<svg class="large" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     /**
      * Curved text references:
      * https://css-tricks.com/snippets/svg/curved-text-along-path/
@@ -7,12 +7,22 @@
     <defs>
         <style type="text/css">
             @import url('https://use.typekit.net/fyp6lja.css');
-            svg {
-                /* layout parameters */
+            svg.small {
                 --path-diameter: 209;
                 --font-raise: 11;
                 --font-size: 14;
-
+            }
+            svg.med {
+                --path-diameter: 256;
+                --font-raise: 11;
+                --font-size: 14;
+            }
+            svg.large {
+                --path-diameter: 365;
+                --font-raise: 12;
+                --font-size: 16;
+            }
+            svg {
                 /* path diameter fills half the svg element, so svg size must be doubled */
                 --size: calc(2 * (var(--path-diameter) + (2 * var(--font-raise))));
                 --size-px: calc(1px * var(--size));
@@ -37,7 +47,7 @@
     </defs>
     <text width="100">
         <textPath href="#path">
-            PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript • CSS
+            React • Laravel • SQL • JavaScript • CSS • HTML • Node.js • PHP • Swift • C# • C++ • Autoscaling • AWS • Load balancing • S3 • 
         </textPath>
     </text>
 </svg>

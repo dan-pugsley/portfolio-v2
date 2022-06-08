@@ -35,7 +35,7 @@ return [
                         'x2' => "$assetUrl/img/tags/large-2x.png",
                     ],
                 ],
-                'imgAlt' => 'PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript • CSS • PHP • SQL • JavaScript',
+                'imgAlt' => 'React, Laravel, SQL, JavaScript, CSS, HTML, Node.js, PHP, Swift, C#, C++, Autoscaling, AWS, Load balancing, S3',
                 'scrollRatio' => 0.6,
                 'friction' => 0.00023,
                 'maxAngularVel' => 0.0135,
