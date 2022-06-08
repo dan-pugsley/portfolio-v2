@@ -2589,8 +2589,7 @@ var ScrollArea = /*#__PURE__*/function (_React$Component) {
     value: function renderImage(data) {
       var _this2 = this;
 
-      var srcSet = data.url;
-      if (data.url_2x) srcSet += ", ".concat(data.url_2x, " 2x");
+      var srcSet = data.url_2x ? "".concat(data.url_2x, " 2x") : null;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         ref: this.addResourceEl,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_LoadingAttrPolyfill__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -2598,6 +2597,7 @@ var ScrollArea = /*#__PURE__*/function (_React$Component) {
             return _this2.handleImgLoad(e);
           },
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+            src: data.url,
             srcSet: srcSet,
             alt: data.name,
             loading: "lazy"

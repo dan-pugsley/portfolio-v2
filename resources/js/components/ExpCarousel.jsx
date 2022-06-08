@@ -30,13 +30,11 @@ class ScrollArea extends React.Component {
     }
 
     renderImage(data) {
-        let srcSet = data.url;
-        if (data.url_2x)
-            srcSet += `, ${data.url_2x} 2x`;
+        const srcSet = data.url_2x ? `${data.url_2x} 2x` : null;
         return (
             <div key={data.id} ref={this.addResourceEl}>
                 <LoadingAttrPolyfill onLoad={e => this.handleImgLoad(e)} >
-                    <img srcSet={srcSet} alt={data.name} loading="lazy" />
+                    <img src={data.url} srcSet={srcSet} alt={data.name} loading="lazy" />
                 </LoadingAttrPolyfill>
             </div>
         );
