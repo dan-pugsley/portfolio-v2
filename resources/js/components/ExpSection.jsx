@@ -2,6 +2,10 @@ import axios from 'axios';
 import React from 'react';
 import ExpItem from './ExpItem';
 import {startUpdate, clamp01, lerp} from '../utils';
+import dayjs from 'dayjs';
+
+dayjs.extend(require('dayjs/plugin/duration'));
+dayjs.extend(require('dayjs/plugin/relativeTime'));
 
 class Header extends React.Component {
     renderTagOptions() {
@@ -155,14 +159,14 @@ class ExpSection extends React.Component {
 
     renderItems() {
         return this.state.projects.map(data => {
-            const hasRole = !!data.role;
             // Replace 'role' with 'project' if it doesn't exist.
+            const hasRole = !!data.role;
             return (
                 <ExpItem
                     key={data.id}
                     id={data.id}
                     role={hasRole ? data.role : data.name}
-                    duration={data.duration}
+                    duration={dayjs.duration({days: data.days}).humanize()}
                     company={data.company_name}
                     project={hasRole ? data.name : null}
                     tags={data.tags}

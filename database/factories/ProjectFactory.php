@@ -38,13 +38,6 @@ class ProjectFactory extends Factory
                 'Web developer',
                 'Co-founder/CTO',
             ]),
-            'duration' => $this->faker->randomElement([
-                '1 yr 10 mos',
-                '1 week',
-                '1 mo',
-                '7 mos',
-                '1 yr',
-            ]),
             'github_url' => 'https://github.com/dnpgsly/portfolio-v2',
             'live_url' => 'https://pugs.ly/',
             'description_html' => $this->generateDescriptionHtml(),

@@ -39,7 +39,7 @@ class ProjectController extends Controller
                 'projects.name',
                 'companies.name AS company_name',
                 'projects.role',
-                'projects.duration',
+                DB::raw('DATEDIFF(IFNULL(ended_at, NOW()), started_at) AS days'),
                 'projects.github_url',
                 'projects.live_url',
                 'projects.description_html'
