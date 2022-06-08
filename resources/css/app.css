@@ -587,7 +587,6 @@ a.nav__link {
         
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
 }
 
 .exp-item__info {
