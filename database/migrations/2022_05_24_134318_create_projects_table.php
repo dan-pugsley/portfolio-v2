@@ -23,7 +23,6 @@ return new class extends Migration
 
             $table->string('name', 70)->unique();
             $table->string('role', 70)->nullable();
-            $table->string('duration', 70)->nullable();
             $table->string('github_url', 512)->nullable();
             $table->string('live_url', 512)->nullable();
             $table->string('description_html', 2048);
