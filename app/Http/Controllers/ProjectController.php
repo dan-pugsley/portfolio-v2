@@ -48,7 +48,13 @@ class ProjectController extends Controller
     
         foreach ($projects as &$project)
         {
-            $project->tags = array_column($project->tags()->get(['name'])->toArray(), 'name');
+            $tags = $project->tags()
+                ->orderBy(DB::raw('ISNULL(tags.priority)'))
+                ->orderBy('tags.priority')
+                ->orderBy('tags.name')
+                ->get(['name']);
+
+            $project->tags = array_column($tags->toArray(), 'name');
             $project->resources = Resource::where('project_id', '=', $project->id)->get(['id', 'name', 'url', 'url_2x', 'url_max', 'is_yt_embed']);
 
             foreach ($project->resources as &$resource)
