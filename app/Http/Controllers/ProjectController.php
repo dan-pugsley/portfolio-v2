@@ -64,6 +64,6 @@ class ProjectController extends Controller
     private function prepareResourceUrl($value)
     {
         // If the URL is a local path, convert it to asset URL.
-        return stream_is_local($value) ? asset($value) : $value;
+        return $value && stream_is_local($value) ? asset($value) : $value;
     }
 }
