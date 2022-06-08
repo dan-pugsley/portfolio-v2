@@ -3124,7 +3124,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 dayjs__WEBPACK_IMPORTED_MODULE_4___default().extend(__webpack_require__(/*! dayjs/plugin/duration */ "./node_modules/dayjs/plugin/duration.js"));
 dayjs__WEBPACK_IMPORTED_MODULE_4___default().extend(__webpack_require__(/*! dayjs/plugin/relativeTime */ "./node_modules/dayjs/plugin/relativeTime.js"));
 
@@ -3362,26 +3361,32 @@ var ExpSection = /*#__PURE__*/function (_React$Component3) {
   }, {
     key: "renderItems",
     value: function renderItems() {
-      return this.state.projects.map(function (data, index) {
+      var items = this.state.projects.map(function (data) {
         // Replace 'role' with 'project' if it doesn't exist.
         var hasRole = !!data.role;
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-          children: [index > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ExpItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
-            id: data.id,
-            role: hasRole ? data.role : data.name,
-            duration: dayjs__WEBPACK_IMPORTED_MODULE_4___default().duration({
-              days: data.days
-            }).humanize(),
-            company: data.company_name,
-            project: hasRole ? data.name : null,
-            tags: data.tags,
-            githubUrl: data.github_url,
-            liveUrl: data.live_url,
-            descriptionHtml: data.description_html,
-            resources: data.resources
-          }, data.id)]
-        });
-      });
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ExpItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          id: data.id,
+          role: hasRole ? data.role : data.name,
+          duration: dayjs__WEBPACK_IMPORTED_MODULE_4___default().duration({
+            days: data.days
+          }).humanize(),
+          company: data.company_name,
+          project: hasRole ? data.name : null,
+          tags: data.tags,
+          githubUrl: data.github_url,
+          liveUrl: data.live_url,
+          descriptionHtml: data.description_html,
+          resources: data.resources
+        }, data.id);
+      }); // Insert horizontal lines between items.
+
+      var i = items.length;
+
+      while (--i) {
+        items.splice(i, 0, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("hr", {}, i));
+      }
+
+      return items;
     }
   }, {
     key: "renderMoreButton",

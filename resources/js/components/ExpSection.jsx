@@ -158,28 +158,32 @@ class ExpSection extends React.Component {
     }
 
     renderItems() {
-        return this.state.projects.map((data, index) => {
+        const items = this.state.projects.map(data => {
             // Replace 'role' with 'project' if it doesn't exist.
             const hasRole = !!data.role;
             return (
-                <>
-                    {index > 0 && <hr/>}
-                    <ExpItem
-                        key={data.id}
-                        id={data.id}
-                        role={hasRole ? data.role : data.name}
-                        duration={dayjs.duration({days: data.days}).humanize()}
-                        company={data.company_name}
-                        project={hasRole ? data.name : null}
-                        tags={data.tags}
-                        githubUrl={data.github_url}
-                        liveUrl={data.live_url}
-                        descriptionHtml={data.description_html}
-                        resources={data.resources}
-                    />
-                </>
+                <ExpItem
+                    key={data.id}
+                    id={data.id}
+                    role={hasRole ? data.role : data.name}
+                    duration={dayjs.duration({days: data.days}).humanize()}
+                    company={data.company_name}
+                    project={hasRole ? data.name : null}
+                    tags={data.tags}
+                    githubUrl={data.github_url}
+                    liveUrl={data.live_url}
+                    descriptionHtml={data.description_html}
+                    resources={data.resources}
+                />
             );
         });
+
+        // Insert horizontal lines between items.
+        let i = items.length;
+        while (--i)
+            items.splice(i, 0, <hr key={i} />);
+
+        return items;
     }
 
     renderMoreButton() {
