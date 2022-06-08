@@ -29,6 +29,7 @@ class ProjectController extends Controller
         $pageSize = config('constants.exp.pageSize');
         
         $projects = $query
+            ->orderBy(DB::raw('ISNULL(companies.id)'))
             ->orderByDesc(DB::raw('ISNULL(projects.ended_at)'))
             ->orderByDesc('projects.ended_at')
             ->orderByDesc('projects.started_at')
