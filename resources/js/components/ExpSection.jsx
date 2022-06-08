@@ -158,23 +158,26 @@ class ExpSection extends React.Component {
     }
 
     renderItems() {
-        return this.state.projects.map(data => {
+        return this.state.projects.map((data, index) => {
             // Replace 'role' with 'project' if it doesn't exist.
             const hasRole = !!data.role;
             return (
-                <ExpItem
-                    key={data.id}
-                    id={data.id}
-                    role={hasRole ? data.role : data.name}
-                    duration={dayjs.duration({days: data.days}).humanize()}
-                    company={data.company_name}
-                    project={hasRole ? data.name : null}
-                    tags={data.tags}
-                    githubUrl={data.github_url}
-                    liveUrl={data.live_url}
-                    descriptionHtml={data.description_html}
-                    resources={data.resources}
-                />
+                <>
+                    {index > 0 && <hr/>}
+                    <ExpItem
+                        key={data.id}
+                        id={data.id}
+                        role={hasRole ? data.role : data.name}
+                        duration={dayjs.duration({days: data.days}).humanize()}
+                        company={data.company_name}
+                        project={hasRole ? data.name : null}
+                        tags={data.tags}
+                        githubUrl={data.github_url}
+                        liveUrl={data.live_url}
+                        descriptionHtml={data.description_html}
+                        resources={data.resources}
+                    />
+                </>
             );
         });
     }
