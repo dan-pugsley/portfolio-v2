@@ -3,7 +3,7 @@
 $assetUrl = env('ASSET_URL');
 return [
     'meta' => [
-        'description' => 'Daniel Pugsley is a full-stack web developer specialising in large, complex projects using Laravel and React.js.',
+        'description' => 'Daniel Pugsley is a software engineer currently specialising in large-scale web projects using Laravel and React.js.',
         'twitterHandle' => '@pugs_ly',
     ],
     'resumeUrl' => "$assetUrl/doc/resume.pdf",
@@ -14,7 +14,7 @@ return [
     ],
     'bio' => [
         'name' => env('APP_NAME'),
-        'subtitle' => 'Full stack web developer',
+        'subtitle' => 'Full-stack web developer',
         'avatar' => [
             'imgUrl' => [
                 'x1' => "$assetUrl/img/avatar.jpg",
