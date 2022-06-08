@@ -962,8 +962,7 @@ a.nav__link {
     width: var(--exp-item-padding-right);
 }
 
-/* img/iframe container */
-.exp-item__scroll > div {
+.exp-item__resource {
     -ms-flex-negative: 0;
         flex-shrink: 0;
 
@@ -978,22 +977,26 @@ a.nav__link {
     scroll-snap-align: center;
     /* scroll-snap-stop: always; */
 }
-.exp-item__scroll > div:not(:first-child) {
+.exp-item__resource:not(:first-child) {
     margin-left: var(--spacing);
 }
 
-.exp-item__scroll img,
-.exp-item__scroll iframe {
+.exp-item__resource > img,
+.exp-item__resource > iframe {
     position: absolute;
     top: 0; left: 0;
     height: 100%; width: 100%;
 }
-.exp-item__scroll img {
+.exp-item__resource > img {
     -o-object-fit: cover;
        object-fit: cover;
     opacity: 0;
 }
-.exp-item__scroll iframe {
+.exp-item__resource--portrait > img {
+    -o-object-fit: contain;
+       object-fit: contain;
+}
+.exp-item__resource > iframe {
     border-radius: inherit;
 }
 

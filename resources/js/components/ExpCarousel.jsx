@@ -30,9 +30,14 @@ class ScrollArea extends React.Component {
     }
 
     renderImage(data) {
+        const classNames = ['exp-item__resource'];
         const srcSet = data.url_2x ? `${data.url_2x} 2x` : null;
+
+        if (data.is_portrait)
+            classNames.push('exp-item__resource--portrait');
+            
         return (
-            <div key={data.id} ref={this.addResourceEl}>
+            <div className={classNames.join(' ')} key={data.id} ref={this.addResourceEl}>
                 <LoadingAttrPolyfill onLoad={e => this.handleImgLoad(e)} >
                     <img src={data.url} srcSet={srcSet} alt={data.name} loading="lazy" />
                 </LoadingAttrPolyfill>
@@ -42,7 +47,7 @@ class ScrollArea extends React.Component {
 
     renderYtEmbed(data) {
         return (
-            <div key={data.id} ref={this.addResourceEl}>
+            <div className="exp-item__resource" key={data.id} ref={this.addResourceEl}>
                 <LoadingAttrPolyfill>
                     <iframe
                         src={data.url}

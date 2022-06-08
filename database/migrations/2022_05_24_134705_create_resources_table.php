@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('url_2x', 512)->nullable();
             $table->string('url_max', 512)->nullable();
             $table->boolean('is_yt_embed')->default(false);
+            $table->boolean('is_portrait')->default(false);
             $table->timestamps();
         });
     }

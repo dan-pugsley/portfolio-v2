@@ -16,5 +16,6 @@ class Resource extends Model
      */
     protected $casts = [
         'is_yt_embed' => 'boolean',
+        'is_portrait' => 'boolean',
     ];
 }

@@ -2587,8 +2587,11 @@ var ScrollArea = /*#__PURE__*/function (_React$Component) {
     value: function renderImage(data) {
       var _this2 = this;
 
+      var classNames = ['exp-item__resource'];
       var srcSet = data.url_2x ? "".concat(data.url_2x, " 2x") : null;
+      if (data.is_portrait) classNames.push('exp-item__resource--portrait');
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: classNames.join(' '),
         ref: this.addResourceEl,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_LoadingAttrPolyfill__WEBPACK_IMPORTED_MODULE_1__["default"], {
           onLoad: function onLoad(e) {
@@ -2607,6 +2610,7 @@ var ScrollArea = /*#__PURE__*/function (_React$Component) {
     key: "renderYtEmbed",
     value: function renderYtEmbed(data) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "exp-item__resource",
         ref: this.addResourceEl,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_LoadingAttrPolyfill__WEBPACK_IMPORTED_MODULE_1__["default"], {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("iframe", {

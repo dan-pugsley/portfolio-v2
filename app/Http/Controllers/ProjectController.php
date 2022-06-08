@@ -55,7 +55,15 @@ class ProjectController extends Controller
                 ->get(['name']);
 
             $project->tags = array_column($tags->toArray(), 'name');
-            $project->resources = Resource::where('project_id', '=', $project->id)->get(['id', 'name', 'url', 'url_2x', 'url_max', 'is_yt_embed']);
+            $project->resources = Resource::where('project_id', '=', $project->id)->get([
+                'id',
+                'name',
+                'url',
+                'url_2x',
+                'url_max',
+                'is_yt_embed',
+                'is_portrait',
+            ]);
 
             foreach ($project->resources as &$resource)
             {
