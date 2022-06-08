@@ -117,8 +117,8 @@ function BioSection() {
     return (
         <section id="bio" className="bio tk-lato fade-in">
             <TextContent title={bio.name} subtitle={bio.subtitle}>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eleifend tortor tempus auctor. Donec varius, velit eu hendrerit volutpat, odio augue sollicitudin dolor, sed efficitur odio diam <a href="#">vitae ante</a>. Ut sit amet cursus neque hendrerit volutpat.</p>
-                <p>Donec varius, velit eu hendrerit volutpat, odio augue sollicitudin dolor, sed efficitur odio.</p>
+                <p>Hi! Thanks for checking out my portfolio 🙂.</p>
+                <p>I’m a software engineer currently specialising in large-scale web projects using Laravel and React.js. I am also co-founder and chief engineer at <a href="https://wordpool.com/" target="_blank">Wordpool</a> and have experience in the games industry. I love a challenge, and no problem is too big or complex, so <a href="#contact">let’s get started</a>!</p>
             </TextContent>
             <Avatar/>
             <div></div> {/* improves flex layout */}
