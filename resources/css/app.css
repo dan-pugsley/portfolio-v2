@@ -70,7 +70,7 @@ h3 {
     color: var(--c-blue);
 }
 
-p {
+p, ul {
     margin: 0;
     
     font-weight: 400;
@@ -78,11 +78,13 @@ p {
     line-height: 21px;
     color: var(--c-dark);
 }
-p:not(:first-of-type) {
+p:not(:first-child),
+ul:not(:first-child) {
     margin-top: 14px;
 }
 
-p > a {
+p > a,
+li > a {
     font-weight: 700;
     color: var(--c-dark-green);
     transition: font-weight var(--trans-time);
@@ -1237,7 +1239,8 @@ input:checked ~ .exp-item-radios__dot {
    here to prevent sticky hover issues on mobile */
 
 @media (hover: hover) {
-    p > a:hover {
+    p > a:hover,
+    li > a:hover {
         font-weight: 900;
     }
 
