@@ -2387,7 +2387,7 @@ function BioSection() {
           href: "https://wordpool.com/",
           target: "_blank",
           children: "Wordpool"
-        }), " and have experience in the games industry. I love a challenge, and no problem is too big or complex, so ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+        }), " and have previous experience in the games industry. I love a challenge, and no problem is too big or complex, so ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
           href: "#contact",
           children: "let\u2019s get started"
         }), "!"]
