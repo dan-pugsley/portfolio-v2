@@ -14,7 +14,7 @@ return [
     ],
     'bio' => [
         'name' => env('APP_NAME'),
-        'subtitle' => 'Full-stack web developer',
+        'subtitle' => 'Full-stack software engineer',
         'avatar' => [
             'imgUrl' => [
                 'x1' => "$assetUrl/img/avatar.jpg",
