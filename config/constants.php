@@ -1,11 +1,11 @@
 <?php
 
 $assetUrl = env('ASSET_URL');
-$appName = env('APP_NAME');
+$name = env('APP_NAME');
 return [
     'meta' => [
-        'description' => "$appName is a full-stack software engineer currently specialising in large-scale web applications built on Laravel and React.",
-        'twitterHandle' => '@pugs_ly',
+        'description' => "$name is a full-stack software engineer currently specialising in large-scale web applications built on Laravel and React.",
+        'twitterHandle' => '@dan_pugsley',
     ],
     'resumeUrl' => "$assetUrl/doc/resume.pdf",
     'emailAddress' => 'daniel.pugsley@gmail.com',
@@ -14,7 +14,7 @@ return [
         'showVel' => 0.185,
     ],
     'bio' => [
-        'name' => $appName,
+        'name' => $name,
         'subtitle' => 'Full-stack software engineer',
         'avatar' => [
             'imgUrl' => [
