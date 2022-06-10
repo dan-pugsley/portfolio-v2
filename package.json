@@ -516,13 +516,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dnpgsly/portfolio-v2.git"
+    "url": "git+https://github.com/dan-pugsley/portfolio-v2.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dnpgsly/portfolio-v2/issues"
+    "url": "https://github.com/dan-pugsley/portfolio-v2/issues"
   },
-  "homepage": "https://github.com/dnpgsly/portfolio-v2#readme"
+  "homepage": "https://github.com/dan-pugsley/portfolio-v2#readme"
 }

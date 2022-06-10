@@ -1,5 +1,5 @@
 function SocialLink(props) {
-    return <a className="circle-btn" href={props.url}>{props.children}</a>;
+    return <a className="circle-btn" href={props.url} target="_blank">{props.children}</a>;
 }
 
 function SocialLinks() {

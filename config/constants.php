@@ -1,9 +1,10 @@
 <?php
 
 $assetUrl = env('ASSET_URL');
+$appName = env('APP_NAME');
 return [
     'meta' => [
-        'description' => 'Daniel Pugsley is a software engineer currently specialising in large-scale web applications built on Laravel and React.',
+        'description' => "$appName is a full-stack software engineer currently specialising in large-scale web applications built on Laravel and React.",
         'twitterHandle' => '@pugs_ly',
     ],
     'resumeUrl' => "$assetUrl/doc/resume.pdf",
@@ -13,7 +14,7 @@ return [
         'showVel' => 0.185,
     ],
     'bio' => [
-        'name' => env('APP_NAME'),
+        'name' => $appName,
         'subtitle' => 'Full-stack software engineer',
         'avatar' => [
             'imgUrl' => [
@@ -51,10 +52,10 @@ return [
         'pageSize' => 4,
     ],
     'social' => [
-        'twitterUrl' => '#',
-        'gitHubUrl' => '#',
-        'linkedInUrl' => '#',
-        'instagramUrl' => '#',
+        'twitterUrl' => 'https://twitter.com/dan_pugsley',
+        'gitHubUrl' => 'https://github.com/dan-pugsley',
+        'linkedInUrl' => 'https://www.linkedin.com/in/dpugsley/',
+        'instagramUrl' => 'https://www.instagram.com/dan_pugsley/',
     ],
-    'repoUrl' => 'https://github.com/dnpgsly/portfolio-v2',
+    'repoUrl' => 'https://github.com/dan-pugsley/portfolio-v2',
 ];

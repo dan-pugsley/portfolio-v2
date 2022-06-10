@@ -38,7 +38,7 @@ class ProjectFactory extends Factory
                 'Web developer',
                 'Co-founder/CTO',
             ]),
-            'github_url' => 'https://github.com/dnpgsly/portfolio-v2',
+            'github_url' => 'https://github.com/dan-pugsley/portfolio-v2',
             'live_url' => 'https://pugs.ly/',
             'description_html' => $this->generateDescriptionHtml(),
             'started_at' => $this->faker->dateTimeBetween('-7 years'),
