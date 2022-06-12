@@ -117,8 +117,12 @@ function BioSection() {
     return (
         <section id="bio" className="bio tk-lato fade-in">
             <TextContent title={bio.name} subtitle={bio.subtitle}>
-                <p>Hi! I’m a software engineer currently specialising in large-scale web applications built on Laravel and React. I’m co-founder and CTO at <a href="https://wordpool.com/" target="_blank">Wordpool</a> and have a history in the video games industry.</p>
-                <p>I love a challenge, and no task is too big or complex, so <a href="#contact">let’s get started</a>!</p>
+                <p>
+                    I’m Dan, I co-founded and built <a href="https://wordpool.com/" target="_blank">Wordpool</a>, a language learning platform—you can play a game <a href="https://wordpool.com/challenge" target="_blank">here</a>.
+                    Previously a lead programmer in the games industry, I’ve worked on titles such as <a href="https://store.steampowered.com/app/246620/Plague_Inc_Evolved/" target="_blank">Plague Inc: Evolved</a> (~37,000 positive reviews) and <a href="https://store.steampowered.com/app/765810/Mars_Horizon/" target="_blank">Mars Horizon</a>.
+                </p>
+                <p>I have a deep knowledge of core web languages: JavaScript, CSS, HTML, PHP (all top 5% on <a href="https://www.linkedin.com/in/dpugsley#skills" target="_blank">LinkedIn</a> Skill Assessment), MySQL (top 15%), C# (top 30%).</p>
+                <p>I’m currently open to new clients.</p>
             </TextContent>
             <Avatar/>
             <div></div> {/* improves flex layout */}
