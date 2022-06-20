@@ -3414,7 +3414,7 @@ var ExpSection = /*#__PURE__*/function (_React$Component3) {
       var i = items.length;
 
       while (--i) {
-        items.splice(i, 0, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("hr", {}, i));
+        items.splice(i, 0, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("hr", {}, "sep-".concat(i)));
       }
 
       return items;

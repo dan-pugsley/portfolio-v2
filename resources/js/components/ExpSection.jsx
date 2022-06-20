@@ -181,7 +181,7 @@ class ExpSection extends React.Component {
         // Insert horizontal lines between items.
         let i = items.length;
         while (--i)
-            items.splice(i, 0, <hr key={i} />);
+            items.splice(i, 0, <hr key={`sep-${i}`} />);
 
         return items;
     }

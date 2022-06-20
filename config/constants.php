@@ -50,7 +50,7 @@ return [
             'endTime' => 280,
             'logAmount' => 10,
         ],
-        'pageSize' => 4,
+        'pageSize' => 6,
     ],
     'social' => [
         'twitterUrl' => "https://twitter.com/$twitterUsername",

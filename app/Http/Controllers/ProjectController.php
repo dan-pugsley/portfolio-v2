@@ -29,8 +29,8 @@ class ProjectController extends Controller
         $pageSize = config('constants.exp.pageSize');
         
         $projects = $query
-            ->orderBy(DB::raw('ISNULL(companies.id)'))
-            ->orderByDesc(DB::raw('ISNULL(projects.ended_at)'))
+            //->orderBy(DB::raw('ISNULL(companies.id)')) // professional projects first
+            ->orderByDesc(DB::raw('ISNULL(projects.ended_at)')) // active projects first
             ->orderByDesc('projects.ended_at')
             ->orderByDesc('projects.started_at')
             ->skip($pageIndex * $pageSize)
@@ -55,15 +55,18 @@ class ProjectController extends Controller
                 ->get(['name']);
 
             $project->tags = array_column($tags->toArray(), 'name');
-            $project->resources = Resource::where('project_id', '=', $project->id)->get([
-                'id',
-                'name',
-                'url',
-                'url_2x',
-                'url_max',
-                'is_yt_embed',
-                'is_portrait',
-            ]);
+            $project->resources = Resource::where('project_id', '=', $project->id)
+                ->orderBy(DB::raw('ISNULL(priority)'))
+                ->orderBy('priority')
+                ->get([
+                    'id',
+                    'name',
+                    'url',
+                    'url_2x',
+                    'url_max',
+                    'is_yt_embed',
+                    'is_portrait',
+                ]);
 
             foreach ($project->resources as &$resource)
             {
