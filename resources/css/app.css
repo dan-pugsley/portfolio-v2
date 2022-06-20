@@ -1240,10 +1240,12 @@ input:checked ~ .exp-item-radios__dot {
    here to prevent sticky hover issues on mobile */
 
 @media (hover: hover) {
+    /* UPDATE: This can cause text to jump to new lines as it changes the width
     p > a:hover,
     li > a:hover {
         font-weight: 900;
     }
+    */
 
     .btn--pri:hover {
         background: var(--c-green);

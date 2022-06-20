@@ -117,12 +117,7 @@ function BioSection() {
     return (
         <section id="bio" className="bio tk-lato fade-in">
             <TextContent title={bio.name} subtitle={bio.subtitle}>
-                <p>
-                    I’m Dan, I co-founded and built <a href="https://wordpool.com/" target="_blank">Wordpool</a>, a language learning platform—you can play a game <a href="https://wordpool.com/challenge" target="_blank">here</a>.
-                    Previously a lead programmer in the games industry, I’ve worked on titles such as <a href="https://store.steampowered.com/app/246620/Plague_Inc_Evolved/" target="_blank">Plague Inc: Evolved</a> (~37,000 positive reviews) and <a href="https://store.steampowered.com/app/765810/Mars_Horizon/" target="_blank">Mars Horizon</a>.
-                </p>
-                <p>I have a deep knowledge of core web languages: JavaScript, CSS, HTML, PHP (all top 5% on <a href="https://www.linkedin.com/in/dpugsley#skills" target="_blank">LinkedIn</a> Skill Assessment), MySQL (top 15%), C# (top 30%).</p>
-                <p>I’m currently open to new clients.</p>
+                <p>In 2014, I didn’t know how to code. I never studied it. I woke up one morning and decided to build a video game, and so I started. The first thing I learned was how to make ‘lightening’ flash at random in a <a href="https://unity.com/" target="_blank">Unity</a> scene. One year later, after teaching myself everything I needed to know, a <a href="https://deftgames.itch.io/zead" target="_blank">demo was complete</a>. After another year and a half, I was lead programmer at a <a href="https://www.aurochdigital.com/" target="_blank">game studio</a> in my hometown. Then I built a <a href="https://blog.pugs.ly/" target="_blank">blog</a>, then an iOS app, then a <a href="https://wordpool.com/" target="_blank">language learning platform</a>, and nobody ever told me that this is what I should do. Maybe it’s a compulsion, but I can’t help but build things. It started with <a href="https://www.brio.net/products/all-products/railway/classic-railway/classic-deluxe-set" target="_blank">Brio</a>, then Lego and Knex, and now it’s HTML, CSS, JavaScript, PHP, SQL… I’m a creative builder of <em>things</em>, and code is the most versatile building block.</p>
             </TextContent>
             <Avatar/>
             <div></div> {/* improves flex layout */}

@@ -1,21 +1,22 @@
 <?php
 
-$assetUrl = env('ASSET_URL');
 $name = env('APP_NAME');
+$assetUrl = env('ASSET_URL');
+$twitterUsername = 'dan_pugsley';
 return [
     'meta' => [
-        'description' => "$name is a full stack web developer who co-founded and built Wordpool.",
-        'twitterHandle' => '@dan_pugsley',
+        'description' => "$name is a React/Laravel developer who builds professional, stable and trustworthy websites.",
+        'twitterHandle' => "@$twitterUsername",
     ],
     'resumeUrl' => "$assetUrl/doc/resume.pdf",
-    'emailAddress' => 'daniel.pugsley@gmail.com',
+    'emailAddress' => 'dan@pugs.ly',
     'navBar' => [
         'hideVel' => 0.07,
         'showVel' => 0.185,
     ],
     'bio' => [
         'name' => $name,
-        'subtitle' => 'Full Stack Web Developer',
+        'subtitle' => 'React/Laravel Developer',
         'avatar' => [
             'imgUrl' => [
                 'x1' => "$assetUrl/img/avatar.jpg",
@@ -52,7 +53,7 @@ return [
         'pageSize' => 4,
     ],
     'social' => [
-        'twitterUrl' => 'https://twitter.com/dan_pugsley',
+        'twitterUrl' => "https://twitter.com/$twitterUsername",
         'gitHubUrl' => 'https://github.com/dan-pugsley',
         'linkedInUrl' => 'https://www.linkedin.com/in/dpugsley/',
         'instagramUrl' => 'https://www.instagram.com/dan_pugsley/',
