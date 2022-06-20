@@ -30,8 +30,8 @@ function Links(props) {
             <BioLink onClick={props.onLinkClick} />
             <ExpLink onClick={props.onLinkClick} />
             <div>
-                <ResumeButton />
-                <ContactButton />
+                <ResumeButton clickEventLocation="nav_bar" />
+                <ContactButton clickEventLocation="nav_bar" />
             </div>
         </div>
     );
@@ -119,8 +119,8 @@ function Menu(props) {
             <BioLink role="menuitem" onClick={props.onLinkClick} />
             <ExpLink role="menuitem" onClick={props.onLinkClick} />
             <div role="none">
-                <ResumeButton role="menuitem" />
-                <ContactButton role="menuitem" />
+                <ResumeButton role="menuitem" clickEventLocation="nav_bar_menu" />
+                <ContactButton role="menuitem" clickEventLocation="nav_bar_menu" />
             </div>
             <div className="nav__blocker" onClick={props.onBlockerClick}></div>
         </div>

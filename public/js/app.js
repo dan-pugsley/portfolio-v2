@@ -2432,11 +2432,19 @@ __webpack_require__.r(__webpack_exports__);
 function ButtonLink(props) {
   var classNames = ['btn'];
   classNames.push(props.isSecondary ? 'btn--sec' : 'btn--pri');
+
+  var onClick = function onClick() {
+    if (props.clickEventName) gtag('event', props.clickEventName, {
+      location: props.clickEventLocation
+    });
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("a", {
     className: classNames.join(' '),
     role: props.role,
     href: props.url,
     target: props.target,
+    onClick: onClick,
     children: [props.children, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
       children: props.text
     })]
@@ -2465,6 +2473,8 @@ function ContactButton(props) {
     role: props.role,
     url: "mailto:".concat(constants.emailAddress),
     text: "Say hi",
+    clickEventName: "contact",
+    clickEventLocation: props.clickEventLocation,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
       viewBox: "0 0 21 20",
       width: "21",
@@ -2514,7 +2524,9 @@ function ContactSection() {
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
         children: "I would love to hear about your project and how I can be a part of it. Let\u2019s set up a chat so I can learn about your requirements."
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ContactButton__WEBPACK_IMPORTED_MODULE_0__["default"], {})]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ContactButton__WEBPACK_IMPORTED_MODULE_0__["default"], {
+        clickEventLocation: "contact_section"
+      })]
     })
   });
 }
@@ -3745,7 +3757,11 @@ function Links(props) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ExpLink, {
       onClick: props.onLinkClick
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ResumeButton__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ContactButton__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ResumeButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        clickEventLocation: "nav_bar"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ContactButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        clickEventLocation: "nav_bar"
+      })]
     })]
   });
 }
@@ -3947,9 +3963,11 @@ function Menu(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         role: "none",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ResumeButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          role: "menuitem"
+          role: "menuitem",
+          clickEventLocation: "nav_bar_menu"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ContactButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          role: "menuitem"
+          role: "menuitem",
+          clickEventLocation: "nav_bar_menu"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "nav__blocker",
@@ -4204,6 +4222,8 @@ function ResumeButton(props) {
     url: constants.resumeUrl,
     target: "_blank",
     text: "Resume",
+    clickEventName: "view_resume",
+    clickEventLocation: props.clickEventLocation,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("svg", {
       viewBox: "0 0 20 20",
       width: "20",
