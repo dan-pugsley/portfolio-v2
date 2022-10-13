@@ -16,18 +16,19 @@ class ProjectController extends Controller
             'page' => 'integer|min:0|nullable',
         ]);
 
-        $query = Project::leftJoin('companies', 'companies.id', '=', 'projects.company_id');
-    
+        $query = Project::where('is_hidden', false)
+            ->leftJoin('companies', 'companies.id', '=', 'projects.company_id');
+
         if (isset($request['tag_id']))
         {
             $query->join('project_tag', 'project_tag.project_id', '=', 'projects.id')
                 ->join('tags', 'tags.id', '=', 'project_tag.tag_id')
                 ->where('tags.id', '=', $request['tag_id']);
         }
-    
+
         $pageIndex = $request['page'] ?? 0;
         $pageSize = config('constants.exp.pageSize');
-        
+
         $projects = $query
             //->orderBy(DB::raw('ISNULL(companies.id)')) // professional projects first
             ->orderByDesc(DB::raw('ISNULL(projects.ended_at)')) // active projects first
@@ -45,7 +46,7 @@ class ProjectController extends Controller
                 'projects.live_url',
                 'projects.description_html'
             ]);
-    
+
         foreach ($projects as &$project)
         {
             $tags = $project->tags()
@@ -75,7 +76,7 @@ class ProjectController extends Controller
                 $resource->url_max = $this->prepareResourceUrl($resource->url_max);
             }
         }
-    
+
         return $projects;
     }
 
