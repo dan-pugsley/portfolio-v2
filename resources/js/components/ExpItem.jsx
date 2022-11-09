@@ -105,15 +105,6 @@ function Description(props) {
 }
 
 class ExpItem extends React.Component {
-    renderCarousel() {
-        return (
-            <Carousel
-                radiosName={this.props.id}
-                resources={this.props.resources}
-            />
-        );
-    }
-
     render() {
         const showCarousel = this.props.resources.length > 0;
         const classNames = ['exp-item fade-in'];
@@ -139,7 +130,10 @@ class ExpItem extends React.Component {
                         {this.props.descriptionHtml}
                     </Description>
                 </div>
-                {showCarousel && this.renderCarousel()}
+                {showCarousel && <Carousel
+                    radiosName={this.props.id}
+                    resources={this.props.resources}
+                />}
             </div>
         );
     }

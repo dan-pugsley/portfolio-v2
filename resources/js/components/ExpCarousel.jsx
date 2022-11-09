@@ -31,16 +31,36 @@ class ScrollArea extends React.Component {
 
     renderImage(data) {
         const classNames = ['exp-item__resource'];
+        const emptyIconId = `exp-carousel-img-${data.id}-empty-icon`;
         const srcSet = data.url_2x ? `${data.url_2x} 2x` : null;
+        const hasUrl = !!data.url;
 
         if (data.is_portrait)
             classNames.push('exp-item__resource--portrait');
-            
+
         return (
-            <div className={classNames.join(' ')} key={data.id} ref={this.addResourceEl}>
-                <LoadingAttrPolyfill onLoad={e => this.handleImgLoad(e)} >
+            <div
+                ref={this.addResourceEl}
+                className={classNames.join(' ')}
+                key={data.id}
+            >
+                {hasUrl ? <LoadingAttrPolyfill onLoad={e => this.handleImgLoad(e)} >
                     <img src={data.url} srcSet={srcSet} alt={data.name} loading="lazy" />
-                </LoadingAttrPolyfill>
+                </LoadingAttrPolyfill> : <div className="exp-item__no-img">
+                    <svg viewBox="0 0 64 64" width="64" fill="none">
+                        <g clipPath={`url(#${emptyIconId})`}>
+                            <path d="M59.04 16.49h-9.53L33.71.94a3.3 3.3 0 0 0-4.63 0L13.28 16.5h-9.4c-1.16 0-2.29.45-3.12 1.27a4.32 4.32 0 0 0-1.3 3.08v38.8a4.3 4.3 0 0 0 1.3 3.08A4.46 4.46 0 0 0 3.89 64h55.17c1.17 0 2.3-.46 3.12-1.28a4.32 4.32 0 0 0 1.3-3.07V20.84a4.3 4.3 0 0 0-1.3-3.08 4.43 4.43 0 0 0-3.14-1.27ZM30.75 2.04c.32-.3.21-.46.65-.46.44 0 .33.17.65.46L46.7 16.47H16.1L30.75 2.04Z" fill="#E4E4E4"/>
+                            <path d="M59.45 24.18v32.28a3.41 3.41 0 0 1-.38 1.57c-.2.42-.5.79-.84 1.09l-.16.14a3.9 3.9 0 0 1-2.43.82H8.1a4 4 0 0 1-2.43-.82l-.16-.14a3.55 3.55 0 0 1-1.23-2.66V24.18c.02-.98.43-1.9 1.15-2.59a3.8 3.8 0 0 1 2.67-1.03h47.54c1-.02 1.96.35 2.67 1.03a3.66 3.66 0 0 1 1.14 2.59Z" fill="#F5F5F5"/>
+                            <path d="M31.87 4.74a2.4 2.4 0 0 0 2.4-2.37A2.4 2.4 0 0 0 31.88 0a2.4 2.4 0 0 0-2.41 2.37 2.4 2.4 0 0 0 2.4 2.37Zm27.58 35.41v16.28a3.46 3.46 0 0 1-.38 1.59c-.2.41-.5.79-.84 1.1l-.16.13a3.9 3.9 0 0 1-2.43.83H8.1c-.88 0-1.74-.29-2.43-.83l-.16-.14a3.58 3.58 0 0 1-1.23-2.68v-1.5c.1-.15.23-.3.38-.4 5.16-3.78 13.24-9.39 15.79-9.39 3.84 0 17.1 3.83 19 2.92 1.38-.65 10.98-5.65 18.61-8.47a1.14 1.14 0 0 1 1.4.56ZM23.3 39a5.05 5.05 0 0 0 5.09-5 5.05 5.05 0 0 0-5.1-5.01 5.05 5.05 0 0 0-5.08 5A5.05 5.05 0 0 0 23.3 39Z" fill="#E4E4E4"/>
+                        </g>
+                        <defs>
+                            <clipPath id={emptyIconId}>
+                                <path fill="#fff" d="M0 0h64v64H0z"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <span>Awaiting preview</span>
+                </div>}
             </div>
         );
     }
@@ -170,7 +190,7 @@ class Carousel extends React.Component {
         const t = e.target;
         const normScrollPos = (t.scrollLeft + 0.5 * t.offsetWidth) / t.scrollWidth;
         const scrollIndex = Math.floor(normScrollPos * this.props.resources.length);
-        
+
         if (!this.state.controlScroll) {
             this.setState({
                 selectedIndex: scrollIndex
@@ -204,7 +224,7 @@ class Carousel extends React.Component {
                 selectedIndex={this.state.selectedIndex}
                 onButtonClick={inc => this.handleButtonClick(inc)}
                 onRadioChange={e => this.handleRadioChange(e)}
-            />  
+            />
         );
     }
 
