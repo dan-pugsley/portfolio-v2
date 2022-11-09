@@ -72,7 +72,7 @@ h3 {
 
 p, ul {
     margin: 0;
-    
+
     font-weight: 400;
     font-size: 16px;
     line-height: 21px;
@@ -347,7 +347,7 @@ a.nav__link {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    
+
     /* offset button margin */
     margin: calc(-1 * var(--btn-margin));
     margin-top: calc(26px - var(--btn-margin));
@@ -470,7 +470,7 @@ a.nav__link {
 .bio-avatar__tags > picture {
     position: absolute;
 
-    /* Make sure dimensions match contained 
+    /* Make sure dimensions match contained
     image dimensions, ignoring any whitespace. */
     line-height: 0;
 }
@@ -519,7 +519,7 @@ a.nav__link {
     background-repeat: no-repeat, repeat;
     background-position: right 15px top 50%, 0 0;
     background-size: 14px auto, 100%;
-    
+
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -584,7 +584,7 @@ a.nav__link {
         var(--exp-item-padding-right)
         var(--exp-item-padding-bottom)
         var(--exp-item-padding-left);
-        
+
     display: flex;
     flex-direction: column;
 }
@@ -609,7 +609,7 @@ a.nav__link {
 /* Separator */
 .exp-item__role > svg {
     flex-shrink: 0;
-    
+
     margin-left: 18px;
     margin-right: 13px;
 
@@ -700,11 +700,62 @@ a.nav__link {
 
 .exp-item__desc {
     margin-top: 24px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.exp-item__desc__paragraphs {
+    --max-lines: 5;
+}
+.exp-item__desc--expanded > .exp-item__desc__paragraphs {
+    --max-lines: 999;
+}
+
+.exp-item__desc > hr {
+    margin-top: 17px;
+}
+
+.exp-item__desc__toggle {
+    margin-top: 2px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 0;
+
+    cursor: pointer;
+}
+
+.exp-item__desc__toggle-text {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--c-dark-green);
+}
+
+.exp-item__desc__toggle-text > span {
+    user-select: none;
+}
+input:checked ~ .exp-item__desc__toggle-text > span:first-child,
+input:not(:checked) ~ .exp-item__desc__toggle-text > span:last-child {
+    display: none;
+}
+
+.exp-item__desc__toggle-chevron {
+    transform: rotate(0deg);
+    stroke: var(--c-green);
+
+    transition: transform var(--trans-time);
+}
+input:checked ~ .exp-item__desc__toggle-chevron {
+    transform: rotate(180deg);
 }
 
 .exp-item__carousel {
     flex: 1;
-    
+
     min-width: 0;
     margin-top: 24px;
     max-width: 100%;
@@ -720,8 +771,8 @@ a.nav__link {
     /* push scroll area to screen edges without changing internal layout */
     margin-left: calc(-1 * var(--exp-item-padding-left));
     margin-right: calc(-1 * var(--exp-item-padding-right));
-    
-    /* only padding 'left' (and not 'right') here because 
+
+    /* only padding 'left' (and not 'right') here because
         Safari doesn't respect end-padding in scroll-areas */
     padding-left: var(--exp-item-padding-left);
     scroll-padding: 0 var(--spacing);
@@ -765,6 +816,7 @@ a.nav__link {
 .exp-item__resource > img {
     object-fit: cover;
     opacity: 0;
+    user-select: none;
 }
 .exp-item__resource--portrait > img {
     object-fit: contain;
@@ -851,7 +903,7 @@ input:checked ~ .exp-item-radios__dot {
 
 /* ——— Contact ——— */
 
-/* this is really a wrapper for hiding any 
+/* this is really a wrapper for hiding any
    x overflow from the SVG element */
 .contact {
     display: flex;
@@ -905,7 +957,7 @@ input:checked ~ .exp-item-radios__dot {
     align-self: center;
 
     display: none;
-    
+
     margin-top: 32px;
 }
 
@@ -960,7 +1012,7 @@ input:checked ~ .exp-item-radios__dot {
 
 /* ——— Desktop adjustments ——— */
 
-/* WARNING: Any changes to this 885px value, 
+/* WARNING: Any changes to this 885px value,
     need to be matched in BioSection.jsx */
 @media only screen and (min-width: 885px) {
     .container {
@@ -979,7 +1031,7 @@ input:checked ~ .exp-item-radios__dot {
 
     .subtitle {
         margin-top: 17px;
-    
+
         font-size: 24px;
         line-height: 29px;
     }
@@ -1005,7 +1057,7 @@ input:checked ~ .exp-item-radios__dot {
 
         flex-direction: row;
         justify-content: space-between;
-    
+
         padding: 0 var(--page-padding-x-large);
         max-width: 1652px;
         overflow: hidden;
@@ -1028,7 +1080,7 @@ input:checked ~ .exp-item-radios__dot {
 
         --disc-offset-top: 32.5px;
         --disc-offset-right: 142px;
-    
+
         margin:
             max(var(--font-width), var(--disc-offset-top))
             max(var(--font-width), var(--disc-offset-right))
@@ -1236,7 +1288,7 @@ input:checked ~ .exp-item-radios__dot {
 
 
 /* ——— Hover states ——— */
-/* These are enclosed in a @media statement 
+/* These are enclosed in a @media statement
    here to prevent sticky hover issues on mobile */
 
 @media (hover: hover) {

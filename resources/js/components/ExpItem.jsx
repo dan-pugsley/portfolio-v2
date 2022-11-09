@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Carousel from './ExpCarousel';
 
 function Header(props) {
@@ -62,7 +62,46 @@ class Bar extends React.Component {
 }
 
 function Description(props) {
-    return <div className="exp-item__desc" dangerouslySetInnerHTML={{__html: props.children}}></div>
+    const paragraphs = useRef();
+    const [isExpandable, setExpandable] = useState(false);
+    const [isExpanded, setExpanded] = useState(false);
+    useEffect(() => {
+        setExpandable(paragraphs.current.scrollHeight > paragraphs.current.clientHeight);
+    }, []);
+    useEffect(() => {
+        if (isExpanded) {
+            gtag('event', 'expand', {location: 'project_description'});
+        }
+    }, [isExpanded])
+    const classNames = ['exp-item__desc'];
+    if (isExpanded) classNames.push('exp-item__desc--expanded');
+    return (
+        <div className={classNames.join(' ')}>
+            <div
+                ref={paragraphs}
+                className="exp-item__desc__paragraphs ellipsis-multiline"
+                dangerouslySetInnerHTML={{__html: props.children}}
+            ></div>
+            {isExpandable && <>
+                <hr />
+                <label className="exp-item__desc__toggle">
+                    <input
+                        type="checkbox"
+                        className="invisible"
+                        checked={isExpanded}
+                        onChange={e => setExpanded(e.target.checked)}
+                    />
+                    <div className="exp-item__desc__toggle-text tk-source-code-pro">
+                        <span>Learn more</span>
+                        <span>Less</span>
+                    </div>
+                    <svg className="exp-item__desc__toggle-chevron" fill="none" viewBox="0 0 14 8" width="14">
+                        <path d="m1.75 1.5 5.63 5 5.62-5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                </label>
+            </>}
+        </div>
+    );
 }
 
 class ExpItem extends React.Component {
