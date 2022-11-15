@@ -3,6 +3,7 @@
 $name = env('APP_NAME');
 $assetUrl = env('ASSET_URL');
 $twitterUsername = 'dan_pugsley';
+$emailAddress = 'dan@pugs.ly';
 return [
     'meta' => [
         'description' => "$name is a React/Laravel developer who builds professional, stable and trustworthy websites.",
@@ -10,13 +11,14 @@ return [
     ],
     'resumeUrl' => "$assetUrl/doc/resume.pdf",
     'emailAddress' => 'dan@pugs.ly',
+    'mailto' => "mailto:$emailAddress",
     'navBar' => [
         'hideVel' => 0.07,
         'showVel' => 0.185,
     ],
     'bio' => [
         'name' => $name,
-        'subtitle' => 'React/Laravel Developer',
+        'subtitle' => 'React developer',
         'avatar' => [
             'imgUrl' => [
                 'x1' => "$assetUrl/img/avatar.jpg",

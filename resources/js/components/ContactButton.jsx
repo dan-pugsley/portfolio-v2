@@ -4,7 +4,7 @@ function ContactButton(props) {
     return (
         <ButtonLink
             role={props.role}
-            url={`mailto:${constants.emailAddress}`}
+            url={constants.mailto}
             text="Say hi"
             clickEventName="contact"
             clickEventLocation={props.clickEventLocation}

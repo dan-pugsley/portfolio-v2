@@ -2381,33 +2381,23 @@ function BioSection() {
       title: bio.name,
       subtitle: bio.subtitle,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-        children: ["In 2014, I didn\u2019t know how to code. I never studied it. I woke up one morning and decided to build a video game, and so I started. The first thing I learned was how to make \u2018lightning\u2019 flash at random in a ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-          href: "https://unity.com/",
-          target: "_blank",
-          children: "Unity"
-        }), " scene. One year later, after teaching myself everything I needed to know, a ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-          href: "https://deftgames.itch.io/zead",
-          target: "_blank",
-          children: "demo was complete"
-        }), ". After another year and a half, I was lead programmer at a ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+        children: ["I specialise in building complex, highly interactive UI for various applications, from games to fine-art portfolios. Previously in the ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
           href: "https://www.aurochdigital.com/",
           target: "_blank",
-          children: "game studio"
-        }), " in my hometown. Then I built a ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-          href: "https://blog.pugs.ly/",
+          children: "games industry"
+        }), ", I\u2019ve worked on titles like ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+          href: "https://store.steampowered.com/app/246620/Plague_Inc_Evolved/",
           target: "_blank",
-          children: "blog"
-        }), ", then an iOS app, then a ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-          href: "https://wordpool.com/",
+          children: "Plague Inc: Evolved"
+        }), " (40,000+ reviews on Steam). Recently, I\u2019ve been working on NFT and cryptocurrency games. I\u2019m based in Europe but flexible with working hours. For more info, ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+          href: constants.mailto,
           target: "_blank",
-          children: "language learning platform"
-        }), ", and nobody ever told me that this is what I should do. Maybe it\u2019s a compulsion, but I can\u2019t help but build things. It started with ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-          href: "https://www.brio.net/products/all-products/railway/classic-railway/classic-deluxe-set",
+          children: "send me a message"
+        }), " or ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+          href: "https://calendly.com/dan-pugsley/intro",
           target: "_blank",
-          children: "Brio"
-        }), ", then Lego and Knex, and now it\u2019s HTML, CSS, JavaScript, PHP, SQL\u2026 I\u2019m a creative builder of ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("em", {
-          children: "things"
-        }), ", and code is the most versatile building block."]
+          children: "book a meeting directly"
+        }), "."]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Avatar, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {}), " "]
   });
@@ -2471,7 +2461,7 @@ __webpack_require__.r(__webpack_exports__);
 function ContactButton(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ButtonLink__WEBPACK_IMPORTED_MODULE_0__["default"], {
     role: props.role,
-    url: "mailto:".concat(constants.emailAddress),
+    url: constants.mailto,
     text: "Say hi",
     clickEventName: "contact",
     clickEventLocation: props.clickEventLocation,
