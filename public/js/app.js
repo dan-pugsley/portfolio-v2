@@ -2390,7 +2390,7 @@ function BioSection() {
           target: "_blank",
           children: "Plague Inc: Evolved"
         }), " (40,000+ reviews on Steam). Recently, I\u2019ve been working on NFT and cryptocurrency games. I\u2019m based in Europe but flexible with working hours. For more info, ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-          href: constants.mailto,
+          href: constants.mailtoUrl,
           target: "_blank",
           children: "send me a message"
         }), " or ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
@@ -2461,7 +2461,7 @@ __webpack_require__.r(__webpack_exports__);
 function ContactButton(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ButtonLink__WEBPACK_IMPORTED_MODULE_0__["default"], {
     role: props.role,
-    url: constants.mailto,
+    url: constants.mailtoUrl,
     text: "Say hi",
     clickEventName: "contact",
     clickEventLocation: props.clickEventLocation,

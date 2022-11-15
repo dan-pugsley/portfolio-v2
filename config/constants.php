@@ -11,7 +11,7 @@ return [
     ],
     'resumeUrl' => "$assetUrl/doc/resume.pdf",
     'emailAddress' => 'dan@pugs.ly',
-    'mailto' => "mailto:$emailAddress",
+    'mailtoUrl' => "mailto:$emailAddress",
     'meetingUrl' => 'https://calendly.com/dan-pugsley/intro',
     'navBar' => [
         'hideVel' => 0.07,
