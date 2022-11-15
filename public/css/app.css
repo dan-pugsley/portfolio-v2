@@ -1043,13 +1043,6 @@ input:checked ~ .exp-item__desc__toggle-chevron {
     width: var(--exp-item-padding-right);
 }
 
-
-
-
-
-
-
-
 .exp-item__resource {
     -ms-flex-negative: 0;
         flex-shrink: 0;
@@ -1083,6 +1076,9 @@ input:checked ~ .exp-item__desc__toggle-chevron {
 }
 .exp-item__resource:not(:first-child) {
     margin-left: var(--spacing);
+}
+.exp-item__resource--portrait {
+    background: transparent;
 }
 
 .exp-item__no-img {
@@ -1130,13 +1126,6 @@ input:checked ~ .exp-item__desc__toggle-chevron {
 .exp-item__resource > iframe {
     border-radius: inherit;
 }
-
-
-
-
-
-
-
 
 .exp-item__scroll-nav {
     display: -webkit-box;
