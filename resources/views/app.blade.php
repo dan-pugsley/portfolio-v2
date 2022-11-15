@@ -2,7 +2,7 @@
 <html lang="{{str_replace('_', '-', app()->getLocale())}}">
     <head>
         <x-head
-            :title="config('app.name')"
+            :title="config('constants.meta.title')"
             :description="config('constants.meta.description')"
             :imgUrl="asset('img/og.png?v=3')"
             :twitterHandle="config('constants.meta.twitterHandle')"
