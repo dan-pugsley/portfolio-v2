@@ -2394,9 +2394,9 @@ function BioSection() {
           target: "_blank",
           children: "send me a message"
         }), " or ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-          href: "https://calendly.com/dan-pugsley/intro",
+          href: constants.meetingUrl,
           target: "_blank",
-          children: "book a meeting directly"
+          children: "schedule a meeting directly"
         }), "."]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Avatar, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {}), " "]
@@ -2512,8 +2512,12 @@ function ContactSection() {
           fill: "#85C8B6",
           d: "M9.67 14.42a1.58 1.58 0 1 0 0 3.16 1.58 1.58 0 0 0 0-3.16Zm6.33 0a1.58 1.58 0 1 0 0 3.16 1.58 1.58 0 0 0 0-3.16Zm6.33 0a1.58 1.58 0 1 0 0 3.16 1.58 1.58 0 0 0 0-3.16ZM16 .17A15.83 15.83 0 0 0 3.75 26.02L.58 29.2a1.58 1.58 0 0 0-.33 1.72 1.58 1.58 0 0 0 1.5.92H16A15.83 15.83 0 0 0 16 .17Zm0 28.5H5.57l1.47-1.48a1.58 1.58 0 0 0 .47-1.12c0-.42-.17-.82-.47-1.1a12.67 12.67 0 1 1 8.96 3.7Z"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-        children: "I would love to hear about your project and how I can be a part of it. Let\u2019s set up a chat so I can learn about your requirements."
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+        children: ["Please send a message for more info, or feel free to ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+          href: constants.meetingUrl,
+          target: "_blank",
+          children: "schedule a meeting directly"
+        }), "."]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_ContactButton__WEBPACK_IMPORTED_MODULE_0__["default"], {
         clickEventLocation: "contact_section"
       })]

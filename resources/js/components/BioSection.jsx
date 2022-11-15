@@ -117,7 +117,7 @@ function BioSection() {
     return (
         <section id="bio" className="bio tk-lato fade-in">
             <TextContent title={bio.name} subtitle={bio.subtitle}>
-                <p>I specialise in building complex, highly interactive UI for various applications, from games to fine-art portfolios. Previously in the <a href="https://www.aurochdigital.com/" target="_blank">games industry</a>, I’ve worked on titles like <a href="https://store.steampowered.com/app/246620/Plague_Inc_Evolved/" target="_blank">Plague Inc: Evolved</a> (40,000+ reviews on Steam). Recently, I’ve been working on NFT and cryptocurrency games. I’m based in Europe but flexible with working hours. For more info, <a href={constants.mailto} target="_blank">send me a message</a> or <a href="https://calendly.com/dan-pugsley/intro" target="_blank">book a meeting directly</a>.</p>
+                <p>I specialise in building complex, highly interactive UI for various applications, from games to fine-art portfolios. Previously in the <a href="https://www.aurochdigital.com/" target="_blank">games industry</a>, I’ve worked on titles like <a href="https://store.steampowered.com/app/246620/Plague_Inc_Evolved/" target="_blank">Plague Inc: Evolved</a> (40,000+ reviews on Steam). Recently, I’ve been working on NFT and cryptocurrency games. I’m based in Europe but flexible with working hours. For more info, <a href={constants.mailto} target="_blank">send me a message</a> or <a href={constants.meetingUrl} target="_blank">schedule a meeting directly</a>.</p>
             </TextContent>
             <Avatar/>
             <div></div> {/* improves flex layout */}
