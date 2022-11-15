@@ -6,7 +6,7 @@ $twitterUsername = 'dan_pugsley';
 $emailAddress = 'dan@pugs.ly';
 return [
     'meta' => [
-        'description' => "$name is a React/Laravel developer who builds professional, stable and trustworthy websites.",
+        'description' => "$name is a React developer who specialises in building complex, highly interactive UI for a range of applications, from games to fine-art portfolios.",
         'twitterHandle' => "@$twitterUsername",
     ],
     'resumeUrl' => "$assetUrl/doc/resume.pdf",
