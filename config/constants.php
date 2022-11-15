@@ -10,7 +10,6 @@ return [
         'twitterHandle' => "@$twitterUsername",
     ],
     'resumeUrl' => "$assetUrl/doc/resume.pdf",
-    'emailAddress' => 'dan@pugs.ly',
     'mailtoUrl' => "mailto:$emailAddress",
     'meetingUrl' => 'https://calendly.com/dan-pugsley/intro',
     'navBar' => [
