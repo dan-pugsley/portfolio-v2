@@ -4,7 +4,7 @@
         <x-head
             :title="config('constants.meta.title')"
             :description="config('constants.meta.description')"
-            :imgUrl="asset('img/og.png?v=3')"
+            :imgUrl="asset('img/og.png?v=4')"
             :twitterHandle="config('constants.meta.twitterHandle')"
         />
     </head>
