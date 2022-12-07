@@ -1,7 +1,7 @@
 <?php
 
 $name = env('APP_NAME');
-$role = 'React specialist';
+$role = 'React developer';
 $assetUrl = env('ASSET_URL');
 $twitterUsername = 'dan_pugsley';
 $emailAddress = 'dan@pugs.ly';

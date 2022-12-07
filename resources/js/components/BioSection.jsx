@@ -117,7 +117,7 @@ function BioSection() {
     return (
         <section id="bio" className="bio tk-lato fade-in">
             <TextContent title={bio.name} subtitle={bio.subtitle}>
-                <p>The more complex and the more moving parts, the more I enjoy building it! I have experience building a wide range of applications, from <a href="https://store.steampowered.com/app/246620/Plague_Inc_Evolved/" target="_blank">video games</a> to fine-art portfolios, and I aim to make each project fully responsive, accessible, smooth and bug-free down to the smallest details. I love to work with people who are striving for the same high standards, so if that’s you, <a href={constants.meetingUrl} target="_blank">let’s talk</a>.</p>
+                <p>The more complex and the more moving parts, the more I enjoy building it! I have experience building a wide range of applications, from <a href="https://store.steampowered.com/app/246620/Plague_Inc_Evolved/" target="_blank">video games</a> to <a href="https://leapoisson.com/" target="_blank">painting portfolios</a>, and I aim to make each project fully responsive, accessible, smooth and bug-free down to the smallest details. I love to work with people who are striving for the same high standards, so if that’s you, <a href={constants.meetingUrl} target="_blank">let’s talk</a>.</p>
             </TextContent>
             <Avatar/>
             <div></div> {/* improves flex layout */}
