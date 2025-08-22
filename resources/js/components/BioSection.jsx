@@ -117,7 +117,7 @@ function BioSection() {
     return (
         <section id="bio" className="bio tk-lato fade-in">
             <TextContent title={bio.name} subtitle={bio.subtitle}>
-                <p>The more complex and the more moving parts, the more I enjoy building it! I have experience building a wide range of applications, from <a href="https://store.steampowered.com/app/246620/Plague_Inc_Evolved/" target="_blank">video games</a> to <a href="https://leapoisson.com/" target="_blank">painting portfolios</a>, and I aim to make each project fully responsive, accessible, smooth and bug-free down to the smallest details. I love to work with people who are striving for the same high standards, so if that’s you, <a href={constants.meetingUrl} target="_blank">let’s talk</a>.</p>
+                <p>Do you have a highly complex or interactive design that needs building in React? Do you need it built to a very high standard and for it to <em>feel</em> great for users? I specialise in building high-complexity designs to the highest standard. I have a background in video games and private aviation, where I’ve built UI-heavy web apps that run flawlessly and <em>feel</em> great. I love a challenge and can handle anything from huge data dashboards, graphs and calendars to 3D or real-time physics simulation. I only take 1 client at a time to ensure the best service possible. If you think we’d be a good fit, please <a href="mailto:dan@pugs.ly" target="_blank">get in touch</a>. You can also watch a short intro video <a href="https://youtu.be/ZvY_8_S1z-4" target="_blank">here</a>.</p>
             </TextContent>
             <Avatar/>
             <div></div> {/* improves flex layout */}
