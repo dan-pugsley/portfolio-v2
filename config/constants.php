@@ -1,14 +1,14 @@
 <?php
 
 $name = env('APP_NAME');
-$role = 'React developer';
+$role = 'Front-end developer';
 $assetUrl = env('ASSET_URL');
 $twitterUsername = 'dan_pugsley';
 $emailAddress = 'dan@pugs.ly';
 return [
     'meta' => [
         'title' => $name,
-        'description' => "$name is a $role, who loves building complex, highly interactive UI for anything from video games to fine-art portfolios.",
+        'description' => "$name is a $role, who loves building complex, highly interactive UI for anything from video games and flight simulators to language apps and fine-art portfolios.",
         'twitterHandle' => "@$twitterUsername",
     ],
     'resumeUrl' => "$assetUrl/doc/resume.pdf",
