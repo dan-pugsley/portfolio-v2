@@ -33,11 +33,3 @@
 <meta property="og:image" content="{{$imgUrl}}">
 <meta property="og:url" content="{{config('app.url')}}">
 <meta property="og:type" content="website">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="{{$twitterHandle}}">
-<meta name="twitter:creator" content="{{$twitterHandle}}">
-<meta name="twitter:title" content="{{$title}}">
-<meta name="twitter:description" content="{{$description}}">
-<meta name="twitter:image" content="{{$imgUrl}}">

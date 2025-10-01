@@ -117,7 +117,9 @@ function BioSection() {
     return (
         <section id="bio" className="bio tk-lato fade-in">
             <TextContent title={bio.name} subtitle={bio.subtitle}>
-                <p>Do you have a highly complex or interactive design that needs building in React? Do you need it built to a very high standard and for it to <em>feel</em> great for users? I specialise in building high-complexity designs to the highest standard. I have a background in video games and private aviation, where I’ve built UI-heavy web apps that run flawlessly and <em>feel</em> great. I love a challenge and can handle anything from huge data dashboards, graphs and calendars to 3D or real-time physics simulation. I only take 1 client at a time to ensure the best service possible. If you think we’d be a good fit, please <a href="mailto:dan@pugs.ly" target="_blank">get in touch</a>. You can also watch a short intro video <a href="https://youtu.be/ZvY_8_S1z-4" target="_blank">here</a>.</p>
+                <p>With 10+ years professional experience across video games (Plague Inc: Evolved, 50k+ reviews on Steam), private aviation (Jetfly, Fly7, CaptainJet), ed-tech (Javu) and NFT-based apps, I specialise in transforming complex designs into fully responsive, seamless user experiences that don't just look good, but <em>feel</em> good.</p>
+                <p>More than writing code, I help identify improvements and potential pitfalls early, ensuring projects meet their goals on time and to an exceptional standard. I’m also available for sprints and weekend work, without compromising quality.</p>
+                <p>I’m always open to connecting with other professionals, whether it’s about a new project, collaboration, or just to share knowledge. For a quick introduction to me and how I work, watch my <a href="https://youtu.be/ZvY_8_S1z-4" target="_blank" rel="noopener noreferrer">short intro video</a>.</p>
             </TextContent>
             <Avatar/>
             <div></div> {/* improves flex layout */}

@@ -1,15 +1,13 @@
 <?php
 
 $name = env('APP_NAME');
-$role = 'Front-end developer';
 $assetUrl = env('ASSET_URL');
-$twitterUsername = 'dan_pugsley';
-$emailAddress = 'dan@pugs.ly';
+$emailAddress = 'daniel.pugsley@gmail.com';
+
 return [
     'meta' => [
         'title' => $name,
-        'description' => "$name is a $role, who loves building complex, highly interactive UI for anything from video games and flight simulators to language apps and fine-art portfolios.",
-        'twitterHandle' => "@$twitterUsername",
+        'description' => "Senior React/Next.js developer with 10+ years professional experience helping clients transform complex designs into seamless user experiences, spanning games (Plague Inc Evolved, 50k+ reviews on Steam), private aviation (Jetfly, Fly7, CaptainJet), ed-tech (Javu) and NFT-based apps.",
     ],
     'resumeUrl' => "$assetUrl/doc/resume.pdf",
     'mailtoUrl' => "mailto:$emailAddress",
@@ -20,7 +18,7 @@ return [
     ],
     'bio' => [
         'name' => $name,
-        'subtitle' => $role,
+        'subtitle' => 'Senior React/Next.js Developer',
         'avatar' => [
             'imgUrl' => [
                 'x1' => "$assetUrl/img/avatar.jpg",
@@ -57,7 +55,6 @@ return [
         'pageSize' => 6,
     ],
     'social' => [
-        'twitterUrl' => "https://twitter.com/$twitterUsername",
         'gitHubUrl' => 'https://github.com/dan-pugsley',
         'linkedInUrl' => 'https://www.linkedin.com/in/dpugsley/',
         'instagramUrl' => 'https://www.instagram.com/dan_pugsley/',
