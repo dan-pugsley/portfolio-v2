@@ -1,13 +1,14 @@
 <?php
 
 $name = env('APP_NAME');
+$subtitle = "Senior Full-Stack Developer";
 $assetUrl = env('ASSET_URL');
 $emailAddress = 'daniel.pugsley@gmail.com';
 
 return [
     'meta' => [
         'title' => $name,
-        'description' => "Senior React/Next.js developer with 10+ years professional experience helping clients transform complex designs into seamless user experiences, spanning games (Plague Inc Evolved, 50k+ reviews on Steam), private aviation (Jetfly, Fly7, CaptainJet), ed-tech (Javu) and NFT-based apps.",
+        'description' => "Daniel is a senior full-stack developer specializing in front-end development and React ecosystems. With over 9 years of professional experience across award-winning games, private aviation, ed-tech and betting platforms, he brings obsessive attention to detail and a game-developer’s eye for fluid, responsive interaction. Daniel thrives on complexity, taking pride in building large systems that not only look great, but feel great to use.",
     ],
     'resumeUrl' => "$assetUrl/doc/resume.pdf",
     'mailtoUrl' => "mailto:$emailAddress",
@@ -18,7 +19,7 @@ return [
     ],
     'bio' => [
         'name' => $name,
-        'subtitle' => 'Senior React/Next.js Developer',
+        'subtitle' => $subtitle,
         'avatar' => [
             'imgUrl' => [
                 'x1' => "$assetUrl/img/avatar.jpg",
