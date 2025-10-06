@@ -119,7 +119,6 @@ function BioSection() {
             <TextContent title={bio.name} subtitle={bio.subtitle}>
                 <p>I'm a full-stack developer specializing in front-end development and React ecosystems. With over 9 years of professional experience across <a href="https://store.steampowered.com/app/246620/Plague_Inc_Evolved/" target="_blank">award-winning games</a>, <a href="https://jetfly.com/" target="_blank">private aviation</a>, <a href="https://javu.app/" target="_blank">ed-tech</a> and betting platforms, I bring obsessive attention to detail and a game-developer's eye for fluid, responsive interaction.</p>
                 <p>I thrive on complexity, taking pride in building large systems that not only look great, but <em>feel</em> great to use.</p>
-                <p>For a quick introduction to me and how I work, watch my <a href="https://youtu.be/ZvY_8_S1z-4" target="_blank" rel="noopener noreferrer">short intro video</a>.</p>
             </TextContent>
             <Avatar/>
             <div></div> {/* improves flex layout */}
